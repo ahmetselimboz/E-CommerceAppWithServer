@@ -457,7 +457,7 @@ nav {
 }
 
 .item {
-  height: 400px;
+  height: 420px;
   
   background-color: #f2f2f2;
   border-radius: 10px;
@@ -497,6 +497,21 @@ nav {
   color: #16be00;
 }
 
+.det{
+  width: 100%;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+
+.book-detail{
+  padding: 1rem 0;
+  bottom:0;
+  position: absolute;
+}
+
 .book-detail h6 {
   transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -515,7 +530,7 @@ nav {
 .slide {
   /* width: 210px !important; */
   padding: 2rem 0;
-  height: 440px !important;
+  height: 450px !important;
 }
 
 .book-info {
