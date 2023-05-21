@@ -44,11 +44,14 @@ const postDetails = (req, res, next) => {
     author: req.body.author,
     img: req.body.img,
     publisher: req.body.publisher,
+    desc: req.body.desc,
+    width: req.body.image_width,
+    height: req.body.image_height
   };
 
   console.log(req.session.book);
 
-  res.render("details", { layout: "./layout/nonAuthorized.ejs" });
+  res.render("details", {val:req.session.book, layout: "./layout/nonAuthorized.ejs" });
 };
 
 module.exports = {

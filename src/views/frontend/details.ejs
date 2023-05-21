@@ -3,22 +3,22 @@
     <div class="detail-container">
       <div class="detail-left">
         <div class="detail-img">
-          <img src="../assets/harry.jpg" alt="" />
+          <img src="<%- val.img %>" alt="" />
         </div>
       </div>
       <div class="detail-right">
         <div class="detail-title">
-          <h3>HARRY POTTER AND THE DEATHLY HALLOWS</h3>
+          <h3><%- val.title %></h3>
 
           <div class="detail-author">
             <h6>Yazar:</h6>
             &nbsp;
-            <h4>James Patterson and Maxine Paetro</h4>
+            <h4><%- val.author %></h4>
           </div>
           <div class="detail-publisher">
             <h6>Yayınevi:</h6>
 
-            <h5>&nbsp;&nbsp;Pegasus</h5>
+            <h5>&nbsp;&nbsp;<%- val.publisher %></h5>
           </div>
         </div>
 
@@ -36,16 +36,13 @@
           <div class="detail-desc">
             <h6>Açıklama:</h6>
             <h5>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-              sint, minus itaque provident obcaecati doloribus ducimus optio
-              non voluptatibus, minima dignissimos tempore explicabo, iure
-              quidem ipsa ipsum eos quod modi.
+              <%- val.desc %>
             </h5>
           </div>
           <div class="detail-size">
             <h6>Kitap Boyutu:</h6>
 
-            <h5>&nbsp;&nbsp;200 x 100</h5>
+            <h5>&nbsp;&nbsp; <%- val.width %> x  <%- val.height %></h5>
           </div>
         </div>
         <div class="basket">
