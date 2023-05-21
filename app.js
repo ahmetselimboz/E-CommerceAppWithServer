@@ -18,9 +18,7 @@ app.set('views', path.resolve(__dirname, "./src/views/frontend"));
 
 
 app.get("/", (req, res, next) =>{
-    res.send({
-        mesaj: "Merhaba"
-    })
+    res.redirect('/homepage');
 })
 
 const frRouter = require('./src/routers/frontend/frRouters');

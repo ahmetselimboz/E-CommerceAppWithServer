@@ -44,3 +44,14 @@ window.onscroll = function () {
 //     item[i].src=result[0].books[i].book_image;
 //   }
 // });
+
+function rate(stars) {
+  const starElements = document.getElementsByClassName("star");
+  for (let i = 0; i < starElements.length; i++) {
+    if (i < stars) {
+      starElements[i].classList.add("star-filled");
+    } else {
+      starElements[i].classList.remove("star-filled");
+    }
+  }
+}

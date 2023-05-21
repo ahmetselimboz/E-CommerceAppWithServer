@@ -1,331 +1,195 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      href="/frontend/assets/pngwing.com.png"
-      type="image/x-icon"
-    />
-
-    <link
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="/frontend/css/style.css" class="css" />
-
-    <title>Kitap Dağı | Dağ Kadar Kitabın Tek Adresi</title>
-  </head>
-
-  <body>
-    <div class="bg"></div>
-    <nav>
-      <div class="nav-top">
-        <div class="main-logo">
-          <a href="#">
-            <img src="/frontend/assets/pngwing.com.png" />
-          </a>
-          <p>Kitap Dağı</p>
-        </div>
-        <form class="search" action="">
-          <input
-            class="search-area"
-            type="text"
-            placeholder="Aradığınız kitabın adını buraya giriniz."
-            name="search"
-          />
-          <button class="search-btn" type="submit">
-            <i class="bx bx-search"></i>&nbsp;Ara
-          </button>
-        </form>
-        <div class="nav-btn">
-          <a class="login-btn" href=""><i class="bx bx-user-circle"></i></a>
-
-          <a class="cart-btn" href=""><i class="bx bx-cart"></i></a>
-        </div>
+<section>
+  <div class="header-panel">
+    <div class="header-title">
+      <h1>Kitap Dağı</h1>
+      <div class="header-alt-title">
+        <h4>Dağ kadar kitabın tek adresi..</h4>
       </div>
-      <div class="nav-bottom">
-        <ul class="nav-bottom-ul">
-          <li><a href="">Edebiyat</a></li>
-          <li><a href="">Bilim Kurgu</a></li>
-          <li><a href="">Çocuk</a></li>
-          <li><a href="">Kişisel Gelişim</a></li>
-          <li><a href="">Tarih</a></li>
-          <li><a href="">Psikoloji</a></li>
-          <li><a href="">Felsefe</a></li>
-        </ul>
-      </div>
-    </nav>
-    <section>
-      <div class="header-panel">
-        <div class="header-title">
-          <h1>Kitap Dağı</h1>
-          <div class="header-alt-title">
-            <h4>Dağ kadar kitabın tek adresi..</h4>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="box-center">
-      <div class="box-panel">
-        <div class="box-left">
-          <a class="box-a1" href="#">
-            <h3>
-              Günün<br />
-              Kitabı
-            </h3>
-            <img id="img1" src="/frontend/assets/mavi.jpg" alt="" />
-          </a>
-        </div>
-        <div class="box-right">
-          <div class="box-right-top">
-            <a class="box-a2" href="#">
-              <h3>Süper İndirimler!</h3>
-              <h4>İnanılmaz Fiyatlarr</h4>
-              <img id="img2" src="/frontend/assets/Jake.png" alt="" />
-            </a>
-          </div>
-          <div class="box-right-bottom">
-            <a class="box-a3" href="#">
-              <h3>Çok Satan Kitaplar</h3>
-
-              <img id="img3" src="/frontend/assets/Başlıksız-2.jpg" alt="" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="book-panel">
-        <div class="title">
-          <h3>Sizin İçin Seçtiklerimiz</h3>
-          <hr />
-        </div>
-        <div class="book-col">
-          <div class="customer-logos slider">
-            <% for( let index = 0; index < 7; index++ ) { %>
-            <div class="slide">
-              <div class="item">
-                <a href="#">
-                  <div class="book-img">
-                    <img src="<%- api.lists[0].books[index].book_image %>" />
-                  </div>
-                  <div class="book-info">
-                    <h3><%- api.lists[0].books[index].title %></h3>
-                    <div class="book-author">
-                     
-                     
-                      <h4><%- api.lists[0].books[index].author %></h4>
-                    </div>
-                    <div class="book-publisher">
-                      
-                    
-                      <h5><%- api.lists[0].books[index].publisher %></h5>
-                    </div>
-                  </div>
-                  <div class="det">
-                    <div class="book-detail">
-                      <h6>İncele</h6>
-                      <i class="bx bx-chevron-up"></i>
-                    </div>
-                  </div>
-                 
-                </a>
-              </div>
-            </div>
-            <% } %>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div class="card-panel">
-        <ul>
-          <li>
-            <i class="bx bx-file-find bx-tada bx-rotate-90"></i>
-            <h1>Araştır</h1>
-          </li>
-          <span></span>
-          <li>
-            <i class="bx bx-search-alt bx-tada"></i>
-            <h1>Keşfet</h1>
-          </li>
-          <span></span>
-          <li>
-            <i class="bx bxs-balloon bx-tada"></i>
-            <h1>Eğlen</h1>
-          </li>
-          <span></span>
-          <li>
-            <i class="bx bx-book-bookmark bx-tada"></i>
-            <h1>Öğren</h1>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section>
-      <div class="book-panel">
-        <div class="title">
-          <h3>Çok Satan Kitaplar</h3>
-          <hr />
-        </div>
-        <div class="book-col">
-          <div class="customer-logos slider">
-            <% for( let index = 0; index < 7; index++ ) { %>
-            <div class="slide">
-              <div class="item">
-                <a href="#">
-                  <div class="book-img">
-                    <img src="<%- api.lists[1].books[index].book_image %>" />
-                  </div>
-                  <div class="book-info">
-                    <h3><%- api.lists[1].books[index].title %></h3>
-                    <div class="book-author">
-                      
-                     
-                      <h4><%- api.lists[1].books[index].author %></h4>
-                    </div>
-                    <div class="book-publisher">
-                     
-                     
-                      <h5><%- api.lists[1].books[index].publisher %></h5>
-                    </div>
-                  </div>
-                  <div class="det">
-                    <div class="book-detail">
-                      <h6>İncele</h6>
-                      <i class="bx bx-chevron-up"></i>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <% } %>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="book-panel">
-        <div class="title">
-          <h3>Yeni Çıkan Kitaplar</h3>
-          <hr />
-        </div>
-        <div class="book-col">
-          <div class="customer-logos slider">
-            <% for( let index = 0; index < 7; index++ ) { %>
-            <div class="slide">
-              <div class="item">
-                <a href="#">
-                  <div class="book-img">
-                    <img src="<%- api.lists[2].books[index].book_image %>" />
-                  </div>
-                  <div class="book-info">
-                    <h3><%- api.lists[2].books[index].title %></h3>
-                    <div class="book-author">
-                      
-                    
-                      <h4><%- api.lists[2].books[index].author %></h4>
-                    </div>
-                    <div class="book-publisher">
-                      
-                     
-                      <h5><%- api.lists[2].books[index].publisher %></h5>
-                    </div>
-                  </div>
-                  <div class="det">
-                    <div class="book-detail">
-                      <h6>İncele</h6>
-                      <i class="bx bx-chevron-up"></i>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <% } %>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-container">
-        <div class="footer-col" id="col">
-          <div class="footer-logo">
-            <a href="#">
-              <img src="/frontend/assets/pngwing.com.png" />
-            </a>
-            <p>Kitap Dağı</p>
-          </div>
-          <div class="footer-category">
-            <h4>Üyelik</h4>
-            <hr class="footer-underline" />
-            <ul>
-              <li><a href="../pages/Index.html">Yeni Üyelik</a></li>
-              <li><a href="../pages/MyWorks.html">Üye Girişi</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-flex">
-          <div class="footer-col">
-            <div class="footer-category">
-              <h4>Kategoriler</h4>
-              <hr class="footer-underline" />
-              <ul>
-                <li><a href="../pages/Index.html">Edebiyat</a></li>
-                <li><a href="../pages/MyWorks.html">Bilim Kurgu</a></li>
-                <li><a href="../pages/MyProjects.html">Çocuk</a></li>
-                <li><a href="../pages/AllAboutMe.html">Kişisel Gelişim</a></li>
-                <li><a href="../pages/ContactMe.html">Psikoloji</a></li>
-                <li><a href="../pages/ContactMe.html">Tarih</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="footer-col">
-            <div class="footer-category">
-              <h4>Hızlı Erişim</h4>
-              <hr class="footer-underline" />
-              <ul>
-                <li><a href="../pages/Index.html">Anasayfa</a></li>
-                <li><a href="../pages/MyWorks.html">Yeni Çıkan Kitaplar</a></li>
-                <li><a href="../pages/MyProjects.html">İndirimdekiler</a></li>
-                <li><a href="../pages/AllAboutMe.html">Sepetim</a></li>
-                <li><a href="../pages/ContactMe.html">İletişim</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <div class="copyright">
-      <small id="copyrightText">Copyright © ASB 2023</small>
     </div>
+  </div>
+</section>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
-      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://code.jquery.com/jquery-2.2.0.min.js"
-      type="text/javascript"
-    ></script>
+<section class="box-center">
+  <div class="box-panel">
+    <div class="box-left">
+      <a class="box-a1" href="#">
+        <h3>
+          Günün<br />
+          Kitabı
+        </h3>
+        <img id="img1" src="/frontend/assets/mavi.jpg" alt="" />
+      </a>
+    </div>
+    <div class="box-right">
+      <div class="box-right-top">
+        <a class="box-a2" href="#">
+          <h3>Süper İndirimler!</h3>
+          <h4>İnanılmaz Fiyatlarr</h4>
+          <img id="img2" src="/frontend/assets/Jake.png" alt="" />
+        </a>
+      </div>
+      <div class="box-right-bottom">
+        <a class="box-a3" href="#">
+          <h3>Çok Satan Kitaplar</h3>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+          <img id="img3" src="/frontend/assets/Başlıksız-2.jpg" alt="" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="/frontend/js/api.js"></script>
-    <script src="/frontend/js/app.js"></script>
-  </body>
-</html>
+<section>
+  <div class="book-panel">
+    <div class="title">
+      <h3>Sizin İçin Seçtiklerimiz</h3>
+      <hr />
+    </div>
+    <div class="book-col">
+      <div class="customer-logos slider">
+        <% for( let index = 0; index < 7; index++ ) { %>
+        <div class="slide">
+          <div class="item">
+            <a href="/details/<%- api.lists[0].books[index].primary_isbn10 %>">
+              <div class="book-img">
+                <img src="<%- api.lists[0].books[index].book_image %>" />
+              </div>
+              <div class="book-info">
+                <h3><%- api.lists[0].books[index].title %></h3>
+                <div class="book-author">
+                 
+                 
+                  <h4><%- api.lists[0].books[index].author %></h4>
+                </div>
+                <div class="book-publisher">
+                  
+                
+                  <h5><%- api.lists[0].books[index].publisher %></h5>
+                </div>
+              </div>
+              <div class="det">
+                <div class="book-detail">
+                  <h6>İncele</h6>
+                  <i class="bx bx-chevron-up"></i>
+                </div>
+              </div>
+             
+            </a>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="card-panel">
+    <ul>
+      <li>
+        <i class="bx bx-file-find bx-tada bx-rotate-90"></i>
+        <h1>Araştır</h1>
+      </li>
+      <span></span>
+      <li>
+        <i class="bx bx-search-alt bx-tada"></i>
+        <h1>Keşfet</h1>
+      </li>
+      <span></span>
+      <li>
+        <i class="bx bxs-balloon bx-tada"></i>
+        <h1>Eğlen</h1>
+      </li>
+      <span></span>
+      <li>
+        <i class="bx bx-book-bookmark bx-tada"></i>
+        <h1>Öğren</h1>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="book-panel">
+    <div class="title">
+      <h3>Çok Satan Kitaplar</h3>
+      <hr />
+    </div>
+    <div class="book-col">
+      <div class="customer-logos slider">
+        <% for( let index = 0; index < 7; index++ ) { %>
+        <div class="slide">
+          <div class="item">
+            <a href="#">
+              <div class="book-img">
+                <img src="<%- api.lists[1].books[index].book_image %>" />
+              </div>
+              <div class="book-info">
+                <h3><%- api.lists[1].books[index].title %></h3>
+                <div class="book-author">
+                  
+                 
+                  <h4><%- api.lists[1].books[index].author %></h4>
+                </div>
+                <div class="book-publisher">
+                 
+                 
+                  <h5><%- api.lists[1].books[index].publisher %></h5>
+                </div>
+              </div>
+              <div class="det">
+                <div class="book-detail">
+                  <h6>İncele</h6>
+                  <i class="bx bx-chevron-up"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="book-panel">
+    <div class="title">
+      <h3>Yeni Çıkan Kitaplar</h3>
+      <hr />
+    </div>
+    <div class="book-col">
+      <div class="customer-logos slider">
+        <% for( let index = 0; index < 7; index++ ) { %>
+        <div class="slide">
+          <div class="item">
+            <a href="#">
+              <div class="book-img">
+                <img src="<%- api.lists[2].books[index].book_image %>" />
+              </div>
+              <div class="book-info">
+                <h3><%- api.lists[2].books[index].title %></h3>
+                <div class="book-author">
+                  
+                
+                  <h4><%- api.lists[2].books[index].author %></h4>
+                </div>
+                <div class="book-publisher">
+                  
+                 
+                  <h5><%- api.lists[2].books[index].publisher %></h5>
+                </div>
+              </div>
+              <div class="det">
+                <div class="book-detail">
+                  <h6>İncele</h6>
+                  <i class="bx bx-chevron-up"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>
