@@ -1,3 +1,5 @@
+<div class="bg"></div>
+
 <section>
   <div class="header-panel">
     <div class="header-title">
@@ -48,35 +50,38 @@
     <div class="book-col">
       <div class="customer-logos slider">
         <% for( let index = 0; index < 7; index++ ) { %>
-        <div class="slide">
-          <div class="item">
-            <a href="/details/<%- api.lists[0].books[index].primary_isbn10 %>">
-              <div class="book-img">
-                <img src="<%- api.lists[0].books[index].book_image %>" />
-              </div>
-              <div class="book-info">
-                <h3><%- api.lists[0].books[index].title %></h3>
-                <div class="book-author">
-                 
-                 
-                  <h4><%- api.lists[0].books[index].author %></h4>
+        <form action="/details" method="post">
+          <button type="submit">
+            <div class="slide">
+              <div class="item">
+                <div class="book-img">
+                  <img src="<%- api.lists[0].books[index].book_image %>" />
                 </div>
-                <div class="book-publisher">
-                  
-                
-                  <h5><%- api.lists[0].books[index].publisher %></h5>
+                <div class="book-info">
+                  <h3><%- api.lists[0].books[index].title %></h3>
+                  <div class="book-author">
+                    <h4><%- api.lists[0].books[index].author %></h4>
+                    <input type="hidden" name="id" value="<%- api.lists[0].books[index].primary_isbn10 %>">
+                    <input type="hidden" name="title" value="<%- api.lists[0].books[index].title %>">
+                    <input type="hidden" name="author" value="<%- api.lists[0].books[index].author %>">
+                    <input type="hidden" name="img" value="<%- api.lists[0].books[index].book_image %>">
+                    <input type="hidden" name="publisher" value="<%- api.lists[0].books[index].publisher %>">
+                  </div>
+                  <div class="book-publisher">
+                    <h5><%- api.lists[0].books[index].publisher %></h5>
+                  </div>
+                </div>
+                <div class="det">
+                  <div class="book-detail">
+                    <h6>İncele</h6>
+                    <i class="bx bx-chevron-up"></i>
+                  </div>
                 </div>
               </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-             
-            </a>
-          </div>
-        </div>
+            </div>
+          </button>
+        </form>
+
         <% } %>
       </div>
     </div>
@@ -119,20 +124,17 @@
         <% for( let index = 0; index < 7; index++ ) { %>
         <div class="slide">
           <div class="item">
-            <a href="#">
+            <a href="/details">
+             
               <div class="book-img">
                 <img src="<%- api.lists[1].books[index].book_image %>" />
               </div>
               <div class="book-info">
                 <h3><%- api.lists[1].books[index].title %></h3>
                 <div class="book-author">
-                  
-                 
                   <h4><%- api.lists[1].books[index].author %></h4>
                 </div>
                 <div class="book-publisher">
-                 
-                 
                   <h5><%- api.lists[1].books[index].publisher %></h5>
                 </div>
               </div>
@@ -169,13 +171,9 @@
               <div class="book-info">
                 <h3><%- api.lists[2].books[index].title %></h3>
                 <div class="book-author">
-                  
-                
                   <h4><%- api.lists[2].books[index].author %></h4>
                 </div>
                 <div class="book-publisher">
-                  
-                 
                   <h5><%- api.lists[2].books[index].publisher %></h5>
                 </div>
               </div>

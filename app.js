@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session')
 
 
 
@@ -14,14 +16,42 @@ app.set('views', path.resolve(__dirname, "./src/views/frontend"));
 
 
 
+require('./src/config/database');
+const MongoDBStore = require('connect-mongodb-session')(session);
+
+const sessionStore = new MongoDBStore({
+    uri: process.env.MONGODB_CONNECTION_STRING,
+    collection: "sessions"
+})
 
 
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    },
+    store: sessionStore
+}))
+
+
+
+
+
+app.use(flash());
+app.use((req,res,next)=>{
+    res.locals.id = req.flash("id");
+    next();
+})
+
+const frRouter = require('./src/routers/frontend/frRouters');
+
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res, next) =>{
     res.redirect('/homepage');
 })
-
-const frRouter = require('./src/routers/frontend/frRouters');
 
 app.use('/', frRouter);
 

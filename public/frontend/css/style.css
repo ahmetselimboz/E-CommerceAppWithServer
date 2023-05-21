@@ -35,6 +35,18 @@ a:focus {
   outline: none;
 }
 
+
+button {
+  text-decoration: none;
+  color: black;
+}
+button:hover,
+button:focus {
+  text-decoration: none;
+  color: black;
+  outline: none;
+}
+
 ul {
   margin: 0;
 }
@@ -451,6 +463,13 @@ nav {
   background-color: #f9f9f9;
 }
 
+.book-col button{
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 .item {
   height: 420px;
 
@@ -551,6 +570,10 @@ nav {
   font-family: "Poppins", sans-serif;
   color: #16be00;
 }
+
+/* .book-author input {
+  display: none;
+} */
 .book-author h6 {
   font-size: 12px;
   font-family: "Poppins", sans-serif;
