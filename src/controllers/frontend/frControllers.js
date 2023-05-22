@@ -1,3 +1,6 @@
+const bookApi = require('../../config/bookApi');
+
+
 const axios = require("axios");
 
 const getHomePage = (req, res, next) => {
@@ -12,6 +15,7 @@ const getHomePage = (req, res, next) => {
         //req.flash('id', value.lists[0].books[0].primary_isbn10);
 
         //console.log(result.data.results.lists[1]);
+
 
         res.render("index", {
           api: value,
@@ -28,16 +32,16 @@ const getHomePage = (req, res, next) => {
 
 const getDetails = (req, res, next) => {
   // req.flash('id', "45854");
-  console.log(req.session.book);
+
+  console.log(bookApi);
 
   // const id = res.locals.id;
   // console.log(id);
-  res.render("details", { layout: "./layout/nonAuthorized.ejs" });
+  res.render("details", {val:req.session.book, layout: "./layout/nonAuthorized.ejs" });
 };
 
 const postDetails = (req, res, next) => {
-  const id = req.body.id;
-  const author = req.body.author;
+
   req.session.book = {
     id: req.body.id,
     title: req.body.title,
