@@ -1,19 +1,21 @@
 const axios = require("axios");
 
-const dizi = ["Elma", "Armut", "Portakal"];
+var value = [];
 
-try {
-    const response = axios.get(
+async function  book() {
+  try {
+    const response = await axios.get(
       "https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=NAF05od30BpNhBNEmIuTNGOAIpUU72a7"
     );
     response
       .then((result) => {
-
-        // for(i=0;i<result.data.results.lists.length;i++){
-        //     for(j=0;j<result.data.)
-        // }
-        var value = result.data;
-        // console.log(value);
+        for (i = 0; i < 7; i++) {
+          for (j = 0; j < 15; j++) {
+            return value.push(result.data.results.lists[i].books[j]);
+          }
+        }
+       
+       
       })
       .catch((err) => {
         console.log(err);
@@ -21,5 +23,10 @@ try {
   } catch (error) {
     console.log(error.data.fault);
   }
+}
 
-module.exports = dizi;
+
+
+module.exports = {
+  book
+};
