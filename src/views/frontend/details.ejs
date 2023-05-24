@@ -3,22 +3,22 @@
     <div class="detail-container">
       <div class="detail-left">
         <div class="detail-img">
-          <img src="<%- val.img %>" alt="" />
+          <img src="<%- data.api.book_image %>" alt="" />
         </div>
       </div>
       <div class="detail-right">
         <div class="detail-title">
-          <h3><%- val.title %></h3>
+          <h3><%- data.api.title %></h3>
 
           <div class="detail-author">
             <h6>Yazar:</h6>
             &nbsp;
-            <h4><%- val.author %></h4>
+            <h4><%- data.api.author %></h4>
           </div>
           <div class="detail-publisher">
             <h6>Yayınevi:</h6>
 
-            <h5>&nbsp;&nbsp;<%- val.publisher %></h5>
+            <h5>&nbsp;&nbsp;<%- data.api.publisher %></h5>
           </div>
         </div>
 
@@ -36,13 +36,13 @@
           <div class="detail-desc">
             <h6>Açıklama:</h6>
             <h5>
-              <%- val.desc %>
+              <%- data.api.description %>
             </h5>
           </div>
           <div class="detail-size">
             <h6>Kitap Boyutu:</h6>
 
-            <h5>&nbsp;&nbsp; <%- val.width %>mm x  <%- val.height %>mm </h5>
+            <h5>&nbsp;&nbsp;<%- data.api.book_image_width %> mm x <%- data.api.book_image_height %> mm</h5>
           </div>
         </div>
         <div class="basket">
@@ -54,203 +54,43 @@
 </section>
 
 <section>
-  <div id="pad" class="book-panel">
+  <div class="book-panel">
     <div class="title">
-      <h3>Önerilenler</h3>
+      <h3>Öneriler</h3>
       <hr />
     </div>
     <div class="book-col">
       <div class="customer-logos slider">
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
+        <% for( let index = 0; index < 7; index++ ) { %>
+       
+            <div class="slide">
+              <div class="item">
+                <a href="/details/<%- data.val[index]._id %>">
+                  <div class="book-img">
+                    <img src="<%- data.val[index].book_image %>" />
+                  </div>
+                  <div class="book-info">
+                    <h3><%- data.val[index].title %></h3>
+                    <div class="book-author">
+                      <h4><%- data.val[index].author %></h4>
+                    </div>
+                    <div class="book-publisher">
+                      <h5><%- data.val[index].publisher %></h5>
+                    </div>
+                  </div>
+                  <div class="det">
+                    <div class="book-detail">
+                      <h6>İncele</h6>
+                      <i class="bx bx-chevron-up"></i>
+                    </div>
+                  </div>
+                </a>
+                
               </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  &nbsp;
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="slide">
-          <div class="item">
-            <a href="#">
-              <div class="book-img">
-                <img src="../assets/harry.jpg" />
-              </div>
-              <div class="book-info">
-                <h3>THE 23RD MIDNIGHT</h3>
-                <div class="book-author">
-                  <h6>Yazar:</h6>
-                  <h4>James Patterson and Maxine Paetro</h4>
-                </div>
-                <div class="book-publisher">
-                  <h6>Yayınevi:</h6>
-                  &nbsp;
-                  <h5>Pegasus</h5>
-                </div>
-              </div>
-              <div class="det">
-                <div class="book-detail">
-                  <h6>İncele</h6>
-                  <i class="bx bx-chevron-up"></i>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
+            </div>
+ 
+
+        <% } %>
       </div>
     </div>
   </div>

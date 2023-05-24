@@ -1,73 +1,31 @@
-const book = require("../../config/bookApi");
+const Books = require("../../models/bookModel");
 
-const axios = require("axios");
-var value = []
-const getHomePage = (req, res, next) => {
-
-  
-
-  console.log(book);
+const getHomePage = async (req, res, next) => {
+  const book = await Books.find({}).limit(21);
 
 
-  res.send({
-   
-  });
-
-  // try {
-  //   const response = axios.get(
-  //     "https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=NAF05od30BpNhBNEmIuTNGOAIpUU72a7"
-  //   );
-  //   response
-  //     .then((result) => {
-  //       var value = result.data.results;
-
-  //       //console.log(value.lists[0]);
-  //       //req.flash('id', value);
-
-  //       // res.render("index", {
-  //       //   api: value,
-  //       //   layout: "./layout/nonAuthorized.ejs",
-  //       // });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // } catch (error) {
-  //   console.log(error.data.fault);
-  // }
-};
-
-const getDetails = (req, res, next) => {
-  // req.flash('id', "45854");
-
-  console.log(bookApi);
-
-  // const id = res.locals.id;
-  // console.log(id);
-  res.render("details", {
-    val: req.session.book,
+  res.render("index", {
+    api: book,
     layout: "./layout/nonAuthorized.ejs",
   });
+ 
+};
+
+const getDetails = async (req, res, next) => {
+  const id = req.params.id;
+
+  const value = await Books.find({}).skip(21).limit(28);
+  const book = await Books.findById(id).limit(21);
+
+  
+    res.render("details", {
+      data: { api: book, val: value },
+      layout: "./layout/nonAuthorized.ejs",
+    });
 };
 
 const postDetails = (req, res, next) => {
-  req.session.book = {
-    id: req.body.id,
-    title: req.body.title,
-    author: req.body.author,
-    img: req.body.img,
-    publisher: req.body.publisher,
-    desc: req.body.desc,
-    width: req.body.image_width,
-    height: req.body.image_height,
-  };
-
-  console.log(req.session.book);
-
-  res.render("details", {
-    val: req.session.book,
-    layout: "./layout/nonAuthorized.ejs",
-  });
+ 
 };
 
 module.exports = {
