@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const buySchema = new Schema({ name: String, url: String });
+const buySchema = new Schema({ name: String, url: String, linkPrice: String });
 const bookSchema = new Schema(
   {
     author: {

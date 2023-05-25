@@ -9,6 +9,8 @@ const getHomePage = async (req, res, next) => {
     api: book,
     layout: "./layout/nonAuthorized.ejs",
   });
+
+
 };
 
 const getDetails = async (req, res, next) => {
@@ -74,7 +76,7 @@ const getAllComments = async (req, res, next) => {
 
    
   }
-  console.log(numbers);
+  //console.log(numbers);
 
   res.render("allComments", {
     data: { com: { info: comment, count: comCount, num:numbers }, book: book },
