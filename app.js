@@ -16,6 +16,7 @@ app.set('views', path.resolve(__dirname, "./src/views/frontend"));
 
 
 
+
 require('./src/config/database');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
@@ -44,6 +45,8 @@ app.use((req,res,next)=>{
     res.locals.id = req.flash("id");
     next();
 })
+
+
 
 const frRouter = require('./src/routers/frontend/frRouters');
 

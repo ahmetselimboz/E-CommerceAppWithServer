@@ -55,3 +55,35 @@ function rate(stars) {
     }
   }
 }
+
+// const rank = document.querySelector(".rating2");
+// rank.addEventListener('click', getRank)
+
+// function getRank(){
+//   var url =window.location.href
+//   console.log(window.location.href);
+//   console.log(url.slice(-1));
+// }
+
+function follow(item) {
+  document.querySelector("#rank-in").value = item.href.slice(-1);
+}
+
+const rankAll = document.querySelectorAll("#rating");
+const rankInput = document.querySelectorAll("#in-rate");
+
+for (let j = 0; j < rankAll.length; j++) {
+  for (let index = 0; index < rankInput[j].value; index++) {
+    rankAll[j].children[index].classList.add("rate");
+  }
+}
+
+const star = document.querySelector('.stars');
+const starInput = document.querySelector("#in-stars");
+//star.children[0].classList.value = "bx bxs-star";
+
+//console.log(star.children[0].classList.value);
+
+for(k=0;k<starInput.value;k++){
+  star.children[k].classList.value = "bx bxs-star";
+}

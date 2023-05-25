@@ -26,23 +26,26 @@
           <h3>Değerlendirmeler</h3>
           <hr class="rank" />
           <div class="stars">
-            <i class="bx bxs-star"></i><i class="bx bxs-star"></i
-            ><i class="bx bxs-star"></i><i class="bx bxs-star-half"></i
-            ><i class="bx bx-star"></i>
-            <h2>(16)</h2>
+            <i class="bx bx-star"></i>
+            <i class="bx bx-star"></i>
+            <i class="bx bx-star"></i>
+            <i class="bx bx-star"></i>
+            <i class="bx bx-star"></i>
+            <h2>(<%- data.com.number %>)</h2>
           </div>
         </div>
         <div class="details">
           <div class="detail-desc">
             <h6>Açıklama:</h6>
-            <h5>
-              <%- data.api.description %>
-            </h5>
+            <h5><%- data.api.description %></h5>
           </div>
           <div class="detail-size">
             <h6>Kitap Boyutu:</h6>
 
-            <h5>&nbsp;&nbsp;<%- data.api.book_image_width %> mm x <%- data.api.book_image_height %> mm</h5>
+            <h5>
+              &nbsp;&nbsp;<%- data.api.book_image_width %> mm x <%-
+              data.api.book_image_height %> mm
+            </h5>
           </div>
         </div>
         <div class="basket">
@@ -62,40 +65,38 @@
     <div class="book-col">
       <div class="customer-logos slider">
         <% for( let index = 0; index < 7; index++ ) { %>
-       
-            <div class="slide">
-              <div class="item">
-                <a href="/details/<%- data.val[index]._id %>">
-                  <div class="book-img">
-                    <img src="<%- data.val[index].book_image %>" />
-                  </div>
-                  <div class="book-info">
-                    <h3><%- data.val[index].title %></h3>
-                    <div class="book-author">
-                      <h4><%- data.val[index].author %></h4>
-                    </div>
-                    <div class="book-publisher">
-                      <h5><%- data.val[index].publisher %></h5>
-                    </div>
-                  </div>
-                  <div class="det">
-                    <div class="book-detail">
-                      <h6>İncele</h6>
-                      <i class="bx bx-chevron-up"></i>
-                    </div>
-                  </div>
-                </a>
-                
+
+        <div class="slide">
+          <div class="item">
+            <a href="/details/<%- data.val[index]._id %>">
+              <div class="book-img">
+                <img src="<%- data.val[index].book_image %>" />
               </div>
-            </div>
- 
+              <div class="book-info">
+                <h3><%- data.val[index].title %></h3>
+                <div class="book-author">
+                  <h4><%- data.val[index].author %></h4>
+                </div>
+                <div class="book-publisher">
+                  <h5><%- data.val[index].publisher %></h5>
+                </div>
+              </div>
+              <div class="det">
+                <div class="book-detail">
+                  <h6>İncele</h6>
+                  <i class="bx bx-chevron-up"></i>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
 
         <% } %>
       </div>
     </div>
   </div>
 </section>
-
+<input type="hidden" id="in-stars" value="<%- data.rat %>" />
 <section>
   <div id="pad" class="book-panel">
     <div class="title">
@@ -103,61 +104,47 @@
       <hr />
     </div>
     <div class="com-container">
+      <% for( let index = 0; index < data.com.info.length; index++ ) { %>
+
       <div class="com">
-        <table class="com-table">
-          <tr>
-            <td><h4 class="com-name">Ahmet Selim Boz</h4></td>
-            <td><h4 class="com-title">Title</h4></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="rating rate">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-              </div>
-            </td>
-            <td>
-              <h4 class="com-desc">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quo fugiat dolore doloribus est officiis, nisi, maiores
-                quisquam rem, rerum exercitationem non illo. Dicta
-                reprehenderit maxime, iusto vitae ratione eos eligendi.
-              </h4>
-            </td>
-          </tr>
-        </table>
+        <div class="com-name">
+          <h3><%- data.com.info[index].adSoyad %></h3>
+          <input
+            type="hidden"
+            id="in-rate"
+            value="<%- data.com.info[index].rank %>"
+          />
+
+          <div id="rating">
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+          </div>
+        </div>
+        <div class="com-title">
+          <h2><%- data.com.info[index].title %></h2>
+        </div>
+        <div class="com-desc">
+          <h2><%- data.com.info[index].desc %></h2>
+        </div>
+        <% date =  new Date(data.com.info[index].createdAt) %>
+       <% aylar = ['Ocak', 'Şubat',"Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]; %>
+
+        <div class="com-date">
+          <h5><%- date.getDate() + " " + aylar[date.getMonth()] + " " + date.getFullYear() %></h5>
+        </div>
+        <hr class="com-line" />
       </div>
-      <div class="com">
-        <table class="com-table">
-          <tr>
-            <td><h4 class="com-name">Ahmet Selim Boz</h4></td>
-            <td><h4 class="com-title">Title</h4></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="rating rate">
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-                <i class="bx bxs-star"></i>
-              </div>
-            </td>
-            <td>
-              <h4 class="com-desc">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quo fugiat dolore doloribus est officiis, nisi, maiores
-                quisquam rem, rerum exercitationem non illo. Dicta
-                reprehenderit maxime, iusto vitae ratione eos eligendi.
-              </h4>
-            </td>
-          </tr>
-        </table>
+
+      <% } %>
+
+      <div class="com-btn-place">
+        <a href="/comment/<%- data.api._id %>" class="com-btn"
+          >Tüm Yorumları Görüntüle</a
+        >
       </div>
-      
     </div>
   </div>
 </section>
@@ -169,42 +156,45 @@
       <hr />
     </div>
     <div class="comment-container">
-      <form action="">
+      <form action="/comment" method="post">
         <div class="small-comment">
           <div class="top-comment">
             <div id="com-pad">
               <label for="Name">İsim-Soyisim</label>
-              <input id="sm-input" type="text" name="name" />
+              <input id="sm-input" type="text" name="adSoyad" />
             </div>
             <div id="com-pad">
               <label for="Name">Başlık</label>
               <input id="sm-input" type="text" name="title" />
             </div>
           </div>
+          <input type="hidden" name="id" value="<%- data.api._id %>" />
+          <input type="hidden" id="rank-in" name="rank" value="" />
           <div class="bottom-comment">
             <h1>Değerlendir</h1>
             <div class="rating rating2">
               <!--
-            --><a href="#5"><i class="bx bxs-star"></i></a
+            --><a onclick="return follow(this);" href="#5"
+                ><i class="bx bxs-star"></i></a
               ><!--
-            --><a href="#4"><i class="bx bxs-star"></i></a
+            --><a onclick="return follow(this);" href="#4"
+                ><i class="bx bxs-star"></i></a
               ><!--
-            --><a href="#3"><i class="bx bxs-star"></i></a
+            --><a onclick="return follow(this);" href="#3"
+                ><i class="bx bxs-star"></i></a
               ><!--
-            --><a href="#2"><i class="bx bxs-star"></i></a
+            --><a onclick="return follow(this);" href="#2"
+                ><i class="bx bxs-star"></i></a
               ><!--
-            --><a href="#1"><i class="bx bxs-star"></i></a>
+            --><a onclick="return follow(this);" href="#1"
+                ><i class="bx bxs-star"></i
+              ></a>
             </div>
           </div>
         </div>
         <div class="comment-desc">
           <label for="desc">Açıklama</label>
-          <textarea
-            id="bg-input"
-            type="text"
-            name="desc"
-            rows="5"
-          ></textarea>
+          <textarea id="bg-input" type="text" name="desc" rows="5"></textarea>
         </div>
         <div class="comment-btn-place">
           <button type="submit" class="comment-btn">Yorum Yap</button>

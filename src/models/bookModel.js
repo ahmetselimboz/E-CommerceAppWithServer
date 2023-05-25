@@ -38,7 +38,12 @@ const bookSchema = new Schema(
     buy_links: {
       type: [buySchema],
       trim: true,
+    },
+    rating:{
+      type: String,
+      trim: true
     }
+
   },
   { collection: "books", timestamps: true }
 );

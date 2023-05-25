@@ -10,7 +10,8 @@ function book() {
     );
     response
       .then((result) => {
-        //console.log(result.data.results.lists.length);
+        
+        //console.log(result);
         for (i = 0; i < result.data.results.lists.length; i++) {
           for (j = 0; j < result.data.results.lists[i].books.length; j++) {
             value = result.data.results.lists[i].books[j].buy_links;
@@ -27,25 +28,17 @@ function book() {
             d.price = result.data.results.lists[i].books[j].price;
             d.publisher = result.data.results.lists[i].books[j].publisher;
             d.title = result.data.results.lists[i].books[j].title;
+            d.rating = "";
             d.buy_links = [];
-            //console.log( value);
-            //console.log(value.length);
+
             for (let index = 0; index < value.length; index++) {
               if (value[index] !== undefined) {
-                
                 d.buy_links[index] = value[index];
-
-                //   url: yenidizi[index].url,
-                //   link_Price: "",
               }
             }
             //d.save();
           }
-
-          
         }
-
-        //console.log(result.data.results.lists[i].books[j].author);
       })
       .catch((err) => {
         console.log(err);
@@ -55,4 +48,4 @@ function book() {
   }
 }
 
-//book();
+book();
