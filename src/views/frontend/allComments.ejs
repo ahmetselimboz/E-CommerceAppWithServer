@@ -1,99 +1,114 @@
 <div class="marginnn"></div>
 
 <div class="comdet">
-    <div class="comdet-panel">
-        <div class="comdet-img-box">
-            <img src="<%- data.book.book_image %>" alt="">
-            <a href="/details/<%- data.book._id %>"><i class='bx bxs-message-rounded-add'></i> &nbsp;Değerlendir</a>
-        </div>
-        <div class="comdet-det">
-            <h5><%- data.book.title %></h5>
-            <div class="comdet-title">
-                <div class="comdet-rank">
-                    <div class="rank-card">
-                        <h1>4</h1>
-                        <div class="stars">
-                            <i class="bx bx-star"></i>
-                            <i class="bx bx-star"></i>
-                            <i class="bx bx-star"></i>
-                            <i class="bx bx-star"></i>
-                            <i class="bx bx-star"></i>
-                           
-                          </div>
-                    </div>
-                    
-                </div>
-                <div class="comdet-num">
-                    <h3>(<%- data.com.count %> Değerlendirme)</h3>
-                    <table>
-                        <tr>
-                            <td><i class="bx bxs-star"><h6>5</h6></i></td>
-                            <td><i class="bx bxs-star"><h6>4</h6></i></td>
-                            <td><i class="bx bxs-star"><h6>3</h6></i></td>
-                            <td><i class="bx bxs-star"><h6>2</h6></i></td>
-                            <td><i class="bx bxs-star"><h6>1</h6></i></td>
-                        </tr>
-                        <tr>
-                            <td><%- data.com.num[9] %></td>
-                            <td><%- data.com.num[7] %></td>
-                            <td><%- data.com.num[5] %></td>
-                            <td><%- data.com.num[3] %></td>
-                            <td><%- data.com.num[1] %></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            
-        </div>
+  <div class="comdet-panel">
+    <div class="comdet-img-box">
+      <img src="<%- data.book.book_image %>" alt="" />
+      <a href="/details/<%- data.book._id %>"
+        ><i class="bx bxs-message-rounded-add"></i> &nbsp;Değerlendir</a
+      >
     </div>
-    
+    <div class="comdet-det">
+      <div class="comdet-tit">
+        <!-- <h4>Kitap:&nbsp;</h4> -->
+        <h5><i class='bx bxs-book'></i>&nbsp;&nbsp;<%- data.book.title %></h5>
+       
+      </div>
+      <hr class="comdet-line" />
+      <div class="comdet-title">
+        <div class="comdet-rank">
+          <div class="rank-card">
+            <h1><%- data.book.rating %></h1>
+            <div class="stars">
+              <i class="bx bx-star"></i>
+              <i class="bx bx-star"></i>
+              <i class="bx bx-star"></i>
+              <i class="bx bx-star"></i>
+              <i class="bx bx-star"></i>
+            </div>
+          </div>
+        </div>
+        <div class="comdet-num">
+          <h3>(<%- data.com.count %> Değerlendirme)</h3>
+          <table>
+            <tr>
+              <td>
+                <i class="bx bxs-star"><h6>5</h6></i>
+              </td>
+              <td>
+                <i class="bx bxs-star"><h6>4</h6></i>
+              </td>
+              <td>
+                <i class="bx bxs-star"><h6>3</h6></i>
+              </td>
+              <td>
+                <i class="bx bxs-star"><h6>2</h6></i>
+              </td>
+              <td>
+                <i class="bx bxs-star"><h6>1</h6></i>
+              </td>
+            </tr>
+            <tr>
+              <td><%- data.com.num[9] %></td>
+              <td><%- data.com.num[7] %></td>
+              <td><%- data.com.num[5] %></td>
+              <td><%- data.com.num[3] %></td>
+              <td><%- data.com.num[1] %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <input type="hidden" id="in-stars" value="<%- data.book.rating %>" />
 <section>
-    <div  class="book-panel">
-      <div class="title">
-        <h3>Tüm Yorumlar</h3>
-        <hr />
-      </div>
-      <div class="com-container">
-        <% for( let index = 0; index < data.com.info.length; index++ ) { %>
-  
-        <div class="com">
-          <div class="com-name">
-            <h3><%- data.com.info[index].adSoyad %></h3>
-            <input
-              type="hidden"
-              id="in-rate"
-              value="<%- data.com.info[index].rank %>"
-            />
-  
-            <div id="rating">
-              <i class="bx bxs-star rate-non"></i>
-              <i class="bx bxs-star rate-non"></i>
-              <i class="bx bxs-star rate-non"></i>
-              <i class="bx bxs-star rate-non"></i>
-              <i class="bx bxs-star rate-non"></i>
-            </div>
-          </div>
-          <div class="com-title">
-            <h2><%- data.com.info[index].title %></h2>
-          </div>
-          <div class="com-desc">
-            <h2><%- data.com.info[index].desc %></h2>
-          </div>
-          <% date =  new Date(data.com.info[index].createdAt) %>
-         <% aylar = ['Ocak', 'Şubat',"Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]; %>
-  
-          <div class="com-date">
-            <h5><%- date.getDate() + " " + aylar[date.getMonth()] + " " + date.getFullYear() %></h5>
-          </div>
-          <hr class="com-line" />
-        </div>
-  
-        <% } %>
-  
-      
-      </div>
+  <div class="book-panel">
+    <div class="title">
+      <h3>Tüm Yorumlar</h3>
+      <hr />
     </div>
-  </section>
+    <div class="com-container">
+      <% for( let index = 0; index < data.com.info.length; index++ ) { %>
 
+      <div class="com">
+        <div class="com-name">
+          <h3><%- data.com.info[index].adSoyad %></h3>
+          <input
+            type="hidden"
+            id="in-rate"
+            value="<%- data.com.info[index].rank %>"
+          />
+
+          <div id="rating">
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+            <i class="bx bxs-star rate-non"></i>
+          </div>
+        </div>
+        <div class="com-title">
+          <h2><%- data.com.info[index].title %></h2>
+        </div>
+        <div class="com-desc">
+          <h2><%- data.com.info[index].desc %></h2>
+        </div>
+        <% date = new Date(data.com.info[index].createdAt) %> <% aylar =
+        ['Ocak',
+        'Şubat',"Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+        %>
+
+        <div class="com-date">
+          <h5>
+            <%- date.getDate() + " " + aylar[date.getMonth()] + " " +
+            date.getFullYear() %>
+          </h5>
+        </div>
+        <hr class="com-line" />
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+</section>

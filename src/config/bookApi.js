@@ -34,6 +34,7 @@ function book() {
             for (let index = 0; index < value.length; index++) {
               if (value[index] !== undefined) {
                 d.buy_links[index] = value[index];
+                d.buy_links[index].lastPrice = "0";
               }
             }
             //d.save();
@@ -48,4 +49,4 @@ function book() {
   }
 }
 
-book();
+//book();

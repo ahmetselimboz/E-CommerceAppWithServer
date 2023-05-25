@@ -878,7 +878,9 @@ footer {
 }
 
 .detail-img img {
+  border: 2px solid #c6c6c67c;
   width: 100%;
+  
 }
 
 .detail-right {
@@ -929,7 +931,7 @@ footer {
 
 .detail-rank {
   padding: 1rem 0;
-  margin: 1.5rem 0;
+  margin-top: 1.5rem;
 }
 
 .detail-rank h3 {
@@ -968,8 +970,9 @@ footer {
 }
 
 .details {
-  padding: 3rem 0;
+  padding-top: 2rem;
 }
+
 
 .detail-desc {
   display: flex;
@@ -989,7 +992,7 @@ footer {
 
 .detail-size {
   display: flex;
-  padding: 1.5rem 0;
+  padding:1rem 0 1.5rem 0;
 }
 
 .detail-size h6 {
@@ -1002,6 +1005,33 @@ footer {
   padding: 0 0.5rem;
   font-size: 19px;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+.detail-link {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0;
+}
+
+.detail-link a {
+  margin: 0 1rem;
+  width: 100px;
+  padding: 1rem;
+  /* border: 3px solid #16be00; */
+  border: 3px solid #a2a2a2;
+  background-color: #fff;
+  color: #14ad00;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.detail-link a:hover {
+  border: 3px solid #16be00;
+}
+
+.detail-link h6 {
+  font-size: 16px;
 }
 
 .basket {
@@ -1326,10 +1356,40 @@ footer {
 .comdet-title{
   display: flex;
 }
+.comdet-tit{
 
-.comdet-det h5{
+  padding: 0 1rem;
+}
+
+.comdet-det h4{
   margin:2rem 0rem 1rem 0rem;
   font-size:24px;
+  font-family: "Comfortaa", cursive;
+  font-weight: bolder;
+}
+
+.comdet-det h5{
+  display: flex;
+  align-items: center;
+  margin:2rem 0rem 1rem 2rem;
+  font-size:24px;
+  color: #4c4c4c;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+
+.bxs-book{
+  color: #14ad00;
+  font-size:48px;
+}
+
+.comdet-line {
+  border: none;
+  border-top: 0.25rem solid #14ad00;;
+  width: 85%;
+  text-align: left;
+  border-radius: 10px;
+  margin-left: 1rem;
 }
 
 .comdet-rank{
@@ -1343,7 +1403,10 @@ footer {
 }
 
 .comdet-rank h1{
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
   font-size: 80px;
+  color: #4c4c4c;
 }
 
 .rank-card{
@@ -1369,7 +1432,10 @@ footer {
 }
 
 .comdet-num h3{
+  color: #4c4c4c;
   padding: 1rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: bolder;
 }
 
 

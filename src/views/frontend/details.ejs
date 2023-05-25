@@ -47,9 +47,18 @@
               data.api.book_image_height %> mm
             </h5>
           </div>
+          <div class="detail-link">
+            <% for( let index = 0; index < 6; index++ ) { %>
+              <a href="<%- data.api.buy_links[index].url %>" target="_blank">
+                <h6><%- data.api.buy_links[index].name %></h6>
+                <p>0.00 TL</p>
+              </a>
+            <% } %>
+           
+          </div>
         </div>
         <div class="basket">
-          <button type="submit" class="basket-btn">Sepete Ekle</button>
+          <button type="submit" class="basket-btn">Favorilere Ekle</button>
         </div>
       </div>
     </div>
