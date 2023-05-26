@@ -4,6 +4,7 @@ require('dotenv').config();
 const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session')
+const passport = require('passport');
 
 
 
@@ -46,9 +47,12 @@ app.use((req,res,next)=>{
     next();
 })
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 const frRouter = require('./src/routers/frontend/frRouters');
+const frRouter = require('./src/routers/frontend/authRouters');
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -57,6 +61,7 @@ app.get("/", (req, res, next) =>{
 })
 
 app.use('/', frRouter);
+app.use('/auth', authRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is standing to ${process.env.PORT} port`);

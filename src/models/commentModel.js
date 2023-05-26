@@ -7,10 +7,6 @@ const CommentSchema = new Schema({
         type:String,
         trim:true
     },
-    adSoyad:{
-        type:String, 
-        trim:true
-    },
     title:{
         type:String,
         trim: true
@@ -23,8 +19,8 @@ const CommentSchema = new Schema({
         type:String,
         trim: true
     }
-},{collection: "Comments", timestamps:true})
+},{collection: "comments", timestamps:true})
 
-const Comment = mongoose.model('Comments', CommentSchema);
+const Comment = mongoose.model('comments', CommentSchema);
 
 module.exports = Comment;

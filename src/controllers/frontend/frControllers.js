@@ -9,14 +9,13 @@ const getHomePage = async (req, res, next) => {
     api: book,
     layout: "./layout/nonAuthorized.ejs",
   });
-
-
 };
 
 const getDetails = async (req, res, next) => {
   const id = req.params.id;
   var sum = 0;
   var rating = 0;
+  var roundRat = 0;
 
   const value = await Books.find({}).skip(21).limit(28);
   const book = await Books.findById(id);
@@ -29,19 +28,20 @@ const getDetails = async (req, res, next) => {
   for (let index = 0; index < comment2.length; index++) {
     sum = sum + Number(comment2[index].rank);
   }
-  rating = Math.round(sum / comment2.length);
+  sayi = sum / comment2.length;
+  rating = sayi.toFixed(1);
   if (rating.toString() === "NaN") {
     rating = "0";
   }
+  roundRat = Math.round(rating);
 
-  
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
   res.render("details", {
     data: {
       api: book,
       val: value,
       com: { info: comment, number: commentNumber },
-      rat: rating,
+      rat: roundRat,
     },
     layout: "./layout/nonAuthorized.ejs",
   });
@@ -62,24 +62,27 @@ const postComment = (req, res, next) => {
 const getAllComments = async (req, res, next) => {
   const id = req.params.id;
   numbers = [];
+  var rat = 0;
+  var rating = 0;
+
   const comCount = await Comments.find({ bookId: id }).count();
   const comment = await Comments.find({ bookId: id }).sort({
     createdAt: "desc",
   });
   const book = await Books.findById(id);
 
-  for(v=1;v<=5;v++){
-    const num = await Comments.find({ bookId: id,rank: v }).count();
+  for (v = 1; v <= 5; v++) {
+    const num = await Comments.find({ bookId: id, rank: v }).count();
     //console.log(num);
-   numbers.push(v);
-   numbers.push(num);
-
-   
+    numbers.push(v);
+    numbers.push(num);
   }
+  rat = Math.round(book.rating);
+
   //console.log(numbers);
 
   res.render("allComments", {
-    data: { com: { info: comment, count: comCount, num:numbers }, book: book },
+    data: { com: { info: comment, count: comCount, num: numbers, rating: rat }, book: book },
 
     layout: "./layout/nonAuthorized.ejs",
   });
