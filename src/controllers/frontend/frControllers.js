@@ -3,12 +3,13 @@ const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 
 const getHomePage = async (req, res, next) => {
-  const book = await Books.find({}).limit(21);
-
-  res.render("index", {
+ const book = await Books.find({}).limit(21);
+res.json(book);
+  /*res.render("index", {
     api: book,
     layout: "./layout/nonAuthorized.ejs",
-  });
+  });*/
+
 };
 
 const getDetails = async (req, res, next) => {
