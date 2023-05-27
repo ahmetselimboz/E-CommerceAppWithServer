@@ -52,7 +52,7 @@ app.use(passport.session());
 
 
 const frRouter = require('./src/routers/frontend/frRouters');
-const frRouter = require('./src/routers/frontend/authRouters');
+const authRouter = require('./src/routers/frontend/authRouters');
 
 app.use(express.urlencoded({ extended: true }));
 
