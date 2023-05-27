@@ -3,11 +3,11 @@ const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 
 const getHomePage = async (req, res, next) => {
-<<<<<<< Updated upstream
+
  const book = await Books.find({}).limit(21);
 res.json(book);
   /*res.render("index", {
-=======
+
   const book = await Books.find({}).limit(21);
   //  console.log(book)
 
@@ -15,8 +15,8 @@ res.json(book);
   //   book
   //  );
   //res.json({ status: true, success: book });
+  
   res.render("index", {
->>>>>>> Stashed changes
     api: book,
     layout: "./layout/nonAuthorized.ejs",
   });*/
