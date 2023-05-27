@@ -3,9 +3,20 @@ const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 
 const getHomePage = async (req, res, next) => {
+<<<<<<< Updated upstream
  const book = await Books.find({}).limit(21);
 res.json(book);
   /*res.render("index", {
+=======
+  const book = await Books.find({}).limit(21);
+  //  console.log(book)
+
+  //  res.send(
+  //   book
+  //  );
+  //res.json({ status: true, success: book });
+  res.render("index", {
+>>>>>>> Stashed changes
     api: book,
     layout: "./layout/nonAuthorized.ejs",
   });*/
@@ -37,6 +48,12 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
+
+  res.json({
+    yorum_Sayisi:  commentNumber,
+    yorumlar: comment
+  })
+
   res.render("details", {
     data: {
       api: book,
@@ -83,7 +100,10 @@ const getAllComments = async (req, res, next) => {
   //console.log(numbers);
 
   res.render("allComments", {
-    data: { com: { info: comment, count: comCount, num: numbers, rating: rat }, book: book },
+    data: {
+      com: { info: comment, count: comCount, num: numbers, rating: rat },
+      book: book,
+    },
 
     layout: "./layout/nonAuthorized.ejs",
   });
