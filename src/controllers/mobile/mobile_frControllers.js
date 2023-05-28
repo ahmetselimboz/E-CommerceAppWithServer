@@ -7,27 +7,27 @@ const getMobileHomepage = async (req, res, next) => {
 };
 
 const postComment = async (req, res, next) => {
-  try {
-    const id = req.body.commentid;
+    //console.log(req.params);
+    const id = req.params.id;
     let toplamYildiz = 0;
     let ondalikliToplam = 0;
     let rating = 0;
-
+    //console.log(id);
     const enYeniDortYorum = await Comments.find({ bookId: id })
       .sort({ createdAt: "desc" })
       .limit(4);
-      
+    // console.log(enYeniDortYorum);
     const YorumSayisi = await Comments.find({ bookId: id }).count();
 
     const yorumlar = await Comments.find({ bookId: id });
-
+    //console.log(yorumlar);
     for (let index = 0; index < yorumlar.length; index++) {
       toplamYildiz = toplamYildiz + Number(yorumlar[index].rank);
     }
     ondalikliToplam = toplamYildiz / yorumlar.length;
     rating = ondalikliToplam.toFixed(1);
 
-    console.log(rating);
+    //console.log(rating);
 
     await Books.findByIdAndUpdate(id, { rating: rating.toString() });
 
@@ -35,7 +35,7 @@ const postComment = async (req, res, next) => {
       yorum_Sayisi: YorumSayisi,
       yorumlar: enYeniDortYorum,
     });
-  } catch (error) {}
+ 
 };
 
 const postNewComment = (req, res, next) => {
