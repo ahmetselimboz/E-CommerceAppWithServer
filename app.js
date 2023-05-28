@@ -53,6 +53,7 @@ app.use(passport.session());
 
 const frRouter = require('./src/routers/frontend/frRouters');
 const authRouter = require('./src/routers/frontend/authRouters');
+const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -62,6 +63,7 @@ app.get("/", (req, res, next) =>{
 
 app.use('/', frRouter);
 app.use('/auth', authRouter);
+app.use("/mobile" , mobile_frRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is standing to ${process.env.PORT} port`);
