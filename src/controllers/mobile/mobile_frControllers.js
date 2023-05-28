@@ -10,6 +10,7 @@ const postComment = async (req, res, next) => {
     //console.log(req.params);
     //const id = req.params.id;
     const id = req.body.id;
+    console.log(id);
     let toplamYildiz = 0;
     let ondalikliToplam = 0;
     let rating = 0;

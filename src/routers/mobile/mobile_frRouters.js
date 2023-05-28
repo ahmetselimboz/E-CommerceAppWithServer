@@ -3,7 +3,7 @@ const mobile_frController = require("../../controllers/mobile/mobile_frControlle
 
 router.get("/homepage", mobile_frController.getMobileHomepage);
 //router.get('/comment/:id', mobile_frController.postComment)
-router.post('/comment/:id', mobile_frController.postComment);
+router.post('/comment', mobile_frController.postComment);
 
 router.post('/newcomment', mobile_frController.postNewComment);
 
