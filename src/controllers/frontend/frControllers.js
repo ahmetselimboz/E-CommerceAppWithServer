@@ -3,24 +3,11 @@ const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 
 const getHomePage = async (req, res, next) => {
-
- const book = await Books.find({}).limit(21);
-res.json(book);
-  /*res.render("index", {
-
   const book = await Books.find({}).limit(21);
-  //  console.log(book)
-
-  //  res.send(
-  //   book
-  //  );
-  //res.json({ status: true, success: book });
-  
   res.render("index", {
     api: book,
     layout: "./layout/nonAuthorized.ejs",
-  });*/
-
+  });
 };
 
 const getDetails = async (req, res, next) => {
@@ -49,11 +36,6 @@ const getDetails = async (req, res, next) => {
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
 
-  res.json({
-    yorum_Sayisi:  commentNumber,
-    yorumlar: comment
-  })
-
   res.render("details", {
     data: {
       api: book,
@@ -76,6 +58,7 @@ const postComment = (req, res, next) => {
 
   res.redirect(`/details/${req.body.id}`);
 };
+
 
 const getAllComments = async (req, res, next) => {
   const id = req.params.id;
