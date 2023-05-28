@@ -1460,4 +1460,362 @@ td h6{
   font-family: "Source Sans Pro", sans-serif;
 }
 
+/*=============LOGIN================*/
+
+label {
+  margin: 0;
+}
+
+.login-panel {
+  background-image: url("../assets/login.jpg");
+  background-size: cover;
+  background-color: #f0f0f0;
+  height: inherit;
+}
+
+.login-container {
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  padding: 1rem;
+  background-color: #f8f8f8;
+  width: 400px;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.325) 0px 0px 15px 2px;
+  border: 7px solid #f0f0f0;
+}
+
+.login-title {
+  text-align: center;
+  padding: 4rem 0 1rem 0;
+}
+
+.login-title h3 {
+  color: #2a2a2a;
+  font-size: 35px;
+  font-family: "Comfortaa", cursive;
+  color: #119500;
+}
+
+.login-body {
+  padding: 3rem 1rem;
+}
+
+.fa-regular {
+  padding: 0.86rem;
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.login-input-1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.login-input-1 label {
+  font-family: "Poppins", sans-serif;
+  color: #119500;
+}
+
+#email {
+  width: 89%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#email:focus {
+  border-bottom: 3px solid #119500;
+}
+
+#email:focus + .fa-regular {
+  padding: 0.85rem;
+  border-bottom: 3px solid #119500;
+}
+
+.login-input-2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input-2 label {
+  font-family: "Poppins", sans-serif;
+  color: #119500;
+}
+
+#password {
+  width: 89%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#password:focus {
+  border-bottom: 3px solid #119500;
+}
+
+#password:focus + .fa-regular {
+  padding: 0.85rem;
+  border-bottom: 3px solid #119500;
+}
+
+.login-alt {
+  padding: 0 1rem;
+  text-align: right;
+}
+
+.login-alt a {
+  font-family: "Poppins", sans-serif;
+  color: #119500;
+  font-weight: bolder;
+  border-bottom: 3px solid transparent;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.login-alt a:hover {
+  border-bottom: 2px solid #119500;
+}
+
+.login-btn-area {
+  padding: 3rem 0;
+}
+
+.login-wide-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  padding: 0.5rem 2rem;
+  background-color: #19d200;
+  color: #ffffff;
+  font-size: 20px;
+  border-radius: 5px;
+  margin: auto;
+  border: 3px solid #16be00;
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.login-wide-btn:hover {
+  border: 3px solid #16be00;
+  background-color: #fff;
+  color: #14ad00;
+}
+
+.login-line {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-line hr {
+  border: none;
+  border-top: 0.1rem solid #62626269;
+  width: 15rem;
+  border-radius: 10px;
+}
+
+.login-line h6 {
+  font-size: 15px;
+  margin: 0 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.login-social-area {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.social-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  border-radius: 50%;
+  margin: 0 1rem;
+}
+
+.google-btn {
+  background-color: #df3b00;
+  color: #ffffff;
+  border: 3px solid #df3b00;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.google-btn:hover {
+  border: 3px solid #df3b00;
+  background-color: #ffffff;
+  color: #df3b00;
+}
+.facebook-btn {
+  background-color: #00689c;
+  color: #ffffff;
+  border: 3px solid #00689c;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.facebook-btn:hover {
+  border: 3px solid #00689c;
+  background-color: #ffffff;
+  color: #00689c;
+}
+.twitter-btn {
+  background-color: #00aad4;
+  color: #ffffff;
+  border: 3px solid #00aad4;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.twitter-btn:hover {
+  border: 3px solid #00aad4;
+  background-color: #ffffff;
+  color: #00aad4;
+}
+
+.login-reg {
+  text-align: center;
+  margin: 2rem 0 4rem 0;
+}
+.login-reg h4 {
+  font-family: "Poppins", sans-serif;
+}
+
+.login-reg a {
+  font-family: "Poppins", sans-serif;
+  color: #119500;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.login-reg a:hover {
+  border-bottom: 2px solid #119500;
+}
+
+/*=======Register=======*/
+
+.login-panel input{
+  font-family: "Poppins", sans-serif;
+  font-weight: bolder;
+}
+
+.reg-body {
+  padding: 0rem 1rem 1rem 1rem ;
+}
+
+.reg-input-1 {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+
+.reg-in-1 {
+  width: fit-content;
+}
+
+#Isim {
+  width: 90%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#Isim:focus {
+  border-bottom: 3px solid #119500;
+}
+
+#Soyisim {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#Soyisim:focus {
+  border-bottom: 3px solid #119500;
+}
+
+.reg-input-2 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.reg-input-2 label {
+  font-family: "Poppins", sans-serif;
+  color: #119500;
+}
+
+#email-reg {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#email-reg:focus {
+  border-bottom: 3px solid #119500;
+}
+
+#password-reg {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#password-reg:focus {
+  border-bottom: 3px solid #119500;
+}
+
+#repassword {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: 0;
+  background-color: #f8f8f8;
+
+  border-bottom: 3px solid #cccccc;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#repassword:focus {
+  border-bottom: 3px solid #119500;
+}
+
 

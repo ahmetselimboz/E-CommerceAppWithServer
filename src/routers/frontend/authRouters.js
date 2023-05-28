@@ -3,6 +3,6 @@ const authController = require("../../controllers/frontend/authControllers");
 
 
 router.get('/login',  authController.getLogin);
-router.get('/signin',  authController.getRegister);
+router.get('/register',  authController.getRegister);
 
 module.exports = router;
