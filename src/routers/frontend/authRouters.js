@@ -9,4 +9,7 @@ router.post('/login', validations.validateLogin(), authController.postLogin);
 router.get('/register', isAuthanticated.no, authController.getRegister);
 router.post('/register', validations.validateNewUser(), authController.postRegister);
 
+
+
+router.get('/logout' , authController.getLogOut);
 module.exports = router;

@@ -161,6 +161,80 @@ nav {
   margin-right: 50px;
 }
 
+.loggedin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: fit-content;
+}
+
+.loggedin-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 50px;
+  background-color: #19d200;
+  color: #ffffff;
+  padding: 0 2rem;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+  border: 3px solid #16be00;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  cursor: pointer;
+}
+
+.loggedin-btn:hover {
+  border: 3px solid #16be00;
+  background-color: #fff;
+  color: #14ad00;
+}
+
+
+.loggedin-btn h3{
+  font-size: 18px;
+}
+
+.loggedin-btn i{
+  font-size: 28px;
+}
+
+.loggedin-card {
+  border-radius: 5px;
+  margin: 1rem 0; 
+  top: 80px;
+  position: absolute;
+  background-color: #00689c;
+  width: 150px;
+  height: inherit;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.4s ease-in-out;
+  box-shadow: rgba(78, 78, 78, 0.334) 0px 0px 15px 3px;
+  z-index: 8;
+}
+
+
+
+.logged-card-register{
+  background-color: #fefefe;
+  border-bottom: 3px solid #19d200;
+  width: 100%;
+  height: 50%;
+  border-radius: 5px 5px 0 0 ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 0;
+
+}
+
+
+
+
+
+
 .login-btn {
   display: flex;
   justify-content: center;
@@ -184,14 +258,16 @@ nav {
 
 .log-card {
   border-radius: 5px;
-   margin: 1rem 0; 
+  margin: 1rem 0; 
   transform: translateX(-45px);
   position: absolute;
   background-color: #00689c;
   width: 150px;
   height: 100px;
   opacity: 0;
+  visibility: hidden;
   transition: 0.4s ease-in-out;
+  z-index: 8;
   box-shadow: rgba(78, 78, 78, 0.334) 0px 0px 15px 3px;
 }
 .log-card-register{
@@ -1119,6 +1195,13 @@ footer {
   padding: 2rem 0;
 }
 
+.com h1{
+  font-size: 25px;
+  color: #2a2a2a;
+  font-family: "Comfortaa", cursive;
+
+}
+
 #rating {
   font-size: 25px;
   overflow: hidden;
@@ -1869,9 +1952,23 @@ label {
 .alertyy {
   right: 0;
   height: auto;
-  z-index: 15;
+  z-index: 7;
   background-color: transparent;
   position: fixed;
+  animation: ekso 3.5s forwards;
+}
+
+@keyframes ekso {
+  0% {
+    transform: translateX(0px);
+  }
+  
+  80% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(500px);
+  }
 }
 
 #screen {
@@ -1880,12 +1977,15 @@ label {
   justify-content: flex-end;
   right: 0;
   height: auto;
-  z-index: 15;
+  z-index: 7;
   background-color: transparent;
   align-items: center;
-}
+} 
+
+
 
 .notification {
+
   border-radius: 5px;
   position: relative;
   height: min-content;

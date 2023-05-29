@@ -24,12 +24,13 @@ module.exports = function (passport){
                 if(_findUser && _findUser.emailIsActive == false){
                     return done(null, false, {message:"Lütfen emailinizi onaylayınız"});
                 }else{
+
                     return done(null, _findUser);
                 }
             }
 
         } catch (error) {
-            return done(err);
+            return done(error);
         }
     }));
 

@@ -45,15 +45,15 @@
           </button>
         </form>
         <div class="nav-btn">
-          <div class="log">
-            <div class="login-btn"onclick="logCard()" onmouseenter="logCard()"><i class="bx bx-user-circle"></i></div>
-            <div class="log-card" >
-              <div class="log-card-register">
-                <a id="logname" ><%- user.name %></a>
+          <div class="loggedin">
+            <div class="loggedin-btn"onclick="loggedCard()" onmouseenter="loggedCard()"><h3><%- user.name %> <%- user.surname %></h3><i class='bx bx-chevron-down' ></i></div>
+            <div class="loggedin-card"  >
+              <div class="logged-card-register">
+                <a id="logname" href="/auth/logout">Çıkış Yap</a>
               </div>
-              <div class="log-card-login">
+              <!-- <div class="log-card-login">
                 <a id="logname" ><%- user.surname %></a>
-              </div>
+              </div> -->
             </div>
           </div>
           
@@ -88,8 +88,8 @@
             <h4>Üyelik</h4>
             <hr class="footer-underline" />
             <ul>
-              <li><a href="../pages/Index.html">Yeni Üyelik</a></li>
-              <li><a href="../pages/MyWorks.html">Üye Girişi</a></li>
+              <li><a href="/auth/register">Yeni Üyelik</a></li>
+              <li><a href="/auth/login">Üye Girişi</a></li>
             </ul>
           </div>
         </div>

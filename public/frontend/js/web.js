@@ -56,14 +56,7 @@ function rate(stars) {
   }
 }
 
-// const rank = document.querySelector(".rating2");
-// rank.addEventListener('click', getRank)
 
-// function getRank(){
-//   var url =window.location.href
-//   console.log(window.location.href);
-//   console.log(url.slice(-1));
-// }
 
 function follow(item) {
   document.querySelector("#rank-in").value = item.href.slice(-1);
@@ -105,13 +98,8 @@ function passwordShow() {
   //console.log(passInput);
 }
 
-// function logCard(){
-//   //const log = document.querySelector(".log-card");
-//   $(".log-card").fadeIn();
-//   $(".log-card").fadeIn("slow");
-//   $(".log-card").fadeIn(3000);
-//   log.classList.add("log-card-active");
-// }
+
+
 
 function fadeIn() {
   setInterval(hideLogCard, 5000);
@@ -124,6 +112,7 @@ function logCard() {
   const log = document.querySelector(".log-card");
   opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
   if (opacity < 1) {
+    log.style.visibility = "visible"
     while (opacity < 1) {
       opacity = opacity + 0.1;
       log.style.opacity = opacity;
@@ -143,10 +132,42 @@ function hideLogCard() {
       opacity = opacity - 0.1;
       log.style.opacity = opacity;
     }
+    log.style.visibility = "hidden"
   }
 }
 
-// function hideLogCard(){
-//   const log = document.querySelector(".log-card");
-//   log.classList.remove("log-card-active");
-// }
+
+function fadedIn() {
+  setInterval(hideLoggedCard, 5000);
+}
+
+
+function loggedCard() {
+  const log = document.querySelector(".loggedin-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity < 1) {
+    log.style.visibility = "visible"
+    
+    while (opacity < 1) {
+      opacity = opacity + 0.1;
+      log.style.opacity = opacity;
+    }
+    
+  }
+  fadedIn();
+}
+
+function hideLoggedCard() {
+  //console.log("merhaba");
+  opacity = 1;
+  const log = document.querySelector(".loggedin-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity == 1) {
+    log.style.visibility = "hidden"
+    while (opacity >= 0) {
+      opacity = opacity - 0.1;
+      log.style.opacity = opacity;
+    }
+  
+  }
+}
