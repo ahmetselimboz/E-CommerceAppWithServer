@@ -78,12 +78,75 @@ for (let j = 0; j < rankAll.length; j++) {
   }
 }
 
-const star = document.querySelector('.stars');
+const star = document.querySelector(".stars");
 const starInput = document.querySelector("#in-stars");
 //star.children[0].classList.value = "bx bxs-star";
 
 //console.log(star.children[0].classList.value);
 
-for(k=0;k<starInput.value;k++){
+for (k = 0; k < starInput.value; k++) {
   star.children[k].classList.value = "bx bxs-star";
 }
+
+function passwordHide() {
+  const passInput = document.querySelector("#password");
+  const passIcon = document.querySelector("#passIcon");
+  passIcon.classList.remove("fa-eye");
+  passIcon.style.color = "#333";
+  passInput.type = "password";
+  //console.log(passInput);
+}
+function passwordShow() {
+  const passInput = document.querySelector("#password");
+  const passIcon = document.querySelector("#passIcon");
+  passIcon.classList.add("fa-eye");
+  passIcon.style.color = "#119500";
+  passInput.type = "text";
+  //console.log(passInput);
+}
+
+// function logCard(){
+//   //const log = document.querySelector(".log-card");
+//   $(".log-card").fadeIn();
+//   $(".log-card").fadeIn("slow");
+//   $(".log-card").fadeIn(3000);
+//   log.classList.add("log-card-active");
+// }
+
+function fadeIn() {
+  setInterval(hideLogCard, 5000);
+}
+
+var opacity = 0;
+var intervalID = 0;
+
+function logCard() {
+  const log = document.querySelector(".log-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity < 1) {
+    while (opacity < 1) {
+      opacity = opacity + 0.1;
+      log.style.opacity = opacity;
+    }
+    
+  }
+  fadeIn();
+}
+
+function hideLogCard() {
+  //console.log("merhaba");
+  opacity = 1;
+  const log = document.querySelector(".log-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity == 1) {
+    while (opacity >= 0) {
+      opacity = opacity - 0.1;
+      log.style.opacity = opacity;
+    }
+  }
+}
+
+// function hideLogCard(){
+//   const log = document.querySelector(".log-card");
+//   log.classList.remove("log-card-active");
+// }

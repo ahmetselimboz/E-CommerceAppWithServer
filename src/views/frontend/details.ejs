@@ -119,13 +119,16 @@ locals.login_error !=undefined) { %>
     <div class="title">
       <h3>Yorumlar</h3>
       <hr />
+    
     </div>
+    
     <div class="com-container">
       <% for( let index = 0; index < data.com.info.length; index++ ) { %>
 
       <div class="com">
         <div class="com-name">
-          <h3>Ahmet Selim BOZ</h3>
+           
+          <h3><%- data.com.info[index].nameSurname %></h3>
           <input
             type="hidden"
             id="in-rate"

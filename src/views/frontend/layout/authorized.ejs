@@ -49,10 +49,10 @@
             <div class="login-btn"onclick="logCard()" onmouseenter="logCard()"><i class="bx bx-user-circle"></i></div>
             <div class="log-card" >
               <div class="log-card-register">
-                <a id="logname" href="/auth/register">Kayıt Ol</a>
+                <a id="logname" ><%- user.name %></a>
               </div>
               <div class="log-card-login">
-                <a id="logname" href="/auth/login">Giriş Yap</a>
+                <a id="logname" ><%- user.surname %></a>
               </div>
             </div>
           </div>

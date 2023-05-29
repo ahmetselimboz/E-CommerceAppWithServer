@@ -15,7 +15,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.resolve(__dirname, "./src/views/frontend"));
 
-require('./src/config/bookApi');
+//require('./src/config/bookApi');
 
 
 require('./src/config/database');
@@ -42,7 +42,11 @@ app.use(session({
 app.use(flash());
 app.use((req,res,next)=>{
     res.locals.validation_error = req.flash("validation_error");
-    //res.locals.id = req.flash("id");
+    res.locals.success_message = req.flash("success_message");
+    res.locals.email = req.flash("email");
+    res.locals.name = req.flash("name");
+    res.locals.surname = req.flash("surname");
+    res.locals.login_error = req.flash('error');
     next();
 })
 
@@ -54,10 +58,11 @@ const frRouter = require('./src/routers/frontend/frRouters');
 const authRouter = require('./src/routers/frontend/authRouters');
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
 
+
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res, next) =>{
-    res.redirect('/homepage');
+   res.redirect("/homepage")
 })
 
 app.use('/', frRouter);
