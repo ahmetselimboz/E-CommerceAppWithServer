@@ -1,5 +1,13 @@
+
 <section>
   <div class="detail-panel">
+    <div class="alertyy">
+      <% if (locals.validation_error !=undefined || locals.success_message !=undefined ||
+locals.login_error !=undefined) { %>
+<%- include('./partials/_message') %>
+    <% } %>
+    </div>
+    
     <div class="detail-container">
       <div class="detail-left">
         <div class="detail-img">

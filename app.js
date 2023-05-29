@@ -39,11 +39,10 @@ app.use(session({
 
 
 
-
-
 app.use(flash());
 app.use((req,res,next)=>{
-    res.locals.id = req.flash("id");
+    res.locals.validation_error = req.flash("validation_error");
+    //res.locals.id = req.flash("id");
     next();
 })
 

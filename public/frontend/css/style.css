@@ -1818,4 +1818,156 @@ label {
   border-bottom: 3px solid #119500;
 }
 
+/*=============================*/
+.alertyy{
+  right: 0;
+  height: auto;
+  z-index: 15;
+  background-color: transparent;
+  position: fixed;
+}
+
+#screen {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  right: 0;
+  height: auto;
+  z-index: 15;
+  background-color: transparent;
+  align-items: center;
+}
+
+.notification {
+  border-radius: 5px;
+  position: relative;
+  height: min-content;
+  width: 400px;
+  border: 2px solid #74000086;
+  background-color: #ff242483;
+  margin:.5rem 3rem;
+  display: flex;
+  align-items: center;
+  transform-origin: right;
+  -webkit-animation: notify 3s ease-in-out forwards;
+  animation: notify 3s ease-in-out forwards;
+}
+
+@-webkit-keyframes notify {
+  0% {transform: scaleX(0);}
+  5% {transform: scaleX(0.20);}
+  15% {transform: scaleX(0.20);}
+  20% {transform: scaleX(1);}
+  23% {transform: scaleX(1.1);}
+  26% {transform: scale(1);}
+  80% {transform: scaleX(1);}
+  85% {transform: scaleX(0.20);}
+  95% {transform: scaleX(0.20);}
+  100% {transform: scaleX(0);}
+}
+@keyframes notify {
+  0% {transform: scaleX(0);}
+  5% {transform: scaleX(0.20);}
+  15% {transform: scaleX(0.20);}
+  20% {transform: scaleX(1);}
+  23% {transform: scaleX(1.1);}
+  26% {transform: scale(1);}
+  80% {transform: scaleX(1);}
+  85% {transform: scaleX(0.20);}
+  95% {transform: scaleX(0.20);}
+  100% {transform: scaleX(0);}
+  
+}
+
+.identifier {
+  position: relative;
+  width: fit-content;
+  -webkit-animation: exit 3s ease-in-out forwards;
+  animation: exit 3s ease-in-out forwards;
+}
+
+.identifier i{
+  margin: 0 .5rem;
+  color:#d70000ac;
+  font-size: 45px;
+}
+
+.text {
+  border-left: 3px solid #74000086;
+  position: relative;
+  height: 25px;
+  width: 100%;
+  height: inherit;
+  -webkit-animation: exit 3s ease-in-out forwards;
+  animation: exit 3s ease-in-out forwards;
+  margin: 2rem 0
+}
+
+@-webkit-keyframes exit {
+  0% {opacity: 0;}
+  15% {opacity: 0;}
+  20% {opacity: 1;} 
+  75% {opacity: 1;} 
+  80% {opacity: 0;} 
+  100% {opacity: 0;} 
+}
+@keyframes exit {
+  0% {opacity: 0;}
+  15% {opacity: 0;}
+  20% {opacity: 1;} 
+  75% {opacity: 1;} 
+  80% {opacity: 0;} 
+  100% {opacity: 0;} 
+
+}
+
+.text p{
+  margin:0 1rem;
+
+  color:#740000;
+  font-size: 16px;
+}
+
+.number {
+  position: fixed;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  right: 45px;
+  -webkit-animation: enter 3s ease-in-out forwards;
+  animation: enter 3s ease-in-out forwards;
+}
+
+.number i{
+  margin: 0 ;
+  color:#d70000ac;
+  font-size: 45px;
+}
+
+@-webkit-keyframes enter {
+  0% {opacity: 0; }
+  5% {opacity: 1;}
+  15% {opacity: 1; }
+  20% {opacity: 0; }
+  23% {opacity: 0; }
+  26% {opacity: 0; }
+  80% {opacity: 0;}
+  85% {opacity: 1; }
+  95% {opacity: 1;}
+  100% {opacity: 0; }
+}
+
+@keyframes enter {
+  0% {opacity: 0; }
+  5% {opacity: 1;}
+  15% {opacity: 1; }
+  20% {opacity: 0; }
+  23% {opacity: 0; }
+  26% {opacity: 0; }
+  80% {opacity: 0;}
+  85% {opacity: 1; }
+  95% {opacity: 1;}
+  100% {opacity: 0; }
+}
+
+
 

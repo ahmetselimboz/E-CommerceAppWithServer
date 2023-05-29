@@ -1,6 +1,7 @@
 const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
+const { validationResult } = require('express-validator');
 
 const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
@@ -11,6 +12,9 @@ const getHomePage = async (req, res, next) => {
 };
 
 const getDetails = async (req, res, next) => {
+
+
+
   const id = req.params.id;
   var sum = 0;
   var rating = 0;
@@ -48,15 +52,30 @@ const getDetails = async (req, res, next) => {
 };
 
 const postComment = (req, res, next) => {
-  const com = new Comments();
-  com.adSoyad = req.body.adSoyad;
-  com.title = req.body.title;
-  com.bookId = req.body.id;
-  com.rank = req.body.rank;
-  com.desc = req.body.desc;
-  com.save();
 
-  res.redirect(`/details/${req.body.id}`);
+  const hatalar = validationResult(req);
+
+  if(!hatalar.isEmpty()){
+    req.flash('validation_error', hatalar.array());
+    console.log(hatalar.array());
+    res.redirect('/details/' + req.body.id);
+  //   res.render('register', {
+  //     layout: "./layout/auth_layout.ejs", hatalar: hatalar.array()
+  // })
+  }else{
+    const com = new Comments();
+    com.adSoyad = req.body.adSoyad;
+    com.title = req.body.title;
+    com.bookId = req.body.id;
+    com.rank = req.body.rank;
+    com.desc = req.body.desc;
+    com.save();
+  
+    res.redirect(`/details/${req.body.id}`);
+  }
+
+
+
 };
 
 
