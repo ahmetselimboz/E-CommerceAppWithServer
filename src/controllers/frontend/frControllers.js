@@ -27,7 +27,7 @@ const getDetails = async (req, res, next) => {
   var rating = 0;
   var roundRat = 0;
 
-  const value = await Books.find({}).skip(21).limit(28);
+  const value = await Books.find({}).skip(21).limit(7);
   const book = await Books.findById(id);
   const comment2 = await Comments.find({ bookId: id });
   const comment = await Comments.find({ bookId: id })
