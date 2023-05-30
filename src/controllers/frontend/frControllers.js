@@ -53,6 +53,7 @@ const getDetails = async (req, res, next) => {
       data: {
         api: book,
         val: value,
+        user: req.user,
         com: { info: comment, number: commentNumber },
         rat: roundRat,
       },
@@ -64,6 +65,7 @@ const getDetails = async (req, res, next) => {
       data: {
         api: book,
         val: value,
+        user: req.user,
         com: { info: comment, number: commentNumber },
         rat: roundRat,
       },
