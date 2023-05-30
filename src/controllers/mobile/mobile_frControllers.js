@@ -45,7 +45,7 @@ const postNewComment = (req, res, next) => {
   console.log("istek geldi");
   console.log(req.body);
   const com = new Comments();
-  com.nameSurname = `${ req.user.name} ${ req.user.surname}`;
+  com.nameSurname = req.body.nameSurname;
   com.title = req.body.title;
   com.bookId = req.body.id;
   com.rank = req.body.rank;
