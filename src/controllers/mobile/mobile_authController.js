@@ -5,6 +5,8 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
 const nodemailer = require('nodemailer');
 const jsonwebtoken = require('jsonwebtoken');
+const { log } = require("console");
+const { boolean } = require("webidl-conversions");
 
 
 
@@ -41,8 +43,9 @@ const getRegister = (req, res, next) => {
   });
 };
 const postRegister = async (req, res, next) => {
+  console.log("istek geldi");
   console.log(req.body);
-  
+  var deger = false;
     try {
       const _user = await User.findOne({ email: req.body.email });
 
@@ -66,7 +69,7 @@ const postRegister = async (req, res, next) => {
 
         await newUser.save();
         console.log("kullanici kaydedildi");
-
+        deger=true;
         const jwtInfo ={
           id: newUser.id,
           email: newUser.email
@@ -97,13 +100,16 @@ const postRegister = async (req, res, next) => {
           console.log(info);
           transporter.close();
         })
-
+res.json(deger);
 
         //req.flash("success_message", [{ msg: "Lütfen mail kutunuzu kontrol ediniz" }]);
 
         //res.redirect("/auth/login");
       }
-    } catch (error) {}
+    } catch (error) {
+      deger=false;
+      res.json(deger);
+    }
   
 };
 

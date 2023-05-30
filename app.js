@@ -73,7 +73,7 @@ app.get("/", (req, res, next) =>{
 app.use('/', frRouter);
 app.use('/auth', authRouter);
 app.use("/mobile" , mobile_frRouter);
-app.use("/mobile" , mobile_authRouter);
+app.use("/mobile/auth" , mobile_authRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is standing to ${process.env.PORT} port`);
