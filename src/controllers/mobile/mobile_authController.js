@@ -53,9 +53,11 @@ const postLogin = (req, res, next) => {
         //console.log(user);
         if (err) {
           //console.log("cp1");
+          console.log(err);
           return res.status(400).json({ errors: err });
         }
         if (!user) {
+          console.log("No user found");
           return res.status(400).json({ errors: "No user found" });
         }
     
@@ -63,6 +65,7 @@ const postLogin = (req, res, next) => {
           console.log("cp1");
           if (err) {
             //console.log("cp3");
+            console.log(err);
             return res.status(400).json({ errors: err });
           }
           console.log( `logged in ${user.id}`);
