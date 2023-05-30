@@ -3,8 +3,8 @@ const mobile_authController = require("../../controllers/mobile/mobile_authContr
 const validations = require("../../middlewares/validations");
 const isAuthanticated = require("../../middlewares/isAuthanticated");
 
-router.get('/falselogin',  mobile_authController.getFalseLogin);
-router.get('/truelogin',  mobile_authController.getTrueLogin);
+router.get('/auth/falselogin',  mobile_authController.getFalseLogin);
+router.get('/auth/truelogin',  mobile_authController.getTrueLogin);
 router.post('/login',  mobile_authController.postLogin);
 
 router.get('/register',  mobile_authController.getRegister);

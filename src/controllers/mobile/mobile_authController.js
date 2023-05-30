@@ -12,18 +12,34 @@ const { boolean } = require("webidl-conversions");
 
  const getFalseLogin = (req, res, next) => {
   var status = false;
+
+  var falseUser = {
+      _id: "",
+      name: "",
+      surname: "",
+      email: "",
+      emailIsActive: false,
+      password: "",
+      createdAt: "",
+      updatedAt: "",
+      __v: 0
+  }
+
   //console.log(res.locals.login_error[0] );
   res.json({
     durum: status,
+    user: falseUser,
     mesaj: res.locals.login_error[0] 
   })
 };
  const getTrueLogin = (req, res, next) => {
   var status = true;
+  var truemesaj = ""
   //console.log(res.locals.login_error[0] );
   res.json({
     durum: status,
-    user: req.user
+    user: req.user,
+    mesaj: truemesaj
   })
 };
 
@@ -31,8 +47,8 @@ const postLogin = (req, res, next) => {
  
     try {
         passport.authenticate("local", {
-            successRedirect: "mobile/auth/truelogin",
-            failureRedirect: "mobile/auth/falselogin",
+            successRedirect: "auth/truelogin",
+            failureRedirect: "auth/falselogin",
             failureFlash: true,
           })(req, res, next);
         

@@ -1,4 +1,4 @@
-const LoaclStrategy = require("passport-local").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 const User = require('../models/userModel');
 const bcrypt = require("bcrypt");
 
@@ -8,8 +8,9 @@ module.exports = function (passport){
         passwordField: "password"
     }
 
-    passport.use(new LoaclStrategy(options, async (email,password, done)=>{
-
+    passport.use(new LocalStrategy(options, async (email,password, done)=>{
+        console.log(email);
+        console.log(password);
         try {
             const _findUser = await User.findOne({email:email});
 
