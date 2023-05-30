@@ -111,11 +111,18 @@ const postRegister = async (req, res, next) => {
 
 
         req.flash("success_message", [{ msg: "Lütfen mail kutunuzu kontrol ediniz" }]);
+
         res.redirect("/auth/login");
       }
     } catch (error) {}
   }
 };
+
+const emailVerify = (req,res,next)=>{
+
+}
+
+
 
 const getLogOut = (req, res, next) => {
   req.logout(function (err) {
@@ -132,5 +139,6 @@ module.exports = {
   postLogin,
   getRegister,
   postRegister,
+  emailVerify,
   getLogOut,
 };
