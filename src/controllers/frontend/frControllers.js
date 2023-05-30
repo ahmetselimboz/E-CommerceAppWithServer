@@ -1,13 +1,24 @@
+const { Logger } = require("mongodb");
 const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
+const { validationResult } = require("express-validator");
 
 const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
-  res.render("index", {
-    api: book,
-    layout: "./layout/nonAuthorized.ejs",
-  });
+  if (req.user) {
+    res.render("index", {
+      api: book,
+      user: req.user,
+      layout: "./layout/authorized.ejs",
+    });
+  } else {
+    res.render("index", {
+      api: book,
+
+      layout: "./layout/nonAuthorized.ejs",
+    });
+  }
 };
 
 const getDetails = async (req, res, next) => {
@@ -16,7 +27,7 @@ const getDetails = async (req, res, next) => {
   var rating = 0;
   var roundRat = 0;
 
-  const value = await Books.find({}).skip(21).limit(28);
+  const value = await Books.find({}).skip(21).limit(7);
   const book = await Books.findById(id);
   const comment2 = await Comments.find({ bookId: id });
   const comment = await Comments.find({ bookId: id })
@@ -36,29 +47,57 @@ const getDetails = async (req, res, next) => {
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
 
-  res.render("details", {
-    data: {
-      api: book,
-      val: value,
-      com: { info: comment, number: commentNumber },
-      rat: roundRat,
-    },
-    layout: "./layout/nonAuthorized.ejs",
-  });
+
+  if (req.user) {
+    res.render("details", {
+      data: {
+        api: book,
+        val: value,
+        user: req.user,
+        com: { info: comment, number: commentNumber },
+        rat: roundRat,
+      },
+      user: req.user,
+      layout: "./layout/authorized.ejs",
+    });
+  } else {
+    res.render("details", {
+      data: {
+        api: book,
+        val: value,
+        user: req.user,
+        com: { info: comment, number: commentNumber },
+        rat: roundRat,
+      },
+      layout: "./layout/nonAuthorized.ejs",
+    });
+  }
 };
 
 const postComment = (req, res, next) => {
-  const com = new Comments();
-  com.adSoyad = req.body.adSoyad;
-  com.title = req.body.title;
-  com.bookId = req.body.id;
-  com.rank = req.body.rank;
-  com.desc = req.body.desc;
-  com.save();
+  //console.log(user.id);
+  const hatalar = validationResult(req);
 
-  res.redirect(`/details/${req.body.id}`);
+  if (!hatalar.isEmpty()) {
+    req.flash("validation_error", hatalar.array());
+    //console.log(hatalar.array());
+    res.redirect("/details/" + req.body.id);
+    //   res.render('register', {
+    //     layout: "./layout/auth_layout.ejs", hatalar: hatalar.array()
+    // })
+  } else {
+ 
+    const com = new Comments();
+    com.nameSurname = `${ req.user.name} ${ req.user.surname}`;
+    com.title = req.body.title;
+    com.bookId = req.body.id;
+    com.rank = req.body.rank;
+    com.desc = req.body.desc;
+    com.save();
+
+    res.redirect(`/details/${req.body.id}`);
+  }
 };
-
 
 const getAllComments = async (req, res, next) => {
   const id = req.params.id;
@@ -90,6 +129,27 @@ const getAllComments = async (req, res, next) => {
 
     layout: "./layout/nonAuthorized.ejs",
   });
+
+  if (req.user) {
+    res.render("allComments", {
+      data: {
+        com: { info: comment, count: comCount, num: numbers, rating: rat },
+        book: book,
+      },
+      user: req.user,
+      layout: "./layout/nonAuthorized.ejs",
+    });
+  } else {
+    res.render("allComments", {
+      data: {
+        com: { info: comment, count: comCount, num: numbers, rating: rat },
+        book: book,
+      },
+  
+      layout: "./layout/nonAuthorized.ejs",
+    });
+  }
+
 };
 
 module.exports = {

@@ -56,14 +56,7 @@ function rate(stars) {
   }
 }
 
-// const rank = document.querySelector(".rating2");
-// rank.addEventListener('click', getRank)
 
-// function getRank(){
-//   var url =window.location.href
-//   console.log(window.location.href);
-//   console.log(url.slice(-1));
-// }
 
 function follow(item) {
   document.querySelector("#rank-in").value = item.href.slice(-1);
@@ -78,12 +71,103 @@ for (let j = 0; j < rankAll.length; j++) {
   }
 }
 
-const star = document.querySelector('.stars');
+const star = document.querySelector(".stars");
 const starInput = document.querySelector("#in-stars");
 //star.children[0].classList.value = "bx bxs-star";
 
 //console.log(star.children[0].classList.value);
 
-for(k=0;k<starInput.value;k++){
+for (k = 0; k < starInput.value; k++) {
   star.children[k].classList.value = "bx bxs-star";
+}
+
+function passwordHide() {
+  const passInput = document.querySelector("#password");
+  const passIcon = document.querySelector("#passIcon");
+  passIcon.classList.remove("fa-eye");
+  passIcon.style.color = "#333";
+  passInput.type = "password";
+  //console.log(passInput);
+}
+function passwordShow() {
+  const passInput = document.querySelector("#password");
+  const passIcon = document.querySelector("#passIcon");
+  passIcon.classList.add("fa-eye");
+  passIcon.style.color = "#119500";
+  passInput.type = "text";
+  //console.log(passInput);
+}
+
+
+
+
+function fadeIn() {
+  setInterval(hideLogCard, 5000);
+}
+
+var opacity = 0;
+var intervalID = 0;
+
+function logCard() {
+  const log = document.querySelector(".log-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity < 1) {
+    log.style.visibility = "visible"
+    while (opacity < 1) {
+      opacity = opacity + 0.1;
+      log.style.opacity = opacity;
+    }
+    
+  }
+  fadeIn();
+}
+
+function hideLogCard() {
+  //console.log("merhaba");
+  opacity = 1;
+  const log = document.querySelector(".log-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity == 1) {
+    while (opacity >= 0) {
+      opacity = opacity - 0.1;
+      log.style.opacity = opacity;
+    }
+    log.style.visibility = "hidden"
+  }
+}
+
+
+function fadedIn() {
+  setInterval(hideLoggedCard, 5000);
+}
+
+
+function loggedCard() {
+  const log = document.querySelector(".loggedin-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity < 1) {
+    log.style.visibility = "visible"
+    
+    while (opacity < 1) {
+      opacity = opacity + 0.1;
+      log.style.opacity = opacity;
+    }
+    
+  }
+  fadedIn();
+}
+
+function hideLoggedCard() {
+  //console.log("merhaba");
+  opacity = 1;
+  const log = document.querySelector(".loggedin-card");
+  opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
+  if (opacity == 1) {
+    log.style.visibility = "hidden"
+    while (opacity >= 0) {
+      opacity = opacity - 0.1;
+      log.style.opacity = opacity;
+    }
+  
+  }
 }

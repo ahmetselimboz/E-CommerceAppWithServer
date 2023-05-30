@@ -1,5 +1,10 @@
 <section>
   <div class="detail-panel">
+    <div class="alertyy">
+      <% if (locals.validation_error !=undefined || locals.success_message!=undefined || locals.login_error !=undefined) { %>
+      <%- include('./partials/_message') %> <% } %>
+    </div>
+
     <div class="detail-container">
       <div class="detail-left">
         <div class="detail-img">
@@ -43,18 +48,17 @@
             <h6>Kitap Boyutu:</h6>
 
             <h5>
-              &nbsp;&nbsp;<%- data.api.book_image_width %> mm x <%-
-              data.api.book_image_height %> mm
+              &nbsp;&nbsp;<%- data.api.book_image_width %> mm x 
+              <%-data.api.book_image_height %> mm
             </h5>
           </div>
           <div class="detail-link">
             <% for( let index = 0; index < 6; index++ ) { %>
-              <a href="<%- data.api.buy_links[index].url %>" target="_blank">
-                <h6><%- data.api.buy_links[index].name %></h6>
-                <p><%- data.api.buy_links[index].linkPrice %> TL</p>
-              </a>
+            <a href="<%- data.api.buy_links[index].url %>" target="_blank">
+              <h6><%- data.api.buy_links[index].name %></h6>
+              <p><%- data.api.buy_links[index].linkPrice %> TL</p>
+            </a>
             <% } %>
-           
           </div>
         </div>
         <div class="basket">
@@ -112,12 +116,19 @@
       <h3>Yorumlar</h3>
       <hr />
     </div>
+
     <div class="com-container">
-      <% for( let index = 0; index < data.com.info.length; index++ ) { %>
+      <% if ( data.com.info.length == 0) { %>
+      <div class="com">
+        <h1>Bu kitaba henüz bir yorum yapılmamıştır.</h1>
+      </div>
+
+      <% } else { %> 
+      <% for( let index = 0; index < data.com.info.length;index++ ) { %>
 
       <div class="com">
         <div class="com-name">
-          <h3>Ahmet Selim BOZ</h3>
+          <h3><%- data.com.info[index].nameSurname %></h3>
           <input
             type="hidden"
             id="in-rate"
@@ -138,11 +149,16 @@
         <div class="com-desc">
           <h2><%- data.com.info[index].desc %></h2>
         </div>
-        <% date =  new Date(data.com.info[index].createdAt) %>
-       <% aylar = ['Ocak', 'Şubat',"Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"]; %>
+        <% date = new Date(data.com.info[index].createdAt) %> <% aylar =
+        ['Ocak',
+        'Şubat',"Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+        %>
 
         <div class="com-date">
-          <h5><%- date.getDate() + " " + aylar[date.getMonth()] + " " + date.getFullYear() %></h5>
+          <h5>
+            <%- date.getDate() + " " + aylar[date.getMonth()] + " " +
+            date.getFullYear() %>
+          </h5>
         </div>
         <hr class="com-line" />
       </div>
@@ -154,6 +170,7 @@
           >Tüm Yorumları Görüntüle</a
         >
       </div>
+      <% } %>
     </div>
   </div>
 </section>
@@ -165,13 +182,15 @@
       <hr />
     </div>
     <div class="comment-container">
+      <% if (!data.user) { %>
+      <h1 id="comment-req-user">
+        Yorum yapmak için <a id="commentLink" href="/auth/login">giriş</a> yapmanız
+        gerekmektedir.
+      </h1>
+      <% } else { %>
       <form action="/comment" method="post">
         <div class="small-comment">
           <div class="top-comment">
-            <!-- <div id="com-pad">
-              <label for="Name">İsim-Soyisim</label>
-              <input id="sm-input" type="text" name="adSoyad" />
-            </div> -->
             <div id="com-pad">
               <label for="Name">Başlık</label>
               <input id="sm-input" type="text" name="title" />
@@ -209,6 +228,7 @@
           <button type="submit" class="comment-btn">Yorum Yap</button>
         </div>
       </form>
+      <% } %>
     </div>
   </div>
 </section>

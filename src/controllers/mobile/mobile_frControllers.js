@@ -7,6 +7,7 @@ const getMobileHomepage = async (req, res, next) => {
 };
 
 const postComment = async (req, res, next) => {
+
     //console.log(req.params);
     //const id = req.params.id;
     const id = req.body.id;
@@ -37,7 +38,7 @@ const postComment = async (req, res, next) => {
       yorumlar: yorumlar,
       onerilenKitap:onerilenKitap,
     });
- 
+
 };
 
 const postNewComment = (req, res, next) => {

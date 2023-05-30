@@ -45,7 +45,18 @@
           </button>
         </form>
         <div class="nav-btn">
-          <a class="login-btn" href=""><i class="bx bx-user-circle"></i></a>
+          <div class="log">
+            <div class="login-btn"onclick="logCard()" onmouseenter="logCard()"><i class="bx bx-user-circle"></i></div>
+            <div class="log-card" >
+              <div class="log-card-register">
+                <a id="logname" href="/auth/register">Kayıt Ol</a>
+              </div>
+              <div class="log-card-login">
+                <a id="logname" href="/auth/login">Giriş Yap</a>
+              </div>
+            </div>
+          </div>
+          
 
           <a class="cart-btn" href=""><i class='bx bx-heart'></i></a>
         </div>
@@ -77,8 +88,8 @@
             <h4>Üyelik</h4>
             <hr class="footer-underline" />
             <ul>
-              <li><a href="../pages/Index.html">Yeni Üyelik</a></li>
-              <li><a href="../pages/MyWorks.html">Üye Girişi</a></li>
+              <li><a href="/auth/register">Yeni Üyelik</a></li>
+              <li><a href="/auth/login">Üye Girişi</a></li>
             </ul>
           </div>
         </div>

@@ -30,70 +30,74 @@
   </head>
   <body>
     <div class="login-panel">
+      <div class="alertyy">
+        <% if (locals.validation_error !=undefined || locals.success_message
+        !=undefined || locals.login_error !=undefined) { %> <%-
+        include('./partials/_message') %> <% } %>
+      </div>
       <div class="login-container">
-        <div class="login-card">
-          <div class="login-title">
-            <h3>Kayıt Ol</h3>
-          </div>
-          <div class="reg-body">
-            <div class="login-input-1">
+        <form action="/auth/register" method="post">
+          <div class="login-card">
+            <div class="login-title">
+              <h3>Kayıt Ol</h3>
+            </div>
+            <div class="reg-body">
+              <div class="login-input-1">
                 <div class="reg-input-1">
-                    
-                    <div class="reg-in-1">
-                        <label for="Isim">İsim</label>
-                      <input type="text" id="Isim" />
-                    </div>
-                    
-                    <div class="reg-in-1">
-                        <label for="Soyisim">Soyisim</label>
-                      <input type="text" id="Soyisim" />
-                    </div>
+                  <div class="reg-in-1">
+                    <label for="Isim">İsim</label>
+                    <input type="text" value="<%= typeof name != 'undefined' ? name : '' %>" id="Isim" name="name" />
                   </div>
-              <label for="email-reg">Email</label>
-              <div class="log-in-1">
-                <input type="text" id="email-reg" />
-              </div>
-            </div>
-            <div class="reg-input-2">
-              <label for="password-reg">Şifre</label>
-              <div class="log-in-2">
-                <input type="text" id="password-reg" >
-              </div>
-            </div>
-            <div class="reg-input-2">
-                <label for="repassword">Şifrenizi tekrar giriniz</label>
-                <div class="log-in-2">
-                  <input type="text" id="repassword" >
+
+                  <div class="reg-in-1">
+                    <label for="Soyisim">Soyisim</label>
+                    <input type="text" value="<%= typeof surname != 'undefined' ? surname : '' %>" id="Soyisim" name="surname" />
+                  </div>
+                </div>
+                <label for="email-reg">Email</label>
+                <div class="log-in-1">
+                  <input type="text" id="email-reg" name="email"  value="<%= typeof email != 'undefined' ? email : '' %>"/>
                 </div>
               </div>
-          </div>
-          <div class="login-alt">
-            <a href="">Şifremi Unuttum</a>
-          </div>
-          <div class="login-btn-area">
-            <button type="submit" class="login-wide-btn">Kayıt Ol</button>
-          </div>
+              <div class="reg-input-2">
+                <label for="password-reg">Şifre</label>
+                <div class="log-in-2">
+                  <input type="password" id="password-reg" name="password" />
+                </div>
+              </div>
+              <div class="reg-input-2">
+                <label for="repassword">Şifrenizi tekrar giriniz</label>
+                <div class="log-in-2">
+                  <input type="password" id="repassword" name="repassword" />
+                </div>
+              </div>
+            </div>
+            
+            <div class="login-btn-area">
+              <button type="submit" class="login-wide-btn">Kayıt Ol</button>
+            </div>
 
-          <div class="login-line">
-            <hr />
-            <h6>Veya</h6>
-            <hr />
+            <div class="login-line">
+              <hr />
+              <h6>Veya</h6>
+              <hr />
+            </div>
+            <div class="login-social-area">
+              <a href="" class="social-btn google-btn"
+                ><i class="bx bxl-google"></i
+              ></a>
+              <a href="" class="social-btn facebook-btn"
+                ><i class="bx bxl-facebook"></i
+              ></a>
+              <a href="" class="social-btn twitter-btn"
+                ><i class="bx bxl-twitter"></i
+              ></a>
+            </div>
+            <div class="login-reg">
+              <h4>Hesabınız mı var? <a href="/auth/login">Giriş Yap</a></h4>
+            </div>
           </div>
-          <div class="login-social-area">
-            <a href="" class="social-btn google-btn"
-              ><i class="bx bxl-google"></i
-            ></a>
-            <a href="" class="social-btn facebook-btn"
-              ><i class="bx bxl-facebook"></i
-            ></a>
-            <a href="" class="social-btn twitter-btn"
-              ><i class="bx bxl-twitter"></i
-            ></a>
-          </div>
-          <div class="login-reg">
-            <h4>Hesabınız mı var? <a href="/auth/login">Giriş Yap</a></h4>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
 

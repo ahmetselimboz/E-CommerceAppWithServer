@@ -30,52 +30,66 @@
   </head>
   <body>
     <div class="login-panel">
+      <div class="alertyy">
+        <% if (locals.validation_error !=undefined || locals.success_message
+        !=undefined || locals.login_error !=undefined) { %> <%-
+        include('./partials/_message') %> <% } %>
+      </div>
       <div class="login-container">
-        <div class="login-card">
-          <div class="login-title">
-            <h3>Giriş Yap</h3>
-          </div>
-          <div class="login-body">
-            <div class="login-input-1">
-              <label for="email">Email</label>
-              <div class="log-in-1">
-                <input type="text" id="email" /><i class="fa-regular fa-user"></i>
+        <form action="/auth/login" method="post">
+          <div class="login-card">
+            <div class="login-title">
+              <h3>Giriş Yap</h3>
+            </div>
+            <div class="login-body">
+              <div class="login-input-1">
+                <label for="email">Email</label>
+                <div class="log-in-1">
+                  <input type="text" id="email" name="email" value="<%= typeof email != 'undefined' ? email : '' %>"/><i
+                    class="fa-regular fa-user"
+                  ></i>
+                </div>
+              </div>
+              <div class="login-input-2">
+                <label for="password">Şifre</label>
+                <div class="log-in-2">
+                  <input type="password" id="password" name="password" /><i
+                    id="passIcon"
+                    class="fa-regular fa-eye-slash"
+                    onmouseup="passwordHide()"
+                    onmousedown="passwordShow()"
+                  ></i>
+                </div>
               </div>
             </div>
-            <div class="login-input-2">
-              <label for="password">Şifre</label>
-              <div class="log-in-2">
-                <input type="password" id="password" ><i class="fa-regular fa-eye-slash"></i>
-              </div>
+            <div class="login-alt">
+              <a href="">Şifremi Unuttum</a>
             </div>
-          </div>
-          <div class="login-alt">
-            <a href="">Şifremi Unuttum</a>
-          </div>
-          <div class="login-btn-area">
-            <button type="submit" class="login-wide-btn">Giriş Yap</button>
-          </div>
+            <div class="login-btn-area">
+              <button type="submit" class="login-wide-btn">Giriş Yap</button>
+            </div>
 
-          <div class="login-line">
-            <hr />
-            <h6>Veya</h6>
-            <hr />
+            <div class="login-line">
+              <hr />
+              <h6>Veya</h6>
+              <hr />
+            </div>
+            <div class="login-social-area">
+              <a href="" class="social-btn google-btn"
+                ><i class="bx bxl-google"></i
+              ></a>
+              <a href="" class="social-btn facebook-btn"
+                ><i class="bx bxl-facebook"></i
+              ></a>
+              <a href="" class="social-btn twitter-btn"
+                ><i class="bx bxl-twitter"></i
+              ></a>
+            </div>
+            <div class="login-reg">
+              <h4>Hesabınız yok mu? <a href="/auth/register">Kaydolun</a></h4>
+            </div>
           </div>
-          <div class="login-social-area">
-            <a href="" class="social-btn google-btn"
-              ><i class="bx bxl-google"></i
-            ></a>
-            <a href="" class="social-btn facebook-btn"
-              ><i class="bx bxl-facebook"></i
-            ></a>
-            <a href="" class="social-btn twitter-btn"
-              ><i class="bx bxl-twitter"></i
-            ></a>
-          </div>
-          <div class="login-reg">
-            <h4>Hesabınız yok mu? <a href="/auth/register">Kaydolun</a></h4>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
 
