@@ -5,6 +5,7 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
 const nodemailer = require('nodemailer');
 const jsonwebtoken = require('jsonwebtoken');
+const { resourceLimits } = require("worker_threads");
 
 
 
@@ -85,7 +86,7 @@ const postRegister = async (req, res, next) => {
 
         const jwtToken = jsonwebtoken.sign(jwtInfo, process.env.CONFIRM_MAIL_JWT_SECRET , {expiresIn: "1d"});
 
-        const url = process.env.WEB_SITE_URL + "verify?id=" + jwtToken;
+        const url = process.env.WEB_SITE_URL + "auth/verify?id=" + jwtToken;
 
         let transporter = nodemailer.createTransport({
           service:"gmail",
@@ -119,7 +120,33 @@ const postRegister = async (req, res, next) => {
 };
 
 const emailVerify = (req,res,next)=>{
+  const token = req.query.id;
 
+  if(token){
+    try{
+      jsonwebtoken.verify(token, process.env.CONFIRM_MAIL_JWT_SECRET, async (e, decoded)=>{
+
+        if(e){
+          req.flash("error", "Gönderilen kod hatalı veya süresi geçmiş. Lütfen tekrar kayıt olunuz.");
+          res.redirect("/login");
+        }else{
+          const tokenID = decoded.id;
+          const result = await User.findByIdAndUpdate(tokenID, {emailIsActive: true});
+
+          if(result){
+            req.flash("success_message", [{msg: "Email başarıyla onaylandı. Giriş yapabilirsiniz."}])
+            res.redirect("/auth/login");
+          }
+          else{
+            req.flash("error", ["Bir hata oluştu. Lütfen tekrar kayıt olunuz."]);
+            res.redirect("/auth/login");
+          }
+        }
+      })
+    }catch(err){}
+  }else{
+    console.log("There is no token");
+  }
 }
 
 
