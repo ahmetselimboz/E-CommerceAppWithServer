@@ -11,39 +11,10 @@ const { boolean } = require("webidl-conversions");
 
 
  const getFalseLogin = (req, res, next) => {
-  console.log("geldimfalse");
-  var status = false;
-  var truemesaj = ""
-
-  var falseUser = {
-      _id: "",
-      name: "",
-      surname: "",
-      email: "",
-      emailIsActive: false,
-      password: "",
-      createdAt: "",
-      updatedAt: "",
-      __v: 0
-  }
-
-  //console.log(res.locals.login_error[0] );
-  res.json({
-    durum: status,
-    user: falseUser,
-    mesaj: truemesaj
-  })
+  
 };
  const getTrueLogin = (req, res, next) => {
-  console.log("geldimtrue");
-  var status = true;
-  var truemesaj = ""
-  //console.log(res.locals.login_error[0] );
-  res.json({
-    durum: status,
-    user: req.user,
-    mesaj: truemesaj
-  })
+ 
 };
 
 const postLogin = (req, res, next) => {
@@ -58,8 +29,28 @@ const postLogin = (req, res, next) => {
           
         }
         if (!user) {
-          console.log("No user found");
-          return res.redirect('auth/falselogin');
+          console.log("geldimfalse");
+          var status = false;
+          var truemesaj = ""
+        
+          var falseUser = {
+              _id: "",
+              name: "",
+              surname: "",
+              email: "",
+              emailIsActive: false,
+              password: "",
+              createdAt: "",
+              updatedAt: "",
+              __v: 0
+          }
+        
+          //console.log(res.locals.login_error[0] );
+          return res.json({
+            durum: status,
+            user: falseUser,
+            mesaj: truemesaj
+          })
         }
     
         req.logIn(user, function (err) {
@@ -69,7 +60,15 @@ const postLogin = (req, res, next) => {
             //console.log(err);
            
           }else{
-            return res.redirect('auth/truelogin');
+            console.log("geldimtrue");
+            var status = true;
+            var truemesaj = ""
+            //console.log(res.locals.login_error[0] );
+            return res.json({
+              durum: status,
+              user: req.user,
+              mesaj: truemesaj
+            })
           }
           
          
