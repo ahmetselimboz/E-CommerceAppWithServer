@@ -13,6 +13,7 @@ const { boolean } = require("webidl-conversions");
  const getFalseLogin = (req, res, next) => {
   console.log("geldimfalse");
   var status = false;
+  var truemesaj = ""
 
   var falseUser = {
       _id: "",
@@ -30,7 +31,7 @@ const { boolean } = require("webidl-conversions");
   res.json({
     durum: status,
     user: falseUser,
-    mesaj: res.locals.login_error[0] 
+    mesaj: truemesaj
   })
 };
  const getTrueLogin = (req, res, next) => {
@@ -53,23 +54,25 @@ const postLogin = (req, res, next) => {
         //console.log(user);
         if (err) {
           //console.log("cp1");
-          console.log(err);
-          return res.status(400).json({ errors: err });
+          //console.log(err);
+          
         }
         if (!user) {
           console.log("No user found");
-          return res.status(400).json({ errors: "No user found" });
+          return res.redirect('auth/falselogin');
         }
     
         req.logIn(user, function (err) {
           console.log("cp1");
           if (err) {
             //console.log("cp3");
-            console.log(err);
-            return res.status(400).json({ errors: err });
+            //console.log(err);
+           
+          }else{
+            return res.redirect('auth/truelogin');
           }
-          console.log( `logged in ${user.id}`);
-          return res.status(200).json({ success: `logged in ${user.id}` });
+          
+         
         });
       })(req, res, next);
 
