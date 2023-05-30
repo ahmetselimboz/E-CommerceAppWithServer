@@ -11,6 +11,7 @@ const { boolean } = require("webidl-conversions");
 
 
  const getFalseLogin = (req, res, next) => {
+  console.log('False login');
   var status = false;
 
   var falseUser = {
@@ -33,6 +34,7 @@ const { boolean } = require("webidl-conversions");
   })
 };
  const getTrueLogin = (req, res, next) => {
+  console.log('true login');
   var status = true;
   var truemesaj = ""
   //console.log(res.locals.login_error[0] );
