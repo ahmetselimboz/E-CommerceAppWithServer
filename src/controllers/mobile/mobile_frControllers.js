@@ -21,7 +21,7 @@ const postComment = async (req, res, next) => {
     // console.log(enYeniDortYorum);
     const YorumSayisi = await Comments.find({ bookId: id }).count();
     const onerilenKitap = await Books.find({}).skip(21).limit(7);
-    const yorumlar = await Comments.find({ bookId: id });
+    const yorumlar = await Comments.find({ bookId: id }).sort({ createdAt: "desc" });
     //console.log(yorumlar);
     for (let index = 0; index < yorumlar.length; index++) {
       toplamYildiz = toplamYildiz + Number(yorumlar[index].rank);
