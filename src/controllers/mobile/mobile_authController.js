@@ -77,7 +77,7 @@ const postRegister = async (req, res, next) => {
 
         const jwtToken = jsonwebtoken.sign(jwtInfo, process.env.CONFIRM_MAIL_JWT_SECRET , {expiresIn: "1d"});
 
-        const url = process.env.WEB_SITE_URL + "verify?id=" + jwtToken;
+        const url = process.env.WEB_SITE_URL + "auth/verify?id=" + jwtToken;
 
         let transporter = nodemailer.createTransport({
           service:"gmail",
