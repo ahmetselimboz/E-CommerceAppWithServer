@@ -54,8 +54,13 @@ app.use(passport.session());
 const frRouter = require('./src/routers/frontend/frRouters');
 const authRouter = require('./src/routers/frontend/authRouters');
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
+<<<<<<< HEAD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+=======
+
+app.use(express.urlencoded({ extended: false }));
+>>>>>>> 6b24499fc69fced50717c745d97a9b2a42fbca1b
 
 app.get("/", (req, res, next) =>{
     res.redirect('/homepage');
