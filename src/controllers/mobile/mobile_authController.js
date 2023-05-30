@@ -48,11 +48,37 @@ const { boolean } = require("webidl-conversions");
 const postLogin = (req, res, next) => {
  console.log("geldim");
     try {
-        passport.authenticate("local", {
-            successRedirect: "auth/truelogin",
-            failureRedirect: "auth/falselogin",
-            failureFlash: true,
-          })(req, res, next);
+      passport.authenticate("local", function (err, user, info) {
+        //console.log(req);
+        //console.log(user);
+        if (err) {
+          //console.log("cp1");
+          return res.status(400).json({ errors: err });
+        }
+        if (!user) {
+          return res.status(400).json({ errors: "No user found" });
+        }
+    
+        req.logIn(user, function (err) {
+          console.log("cp1");
+          if (err) {
+            //console.log("cp3");
+            return res.status(400).json({ errors: err });
+          }
+          console.log( `logged in ${user.id}`);
+          return res.status(200).json({ success: `logged in ${user.id}` });
+        });
+      })(req, res, next);
+
+
+
+
+
+        // passport.authenticate("local", {
+        //     successRedirect: "auth/truelogin",
+        //     failureRedirect: "auth/falselogin",
+        //     failureFlash: true,
+        //   })(req, res, next);
         
     } catch (error) {
         
