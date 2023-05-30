@@ -11,6 +11,7 @@ const { boolean } = require("webidl-conversions");
 
 
  const getFalseLogin = (req, res, next) => {
+  console.log("geldimfalse");
   var status = false;
 
   var falseUser = {
@@ -33,6 +34,7 @@ const { boolean } = require("webidl-conversions");
   })
 };
  const getTrueLogin = (req, res, next) => {
+  console.log("geldimtrue");
   var status = true;
   var truemesaj = ""
   //console.log(res.locals.login_error[0] );
@@ -44,7 +46,7 @@ const { boolean } = require("webidl-conversions");
 };
 
 const postLogin = (req, res, next) => {
- 
+ console.log("geldim");
     try {
         passport.authenticate("local", {
             successRedirect: "auth/truelogin",
