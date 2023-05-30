@@ -58,6 +58,7 @@ app.use(passport.session());
 const frRouter = require('./src/routers/frontend/frRouters');
 const authRouter = require('./src/routers/frontend/authRouters');
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
+const mobile_authRouter = require("./src/routers/mobile/mobile_authRouters");
 
 
 app.use(bodyParser.json());
@@ -72,6 +73,7 @@ app.get("/", (req, res, next) =>{
 app.use('/', frRouter);
 app.use('/auth', authRouter);
 app.use("/mobile" , mobile_frRouter);
+app.use("/mobile" , mobile_authRouter);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Server is standing to ${process.env.PORT} port`);
