@@ -205,13 +205,15 @@ nav {
   top: 80px;
   position: absolute;
   background-color: #00689c;
-  width: 150px;
+  width: fit-content;
   height: inherit;
   visibility: hidden;
   opacity: 0;
   transition: 0.4s ease-in-out;
   box-shadow: rgba(78, 78, 78, 0.334) 0px 0px 15px 3px;
   z-index: 8;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .logged-card-register {
@@ -219,11 +221,11 @@ nav {
   border-bottom: 3px solid #19d200;
   width: 100%;
   height: 50%;
-  border-radius: 5px 5px 0 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem 0;
+  padding: 1.5rem 1rem;
 }
 
 .login-btn {
