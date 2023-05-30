@@ -3,6 +3,10 @@ const User = require("../../models/userModel");
 const passport = require("passport");
 require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
+const nodemailer = require('nodemailer');
+const jsonwebtoken = require('jsonwebtoken');
+
+
 
 const getLogin = (req, res, next) => {
   res.render("login", {
@@ -73,7 +77,40 @@ const postRegister = async (req, res, next) => {
 
         await newUser.save();
         console.log("kullanici kaydedildi");
-        req.flash("success_message", [{ msg: "Kayıt işlemi gerçekleşti" }]);
+
+        const jwtInfo ={
+          id: newUser.id,
+          email: newUser.email
+        }
+
+        const jwtToken = jsonwebtoken.sign(jwtInfo, process.env.CONFIRM_MAIL_JWT_SECRET , {expiresIn: "1d"});
+
+        const url = process.env.WEB_SITE_URL + "verify?id=" + jwtToken;
+
+        let transporter = nodemailer.createTransport({
+          service:"gmail",
+          auth:{
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASSWORD
+          }
+        })
+
+        await transporter.sendMail({
+          from: "Kitap Dağı <info@kitapdagi.com>",
+          to: newUser.email,
+          subject: "Emailinizi lütfen onaylayın",
+          text: "Emailiniz onaylamak için lütfen şu linke tıklayın: "+ url
+        },(error, info)=>{
+          if (error) {
+            console.log("Sending mail error: " + error);
+          }
+          console.log("Mail sended");
+          console.log(info);
+          transporter.close();
+        })
+
+
+        req.flash("success_message", [{ msg: "Lütfen mail kutunuzu kontrol ediniz" }]);
         res.redirect("/auth/login");
       }
     } catch (error) {}
