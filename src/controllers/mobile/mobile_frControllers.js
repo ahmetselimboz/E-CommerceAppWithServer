@@ -19,7 +19,7 @@ const postComment = async (req, res, next) => {
       .limit(4);
     // console.log(enYeniDortYorum);
     const YorumSayisi = await Comments.find({ bookId: id }).count();
-
+    const onerilenKitap = await Books.find({}).skip(21).limit(7);
     const yorumlar = await Comments.find({ bookId: id });
     //console.log(yorumlar);
     for (let index = 0; index < yorumlar.length; index++) {
@@ -34,12 +34,15 @@ const postComment = async (req, res, next) => {
 
     res.json({
       yorum_Sayisi: YorumSayisi,
-      yorumlar: enYeniDortYorum,
+      yorumlar: yorumlar,
+      onerilenKitap:onerilenKitap,
     });
  
 };
 
 const postNewComment = (req, res, next) => {
+  console.log("istek geldi");
+  console.log(req.body);
   const com = new Comments();
   com.adSoyad = req.body.adSoyad;
   com.title = req.body.title;
@@ -48,7 +51,8 @@ const postNewComment = (req, res, next) => {
   com.desc = req.body.desc;
   com.save();
 
-  res.redirect(`/details/${req.body.id}`);
+console.log("veri geldi");
+  //res.redirect(`/details/${req.body.id}`);
 };
 
 module.exports = {

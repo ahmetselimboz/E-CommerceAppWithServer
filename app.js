@@ -5,7 +5,7 @@ const path = require('path');
 const flash = require('connect-flash');
 const session = require('express-session')
 const passport = require('passport');
-
+const bodyParser = require("body-parser");
 
 
 const ejs = require('ejs');
@@ -32,7 +32,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 0
     },
     store: sessionStore
 }))
@@ -54,8 +54,8 @@ app.use(passport.session());
 const frRouter = require('./src/routers/frontend/frRouters');
 const authRouter = require('./src/routers/frontend/authRouters');
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
-
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res, next) =>{
     res.redirect('/homepage');
