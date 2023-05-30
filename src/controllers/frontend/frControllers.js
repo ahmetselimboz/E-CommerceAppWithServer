@@ -6,6 +6,9 @@ const { validationResult } = require("express-validator");
 
 const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
+
+ 
+
   if (req.user) {
     res.render("index", {
       api: book,
@@ -46,6 +49,7 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
+
 
 
   if (req.user) {

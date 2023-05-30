@@ -10,23 +10,29 @@ const { boolean } = require("webidl-conversions");
 
 
 
-// const getLogin = (req, res, next) => {
-//  res.redirect("/mobile/login");
-// };
+ const getFalseLogin = (req, res, next) => {
+  var status = false;
+  //console.log(res.locals.login_error[0] );
+  res.json({
+    durum: status,
+    mesaj: res.locals.login_error[0] 
+  })
+};
+ const getTrueLogin = (req, res, next) => {
+  var status = true;
+  //console.log(res.locals.login_error[0] );
+  res.json({
+    durum: status,
+    user: req.user
+  })
+};
 
 const postLogin = (req, res, next) => {
-  const hatalar = validationResult(req);
-
-  if (!hatalar.isEmpty()) {
-    req.flash("validation_error", hatalar.array());
-    req.flash("email", req.body.email);
-
-    res.redirect("/auth/login");
-  } else {
+ 
     try {
         passport.authenticate("local", {
-            successRedirect: "/homepage",
-            failureRedirect: "/auth/login",
+            successRedirect: "mobile/auth/truelogin",
+            failureRedirect: "mobile/auth/falselogin",
             failureFlash: true,
           })(req, res, next);
         
@@ -34,7 +40,7 @@ const postLogin = (req, res, next) => {
         
     }
    
-  }
+  
 };
 
 const getRegister = (req, res, next) => {
@@ -130,7 +136,8 @@ const getLogOut = (req, res, next) => {
 };
 
 module.exports = {
-
+  getFalseLogin,
+  getTrueLogin,
   postLogin,
   getRegister,
   postRegister,

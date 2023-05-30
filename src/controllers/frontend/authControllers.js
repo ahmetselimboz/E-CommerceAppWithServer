@@ -3,13 +3,13 @@ const User = require("../../models/userModel");
 const passport = require("passport");
 require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
-const nodemailer = require('nodemailer');
-const jsonwebtoken = require('jsonwebtoken');
+const nodemailer = require("nodemailer");
+const jsonwebtoken = require("jsonwebtoken");
 const { resourceLimits } = require("worker_threads");
 
-
-
 const getLogin = (req, res, next) => {
+  //console.log(res.locals.login_error[0] );
+
   res.render("login", {
     layout: false,
   });
@@ -25,16 +25,16 @@ const postLogin = (req, res, next) => {
     res.redirect("/auth/login");
   } else {
     try {
-        passport.authenticate("local", {
-            successRedirect: "/homepage",
-            failureRedirect: "/auth/login",
-            failureFlash: true,
-          })(req, res, next);
-        
-    } catch (error) {
-        
-    }
-   
+      var hata = [];
+
+      passport.authenticate("local", {
+        successRedirect: "/homepage",
+        failureRedirect: "/auth/login",
+        failureFlash: true,
+      })(req, res, next);
+
+      
+    } catch (error) {}
   }
 };
 
@@ -79,39 +79,47 @@ const postRegister = async (req, res, next) => {
         await newUser.save();
         console.log("kullanici kaydedildi");
 
-        const jwtInfo ={
+        const jwtInfo = {
           id: newUser.id,
-          email: newUser.email
-        }
+          email: newUser.email,
+        };
 
-        const jwtToken = jsonwebtoken.sign(jwtInfo, process.env.CONFIRM_MAIL_JWT_SECRET , {expiresIn: "1d"});
+        const jwtToken = jsonwebtoken.sign(
+          jwtInfo,
+          process.env.CONFIRM_MAIL_JWT_SECRET,
+          { expiresIn: "1d" }
+        );
 
         const url = process.env.WEB_SITE_URL + "auth/verify?id=" + jwtToken;
 
         let transporter = nodemailer.createTransport({
-          service:"gmail",
-          auth:{
+          service: "gmail",
+          auth: {
             user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASSWORD
+            pass: process.env.GMAIL_PASSWORD,
+          },
+        });
+
+        await transporter.sendMail(
+          {
+            from: "Kitap Dağı <info@kitapdagi.com>",
+            to: newUser.email,
+            subject: "Emailinizi lütfen onaylayın",
+            text: "Emailiniz onaylamak için lütfen şu linke tıklayın: " + url,
+          },
+          (error, info) => {
+            if (error) {
+              console.log("Sending mail error: " + error);
+            }
+            console.log("Mail sended");
+            console.log(info);
+            transporter.close();
           }
-        })
+        );
 
-        await transporter.sendMail({
-          from: "Kitap Dağı <info@kitapdagi.com>",
-          to: newUser.email,
-          subject: "Emailinizi lütfen onaylayın",
-          text: "Emailiniz onaylamak için lütfen şu linke tıklayın: "+ url
-        },(error, info)=>{
-          if (error) {
-            console.log("Sending mail error: " + error);
-          }
-          console.log("Mail sended");
-          console.log(info);
-          transporter.close();
-        })
-
-
-        req.flash("success_message", [{ msg: "Lütfen mail kutunuzu kontrol ediniz" }]);
+        req.flash("success_message", [
+          { msg: "Lütfen mail kutunuzu kontrol ediniz" },
+        ]);
 
         res.redirect("/auth/login");
       }
@@ -119,37 +127,46 @@ const postRegister = async (req, res, next) => {
   }
 };
 
-const emailVerify = (req,res,next)=>{
+const emailVerify = (req, res, next) => {
   const token = req.query.id;
 
-  if(token){
-    try{
-      jsonwebtoken.verify(token, process.env.CONFIRM_MAIL_JWT_SECRET, async (e, decoded)=>{
+  if (token) {
+    try {
+      jsonwebtoken.verify(
+        token,
+        process.env.CONFIRM_MAIL_JWT_SECRET,
+        async (e, decoded) => {
+          if (e) {
+            req.flash(
+              "error",
+              "Gönderilen kod hatalı veya süresi geçmiş. Lütfen tekrar kayıt olunuz."
+            );
+            res.redirect("/login");
+          } else {
+            const tokenID = decoded.id;
+            const result = await User.findByIdAndUpdate(tokenID, {
+              emailIsActive: true,
+            });
 
-        if(e){
-          req.flash("error", "Gönderilen kod hatalı veya süresi geçmiş. Lütfen tekrar kayıt olunuz.");
-          res.redirect("/login");
-        }else{
-          const tokenID = decoded.id;
-          const result = await User.findByIdAndUpdate(tokenID, {emailIsActive: true});
-
-          if(result){
-            req.flash("success_message", [{msg: "Email başarıyla onaylandı. Giriş yapabilirsiniz."}])
-            res.redirect("/auth/login");
-          }
-          else{
-            req.flash("error", ["Bir hata oluştu. Lütfen tekrar kayıt olunuz."]);
-            res.redirect("/auth/login");
+            if (result) {
+              req.flash("success_message", [
+                { msg: "Email başarıyla onaylandı. Giriş yapabilirsiniz." },
+              ]);
+              res.redirect("/auth/login");
+            } else {
+              req.flash("error", [
+                "Bir hata oluştu. Lütfen tekrar kayıt olunuz.",
+              ]);
+              res.redirect("/auth/login");
+            }
           }
         }
-      })
-    }catch(err){}
-  }else{
+      );
+    } catch (err) {}
+  } else {
     console.log("There is no token");
   }
-}
-
-
+};
 
 const getLogOut = (req, res, next) => {
   req.logout(function (err) {
