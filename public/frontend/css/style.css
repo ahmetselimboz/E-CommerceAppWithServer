@@ -1625,6 +1625,27 @@ label {
   border: 7px solid #f0f0f0;
 }
 
+.login-icon{
+  margin-top: 2rem;
+  padding: 2rem 0 0rem 0;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-icon i{
+ 
+  font-size: 100px;
+  color:#0d6d00;
+  width: 100px;
+  height: 100px;
+  background-color: #1eff007e;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.167) 0px 0px 15px 2px;
+}
+
 .login-title {
   text-align: center;
   padding: 4rem 0 1rem 0;

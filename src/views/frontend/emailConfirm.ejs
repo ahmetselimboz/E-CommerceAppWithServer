@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../assets/pngwing.com.png"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/frontend/css/style.css" class="css" />
+
+    <title>Kitap Dağı | Dağ Kadar Kitabın Tek Adresi</title>
+  </head>
+  <body>
+    <div class="login-panel">
+      <div class="alertyy">
+        <% if (locals.validation_error !=undefined || locals.success_message!=undefined || locals.login_error !=undefined) { %> <%-
+        include('./partials/_message') %> <% } %>
+      </div>
+      <div class="login-container">
+        <form action="/auth/login" method="post">
+          <div class="login-card" style="width: 700px;">
+            <div class="login-icon">
+                <i class='bx bx-check-double' ></i>
+            </div>
+            <div class="login-title" style=" padding: 2rem 0 1rem 0;">
+              <h3>Emailiniz Başarıyla Onaylandı</h3>
+            </div>
+            <div class="login-alt-title" style="text-align: center;">
+                
+                <h6 style="font-size: 18px;">Bizi tercih ettiğiniz için teşekkür ederiz:)</h6>
+            </div>
+            
+            <div class="login-reg">
+              <h4>Artık <a href="/auth/login" style="font-weight: 600;">giriş</a> yapabilirsiniz </h4>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"
+      integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.0.min.js"
+      type="text/javascript"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="/frontend/js/api.js"></script>
+    <script src="/frontend/js/web.js"></script>
+  </body>
+</html>

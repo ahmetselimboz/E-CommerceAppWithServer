@@ -5,7 +5,7 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
-const { resourceLimits } = require("worker_threads");
+const { resourceLimits } = require("worker_threads"); 
 const _ = require("passport-local-mongoose");
 
 const getLogin = (req, res, next) => {
@@ -26,7 +26,7 @@ const postLogin = (req, res, next) => {
     res.redirect("/auth/login");
   } else {
     try {
-      var hata = [];
+
 
       passport.authenticate("local", {
         successRedirect: "/homepage",
@@ -43,7 +43,7 @@ const getRegister = (req, res, next) => {
   });
 };
 const postRegister = async (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   const hatalar = validationResult(req);
 
   if (!hatalar.isEmpty()) {
@@ -148,10 +148,8 @@ const emailVerify = (req, res, next) => {
             });
 
             if (result) {
-              req.flash("success_message", [
-                { msg: "Email başarıyla onaylandı. Giriş yapabilirsiniz." },
-              ]);
-              res.redirect("/auth/login");
+             
+              res.redirect("/auth/email-confirmed");
             } else {
               req.flash("error", [
                 "Bir hata oluştu. Lütfen tekrar kayıt olunuz.",
@@ -166,6 +164,12 @@ const emailVerify = (req, res, next) => {
     console.log("There is no token");
   }
 };
+
+
+const getEmailConfirmed = (req, res, next)=>{
+  res.render("emailConfirm",
+  {layout:false})
+}
 
 const getLogOut = (req, res, next) => {
   req.logout(function (err) {
@@ -211,11 +215,10 @@ const postForgetPassword = async (req, res, next) => {
 
         const url =
           process.env.WEB_SITE_URL +
-          "auth/new-password/" +
+          "auth/new-password?" + "id=" +
           _user.id +
-          "/" +
-          jwtPasswordToken +
-          "/";
+          "&token=" +
+          jwtPasswordToken;
 
         let transporter = nodemailer.createTransport({
           service: "gmail",
@@ -259,34 +262,33 @@ const postForgetPassword = async (req, res, next) => {
 };
 
 const getNewPassword = async (req, res, next) => {
-  const tokenId = req.params.id;
-  const token = req.params.token;
-
-    
-  console.log(req.params);
+  const tokenId = req.query.id;
+  const token = req.query.token;
+  //console.log(token);
   if (tokenId && token) {
-    //const _user = await User.findById(tokenId);
+    const _user = await User.findById(tokenId);
+    
 
-    // const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
+    const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
 
-    // if (token) {
-    //   try {
-    //     jsonwebtoken.verify(token, secret, async (e, decoded) => {
-    //       if (e) {
-    //         req.flash("error", "Kod hatalı veya süresi geçmiş");
-    //         res.redirect("/auth/forget-password");
-    //       } else {
+    if (token) {
+      try {
+        jsonwebtoken.verify(token, secret, async (e, decoded) => {
+          if (e) {
+            req.flash("error", "Kod hatalı veya süresi geçmiş");
+            res.redirect("/auth/forget-password");
+          } else {
             res.render("new-password", {
               id: tokenId,
               token: token,
               layout: false,
             });
-    //       }
-    //     });
-    //   } catch (error) {}
-    // } else {
-    //   console.log("token yok");
-    // }
+          }
+        });
+      } catch (error) {}
+    } else {
+      console.log("token yok");
+    }
   } else {
     req.flash("validation_error", [
       { msg: "Lütfen mailinizdeki linke tekrar tıklayın. Token bulunamadı." },
@@ -301,11 +303,12 @@ const postNewPassword = async (req, res, next) => {
   if (!hatalar.isEmpty()) {
     req.flash("validation_error", hatalar.array());
 
-    res.redirect("/auth/new-password/" + req.body.id + "/" + req.body.token);
+
+    res.redirect("/auth/new-password?id=" + req.body.id + "&token=" + req.body.token);
   } else {
     const _user = await User.findById(req.body.id);
 
-    const secret = process.env.NEW_PASSWORD_JWT_TOKEN + "-" + _user.password; 
+    const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password; 
 
     if (req.body.token) {
       try {
@@ -336,7 +339,7 @@ const postNewPassword = async (req, res, next) => {
         console.log(error);
       }
     } else {
-      console.log("Token yok");
+         console.log("There is no token");
     }
   }
 };
@@ -346,6 +349,7 @@ module.exports = {
   postLogin,
   getRegister,
   postRegister,
+  getEmailConfirmed,
   emailVerify,
   getLogOut,
   getForgetPassword,

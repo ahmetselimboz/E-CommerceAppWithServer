@@ -10,6 +10,7 @@ router.get('/register', isAuthanticated.no, authController.getRegister);
 router.post('/register', validations.validateNewUser(), authController.postRegister);
 
 router.get("/verify", authController.emailVerify);
+router.get('/email-confirmed', authController.getEmailConfirmed);
 
 router.get("/forget-password", authController.getForgetPassword);
 router.post("/forget-password", validations.validateEmail(), authController.postForgetPassword);

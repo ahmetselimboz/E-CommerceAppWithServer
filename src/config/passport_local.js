@@ -9,8 +9,7 @@ module.exports = function (passport){
     }
 
     passport.use(new LocalStrategy(options, async (email,password, done)=>{
-        console.log(email);
-        console.log(password);
+   
         try {
             const _findUser = await User.findOne({email:email});
 
