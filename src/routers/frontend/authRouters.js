@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const authController = require("../../controllers/frontend/authControllers");
+const accountController = require("../../controllers/frontend/accountController");
 const validations = require("../../middlewares/validations");
 const isAuthanticated = require("../../middlewares/isAuthanticated");
 
@@ -18,6 +19,9 @@ router.post("/forget-password", validations.validateEmail(), authController.post
 router.get("/new-password", authController.getNewPassword);
 router.get("/new-password/:id/:token", authController.getNewPassword);
 router.post("/new-password", validations.validateNewPassword(), authController.postNewPassword);
+
+router.get('/google', accountController.getGoogleAccount)
+router.get('/oauth2/redirect/google', accountController.postGoogleAccount)
 
 
 
