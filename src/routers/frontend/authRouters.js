@@ -11,5 +11,14 @@ router.post('/register', validations.validateNewUser(), authController.postRegis
 
 router.get("/verify", authController.emailVerify);
 
+router.get("/forget-password", authController.getForgetPassword);
+router.post("/forget-password", validations.validateEmail(), authController.postForgetPassword);
+
+router.get("/new-password", authController.getNewPassword);
+router.get("/new-password/:id/:token", authController.getNewPassword);
+router.post("/new-password", validations.validateNewPassword(), authController.postNewPassword);
+
+
+
 router.get('/logout' , authController.getLogOut);
 module.exports = router;
