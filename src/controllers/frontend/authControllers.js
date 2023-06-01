@@ -262,30 +262,31 @@ const getNewPassword = async (req, res, next) => {
   const tokenId = req.params.id;
   const token = req.params.token;
 
+    
   console.log(req.params);
   if (tokenId && token) {
-    const _user = await User.findById(tokenId);
+    //const _user = await User.findById(tokenId);
 
-    const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
+    // const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
 
-    if (token) {
-      try {
-        jsonwebtoken.verify(token, secret, async (e, decoded) => {
-          if (e) {
-            req.flash("error", "Kod hatalı veya süresi geçmiş");
-            res.redirect("/auth/forget-password");
-          } else {
+    // if (token) {
+    //   try {
+    //     jsonwebtoken.verify(token, secret, async (e, decoded) => {
+    //       if (e) {
+    //         req.flash("error", "Kod hatalı veya süresi geçmiş");
+    //         res.redirect("/auth/forget-password");
+    //       } else {
             res.render("new-password", {
               id: tokenId,
               token: token,
               layout: false,
             });
-          }
-        });
-      } catch (error) {}
-    } else {
-      console.log("token yok");
-    }
+    //       }
+    //     });
+    //   } catch (error) {}
+    // } else {
+    //   console.log("token yok");
+    // }
   } else {
     req.flash("validation_error", [
       { msg: "Lütfen mailinizdeki linke tekrar tıklayın. Token bulunamadı." },
@@ -296,7 +297,7 @@ const getNewPassword = async (req, res, next) => {
 
 const postNewPassword = async (req, res, next) => {
   const hatalar = validationResult(req);
-  console.log(req.body);
+  //console.log(req.body);
   if (!hatalar.isEmpty()) {
     req.flash("validation_error", hatalar.array());
 
@@ -304,7 +305,7 @@ const postNewPassword = async (req, res, next) => {
   } else {
     const _user = await User.findById(req.body.id);
 
-    const secret = process.env.NEW_PASSWORD_JWT_TOKEN + "-" + _user.password;
+    const secret = process.env.NEW_PASSWORD_JWT_TOKEN + "-" + _user.password; 
 
     if (req.body.token) {
       try {
@@ -331,7 +332,9 @@ const postNewPassword = async (req, res, next) => {
             }
           }
         });
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     } else {
       console.log("Token yok");
     }
