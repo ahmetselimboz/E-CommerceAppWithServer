@@ -34,24 +34,30 @@ module.exports = function (passport){
         }
     }));
 
-    passport.serializeUser(function (user, done){
-        process.nextTick(function(){
-            done(null, {id: user.id});
-        });
-    });
+    passport.serializeUser(function (user, done) {
+        done(null, {id: user.id});
+      });
+      
+      passport.deserializeUser(async function (user, done) {
+         const userInfo = await User.findById(user.id);
+        return done(null, userInfo);
+      });
+
+
+    // passport.serializeUser(function (user, done){
+    //     process.nextTick(function(){
+    //         done(null, {id: user.id});
+    //     });
+    // });
 
     
-    passport.deserializeUser(function (user, done){
+    // passport.deserializeUser(async function (user, done){
 
-        process.nextTick(function () {
-            const userInfo = User.findById(user.id);
-            userInfo.then(value => {
-                
-                return done(null, value);
-            }).catch(err => {
-                return done(err, value);
-            });
+    //     process.nextTick(async function () {
+    //         const userInfo = await User.findById(user.id);
+    //         return done(null, userInfo);
+            
 
-        });
-    });
+    //     });
+    // });
 }
