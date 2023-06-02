@@ -23,6 +23,11 @@ const postLogin = (req, res, next) => {
         //console.log("cp1");
         //console.log(err);
       }
+      if(!user){
+        req.session.destroy();
+      }
+    
+      console.log(user);
       if (!user) {
         console.log("geldimfalse");
         var status = false;
@@ -45,9 +50,9 @@ const postLogin = (req, res, next) => {
           user: falseUser,
           mesaj: info.message,
         });
-        if(req.session){
+      /*  if(req.session){
           req.session.destroy();
-        }
+        }*/
       }
 
       req.logIn(user, function (err) {
