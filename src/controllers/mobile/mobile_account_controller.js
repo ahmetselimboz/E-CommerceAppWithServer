@@ -27,7 +27,7 @@ const postGoogleAccount = passport.authenticate(
       return res.json({
         durum: status,
         user: falseUser,
-        mesaj: info.message,
+        mesaj: truemesaj,
       });
     }
 
