@@ -202,10 +202,14 @@ const getLogOut = (req, res, next) => {
   var durum = false;
   req.logout(function (err) {
     if (err) {
+      console.log("Çıkış yaparken hata oluştu");
       return next(err);
+    }else{
+      console.log("Çıkış yapıldı");
+      durum = true;
+      res.json(durum);
     }
-    durum = true;
-    res.json(durum);
+    
   });
 };
 
