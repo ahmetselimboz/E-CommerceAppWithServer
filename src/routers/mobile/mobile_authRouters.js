@@ -12,7 +12,7 @@ router.post('/register',  mobile_authController.postRegister);
 
 //router.get("/verify", mobile_authController.emailVerify);
 
-router.post('/logout' , mobile_authController.getLogOut);
+router.get('/logout' , mobile_authController.getLogOut);
 
 //router.get("/forget-password", mobile_authController.getForgetPassword);
 router.post("/forget-password", mobile_authController.postForgetPassword);
