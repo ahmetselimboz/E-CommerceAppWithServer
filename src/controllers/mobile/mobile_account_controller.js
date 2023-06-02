@@ -7,6 +7,7 @@ const getGoogleAccount = passport.authenticate("google", {
 const postGoogleAccount = passport.authenticate(
   "google",
   function (err, user, info) {
+ 
     if (!user) {
       console.log("geldimfalse");
       var status = false;
@@ -24,15 +25,18 @@ const postGoogleAccount = passport.authenticate(
         __v: 0,
       };
 
-      return res.json({
+      res.json({
         durum: status,
         user: falseUser,
         mesaj: truemesaj,
       });
+      if(req.session){
+        req.session.destroy();
+      }
     }
 
     req.logIn(user, function (err) {
- 
+      
       if (err) {
 
       } else {
@@ -40,11 +44,14 @@ const postGoogleAccount = passport.authenticate(
         var status = true;
         var truemesaj = " ";
    
-        return res.json({
+        res.json({
           durum: status,
           user: req.user,
           mesaj: truemesaj,
         });
+        if(req.session){
+          req.session.destroy();
+        }
       }
     });
   }

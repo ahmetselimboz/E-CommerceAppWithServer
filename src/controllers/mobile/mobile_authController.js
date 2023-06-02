@@ -13,6 +13,7 @@ const getFalseLogin = (req, res, next) => {};
 const getTrueLogin = (req, res, next) => {};
 
 const postLogin = (req, res, next) => {
+  
   console.log("geldim");
   try {
     passport.authenticate("local", function (err, user, info) {
@@ -39,11 +40,14 @@ const postLogin = (req, res, next) => {
           __v: 0,
         };
 
-        return res.json({
+        res.json({
           durum: status,
           user: falseUser,
           mesaj: info.message,
         });
+        if(req.session){
+          req.session.destroy();
+        }
       }
 
       req.logIn(user, function (err) {
@@ -56,11 +60,14 @@ const postLogin = (req, res, next) => {
           var status = true;
           var truemesaj = " ";
           //console.log(res.locals.login_error[0] );
-          return res.json({
+         res.json({
             durum: status,
             user: req.user,
             mesaj: truemesaj,
           });
+          if(req.session){
+            req.session.destroy();
+          }
         }
       });
     })(req, res, next);
@@ -79,6 +86,9 @@ const getRegister = (req, res, next) => {
   });
 };
 const postRegister = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   console.log("istek geldi");
   console.log(req.body);
   var deger = false;
@@ -200,6 +210,7 @@ const postRegister = async (req, res, next) => {
 // }
 
 const getLogOut = (req, res, next) => {
+
   var durum = false;
 
   delete req.user;
@@ -216,6 +227,9 @@ const getLogOut = (req, res, next) => {
 };
 
 const postForgetPassword = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   var deger = false;
 
   try {
@@ -284,6 +298,9 @@ const postForgetPassword = async (req, res, next) => {
 };
 
 const getNewPassword = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   const tokenId = req.query.id;
   const token = req.query.token;
 
@@ -319,6 +336,9 @@ const getNewPassword = async (req, res, next) => {
 };
 
 const postNewPassword = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   const hatalar = validationResult(req);
   //console.log(req.body);
   if (!hatalar.isEmpty()) {
@@ -371,6 +391,9 @@ const postNewPassword = async (req, res, next) => {
 };
 
 const refreshLocalDb = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   if (req.body.email) {
     const _user = await User.findOne({ email: req.body.email });
 

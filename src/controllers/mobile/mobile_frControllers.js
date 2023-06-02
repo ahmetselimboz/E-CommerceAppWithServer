@@ -2,12 +2,17 @@ const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
 
 const getMobileHomepage = async (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   const book = await Books.find({}).limit(21);
   res.json(book);
 };
 
 const postComment = async (req, res, next) => {
-
+  if(req.session){
+    req.session.destroy();
+  }
     //console.log(req.params);
     //const id = req.params.id;
     const id = req.body.id;
@@ -42,6 +47,9 @@ const postComment = async (req, res, next) => {
 };
 
 const postNewComment = (req, res, next) => {
+  if(req.session){
+    req.session.destroy();
+  }
   console.log("istek geldi");
   console.log(req.body);
   const com = new Comments();
