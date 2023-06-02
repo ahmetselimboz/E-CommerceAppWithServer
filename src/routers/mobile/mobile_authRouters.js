@@ -7,6 +7,8 @@ router.get('/auth/falselogin',  mobile_authController.getFalseLogin);
 router.get('/auth/truelogin',  mobile_authController.getTrueLogin);
 router.post('/login',  mobile_authController.postLogin);
 
+router.post("/localDb", mobile_authController.refreshLocalDb)
+
 router.get('/register',  mobile_authController.getRegister);
 router.post('/register',  mobile_authController.postRegister);
 

@@ -7,6 +7,7 @@ const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
 const { log } = require("console");
 const { boolean } = require("webidl-conversions");
+const { read } = require("fs");
 
 const getFalseLogin = (req, res, next) => {};
 const getTrueLogin = (req, res, next) => {};
@@ -200,19 +201,18 @@ const postRegister = async (req, res, next) => {
 
 const getLogOut = (req, res, next) => {
   var durum = false;
- 
-    delete req.user;
-    req.session.destroy();
-    if (!req.user) {
-      console.log("Çıkış yapıldı");
-      durum = true;
-      res.json(durum);
-    } else {
-      console.log("Çıkış yapılamadi");
-      durum = false;
-      res.json(durum);
-    }
 
+  delete req.user;
+  req.session.destroy();
+  if (!req.user) {
+    console.log("Çıkış yapıldı");
+    durum = true;
+    res.json(durum);
+  } else {
+    console.log("Çıkış yapılamadi");
+    durum = false;
+    res.json(durum);
+  }
 };
 
 const postForgetPassword = async (req, res, next) => {
@@ -349,15 +349,15 @@ const postNewPassword = async (req, res, next) => {
               //   { msg: "Şifreniz başarıyla yenilendi" },
               // ]);
               res.json({
-                durum: true
-              })
+                durum: true,
+              });
             } else {
               // req.flash("error", [
               //   "Lütfen tekrar şifre adımlarını gerçekleştirin",
               // ]);
               res.json({
-                durum: false
-              })
+                durum: false,
+              });
             }
           }
         });
@@ -367,6 +367,20 @@ const postNewPassword = async (req, res, next) => {
     } else {
       console.log("There is no token");
     }
+  }
+};
+
+const refreshLocalDb = async (req, res, next) => {
+  if (req.body.email) {
+    const _user = await User.findOne({ email: req.body.email });
+
+    if (_user) {
+      res.json(_user.password);
+    }else{
+      console.log("Request deki email ile eşleşme yok");
+    }
+  }else{
+    console.log("Request de email yok");
   }
 };
 
@@ -383,4 +397,5 @@ module.exports = {
   getNewPassword,
   postNewPassword,
   //getEmailConfirmed
+  refreshLocalDb,
 };
