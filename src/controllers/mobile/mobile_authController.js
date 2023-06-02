@@ -200,12 +200,9 @@ const postRegister = async (req, res, next) => {
 
 const getLogOut = (req, res, next) => {
   var durum = false;
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-
+ 
     delete req.user;
+    req.session.destroy();
     if (!req.user) {
       console.log("Çıkış yapıldı");
       durum = true;
@@ -215,7 +212,7 @@ const getLogOut = (req, res, next) => {
       durum = false;
       res.json(durum);
     }
-  });
+
 };
 
 const postForgetPassword = async (req, res, next) => {
