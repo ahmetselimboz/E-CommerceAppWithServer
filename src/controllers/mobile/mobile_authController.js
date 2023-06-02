@@ -345,15 +345,19 @@ const postNewPassword = async (req, res, next) => {
             });
 
             if (result) {
-              req.flash("success_message", [
-                { msg: "Şifreniz başarıyla yenilendi" },
-              ]);
-              res.redirect("/auth/login");
+              // req.flash("success_message", [
+              //   { msg: "Şifreniz başarıyla yenilendi" },
+              // ]);
+              res.json({
+                durum: true
+              })
             } else {
-              req.flash("error", [
-                "Lütfen tekrar şifre adımlarını gerçekleştirin",
-              ]);
-              res.redirect("/auth/login");
+              // req.flash("error", [
+              //   "Lütfen tekrar şifre adımlarını gerçekleştirin",
+              // ]);
+              res.json({
+                durum: false
+              })
             }
           }
         });
