@@ -204,18 +204,17 @@ const getLogOut = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    req.session.destroy((error) => {
-      req.user = null;
-      if (req.user == null) {
-        console.log("Çıkış yapıldı");
-        durum = true;
-        res.json(durum);
-      } else {
-        console.log("Çıkış yapılamadi");
-        durum = false;
-        res.json(durum);
-      }
-    });
+
+    delete req.user;
+    if (!req.user) {
+      console.log("Çıkış yapıldı");
+      durum = true;
+      res.json(durum);
+    } else {
+      console.log("Çıkış yapılamadi");
+      durum = false;
+      res.json(durum);
+    }
   });
 };
 
