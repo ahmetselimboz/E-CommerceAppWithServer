@@ -204,16 +204,19 @@ const getLogOut = (req, res, next) => {
     if (err) {
       console.log("Çıkış yaparken hata oluştu");
       return next(err);
-    }else{
+    }
+    req.session.destroy((error) => {
+      //res.clearCookie('connect.sid');
+
       console.log("Çıkış yapıldı");
       durum = true;
       res.json(durum);
-    }
-    
+
+      // req.flash("success_message", [{msg: 'Basariyla cikis yapildi'}]);
+      // res.redirect('/login');
+    });
   });
 };
-
-
 
 const postForgetPassword = async (req, res, next) => {
   var deger = false;
@@ -279,15 +282,9 @@ const postForgetPassword = async (req, res, next) => {
         durum: deger,
         mesaj: "Bu mail kayıtlı değil veya emailiniz doğrulanmamış.",
       });
-     
     }
   } catch (error) {}
 };
-
-
-
-
-
 
 const getNewPassword = async (req, res, next) => {
   const tokenId = req.query.id;
@@ -323,11 +320,6 @@ const getNewPassword = async (req, res, next) => {
     res.redirect("/auth/forget-password");
   }
 };
-
-
-
-
-
 
 const postNewPassword = async (req, res, next) => {
   const hatalar = validationResult(req);

@@ -176,8 +176,16 @@ const getLogOut = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    req.flash("success_message", [{ msg: "Başarıyla çıkış yapıldı" }]);
-    res.redirect("/homepage");
+    req.session.destroy((error) => {
+      res.clearCookie('connect.sid');
+      
+      res.redirect("/homepage");
+
+      // req.flash("success_message", [{msg: 'Basariyla cikis yapildi'}]);
+      // res.redirect('/login');
+  })
+    
+    
   });
 };
 
