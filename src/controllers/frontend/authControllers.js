@@ -176,6 +176,7 @@ const getLogOut = (req, res, next) => {
     if (err) {
       return next(err);
     }
+
     req.session.destroy((error) => {
       res.clearCookie('connect.sid');
       

@@ -200,22 +200,19 @@ const postRegister = async (req, res, next) => {
 
 const getLogOut = (req, res, next) => {
   var durum = false;
-  req.logout(function (err) {
-    if (err) {
-      console.log("Çıkış yaparken hata oluştu");
-      return next(err);
-    }
-    req.session.destroy((error) => {
-      //res.clearCookie('connect.sid');
-
-      console.log("Çıkış yapıldı");
-      durum = true;
-      res.json(durum);
-
-      // req.flash("success_message", [{msg: 'Basariyla cikis yapildi'}]);
-      // res.redirect('/login');
-    });
-  });
+  req.logout();
+  req.user=null;
+  if (req.user == null) {
+    console.log("Çıkış yapıldı");
+    durum = true;
+    res.json(durum);
+  }else{
+    console.log("Çıkış yapılamadi");
+    durum = false;
+    res.json(durum);
+  }
+ 
+ 
 };
 
 const postForgetPassword = async (req, res, next) => {
