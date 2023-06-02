@@ -52,6 +52,8 @@ app.use((req, res, next) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 const frRouter = require("./src/routers/frontend/frRouters");
 const authRouter = require("./src/routers/frontend/authRouters");
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");

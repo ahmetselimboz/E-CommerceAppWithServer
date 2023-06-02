@@ -45,8 +45,8 @@ router.get(
 router.get("/facebook", accountController.getFacebook);
 router.get("/facebook/callback", accountController.postFacebook);
 
-router.get("/twitter", accountController.getTwitter);
-router.get("/twitter/callback", accountController.postTwitter);
+//router.get("/twitter", accountController.getTwitter);
+//router.get("/twitter/callback", accountController.postTwitter);
 
 
 router.get("/logout", authController.getLogOut);

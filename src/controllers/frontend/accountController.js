@@ -23,18 +23,18 @@ const postFacebook = passFace.authenticate("facebook", {
   failureRedirect: "/auth/login",
 });
 
-const getTwitter = passTwit.authenticate("twitter");
+// const getTwitter = passTwit.authenticate("twitter");
 
-const postTwitter = passTwit.authenticate('twitter', {
-  successRedirect: '/homepage',
-  failureRedirect: '/auth/login' 
-})
+// const postTwitter = passTwit.authenticate('twitter', {
+//   successRedirect: '/homepage',
+//   failureRedirect: '/auth/login' 
+// })
 
 module.exports = {
   getGoogleAccount,
   postGoogleAccount,
   getFacebook,
   postFacebook,
-  getTwitter,
-  postTwitter
+  // getTwitter,
+  // postTwitter
 };
