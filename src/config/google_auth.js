@@ -8,7 +8,7 @@ const options = {
   clientID:
     process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.WEB_SITE_URL +"auth/google/callback",
+  callbackURL: process.env.WEB_SITE_URL +"mobile/auth/google/callback",
   scope: ["email","profile"],
   state: true,
 };
