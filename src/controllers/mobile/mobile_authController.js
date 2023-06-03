@@ -424,7 +424,7 @@ const postNewGoogle= async (req, res, next) =>{
     newUser.name = req.body.name;
     newUser.surname = "default";
     newUser.email = req.body.email;
-    newUser.password = req.body.id;
+    newUser.password ="czxczxczczxczccx";
     newUser.emailIsActive = true;
     newUser.save();
    
