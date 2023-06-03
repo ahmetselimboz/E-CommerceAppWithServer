@@ -25,6 +25,6 @@ router.get("/new-password", mobile_authController.getNewPassword);
 router.get("/new-password/:id/:token", mobile_authController.getNewPassword);
 router.post("/new-password", mobile_authController.postNewPassword);
 
-//router.post("/google", )
+router.post("/google", mobile_authController.postNewGoogle)
 
 module.exports = router;

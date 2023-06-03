@@ -412,6 +412,30 @@ const refreshLocalDb = async (req, res, next) => {
   }
 };
 
+
+const postNewGoogle= async (req, res, next) =>{
+  console.log(req.body);
+
+  if(req.body){
+    const _findUser = await User.findOne({email: req.body.email});
+
+    if(!_findUser){
+      const newUser = new User();
+    newUser.name = req.body.name;
+    newUser.surname = "default";
+    newUser.email = req.body.email;
+    newUser.password = req.body.id;
+    newUser.emailIsActive = true;
+    newUser.save();
+   
+    return res.json(true);
+    }else{
+      return res.json(false);
+    }
+  }
+  return res.json(false);
+}
+
 module.exports = {
   getFalseLogin,
   getTrueLogin,
@@ -426,4 +450,5 @@ module.exports = {
   postNewPassword,
   //getEmailConfirmed
   refreshLocalDb,
+  postNewGoogle
 };
