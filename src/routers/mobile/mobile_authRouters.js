@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const mobile_authController = require("../../controllers/mobile/mobile_authController");
+const mobile_accountController = require("../../controllers/mobile/mobile_account_controller")
 const validations = require("../../middlewares/validations");
 const isAuthanticated = require("../../middlewares/isAuthanticated");
 
@@ -23,5 +24,15 @@ router.get("/new-password", mobile_authController.getNewPassword);
 router.get("/new-password/:id/:token", mobile_authController.getNewPassword);
 router.post("/new-password",  mobile_authController.postNewPassword);
 
+
+router.get(
+    "/google",
+    mobile_accountController.getGoogleAccount
+  );
+  router.get(
+    "/google/callback",mobile_accountController.postGoogleAccount
+    
+  );
+  
 
 module.exports = router;
