@@ -48,15 +48,15 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser(async function (user, done) {
-    //return done(null, user);
-    if (user) {
-      const userInfo = await User.findById(user.id);
-      if (userInfo) {
-        return done(null, userInfo);
-      } else {
-        return done(null, user);
-      }
-    }
+    return done(null, user);
+    // if (user) {
+    //   const userInfo = await User.findById(user.id);
+    //   if (userInfo) {
+    //     return done(null, userInfo);
+    //   } else {
+    //     return done(null, user);
+    //   }
+    // }
   });
 
   // passport.serializeUser(function (user, done){

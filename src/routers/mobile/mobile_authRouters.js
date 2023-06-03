@@ -25,26 +25,6 @@ router.get("/new-password", mobile_authController.getNewPassword);
 router.get("/new-password/:id/:token", mobile_authController.getNewPassword);
 router.post("/new-password", mobile_authController.postNewPassword);
 
-router.get("/google", mobile_accountController.getGoogleAccount);
-router.get("/google/callback", (req, res, next) =>
-  passport.authenticate("google", (err, user, info) => {
-    if (err) return next(err);
-
-    if (!user) return res.redirect("/login");
-
-    req.logIn(user, (err) => {
-      var status = true;
-      var truemesaj = " ";
-      //console.log(res.locals.login_error[0] );
-      return res.json({
-        durum: status,
-        user: req.user,
-        mesaj: truemesaj,
-      });
-    });
-  })(req, res, next)
-);
-
-router.get("/google/success", mobile_accountController.googleSuccess);
+//router.post("/google", )
 
 module.exports = router;

@@ -6,12 +6,13 @@ const User = require("../models/userModel");
 passport.use(
   new TwitterStrategy(
     {
-    clientType: 'confidential',
+      clientType: "confidential",
       clientID: process.env.TWITTER_CONSUMER_KEY,
       clientSecret: process.env.TWITTER_CONSUMER_SECRET,
       callbackURL: "http://localhost:3000/auth/twitter/callback",
-      userProfileURL  : "https://api.twitter.com/2/users/me",
-      passReqToCallback : true,
+      
+
+      
     },
     async (token, tokenSecret, profile, done) => {
       console.log(profile);
@@ -19,7 +20,5 @@ passport.use(
     }
   )
 );
-
-
 
 module.exports = passport;
