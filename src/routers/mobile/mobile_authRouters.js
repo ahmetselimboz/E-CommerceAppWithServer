@@ -27,12 +27,10 @@ router.post("/new-password", mobile_authController.postNewPassword);
 
 router.get("/google", mobile_accountController.getGoogleAccount);
 router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: "/homepage",
-    failureRedirect: "/auth/login",
-    failureMessage: true,
-  })
+  "/google/callback",  mobile_accountController.postGoogleAccount
+ 
 );
+
+router.get('/google/success', mobile_accountController.googleSuccess)
 
 module.exports = router;
