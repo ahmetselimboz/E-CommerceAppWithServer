@@ -3,7 +3,7 @@ const passFace = require("../../config/facebook_auth");
 const passTwit = require("../../config/twitter_auth");
 
 const getGoogleAccount = passGo.authenticate("google", {
-  scope: ["email", "profile"],
+  scope: ["profile", "email"],
 });
 
 const postGoogleAccount = passGo.authenticate("google", {
@@ -15,7 +15,7 @@ const postGoogleAccount = passGo.authenticate("google", {
 const getFacebook = passFace.authenticate("facebook", {
   //authType: "reauthenticate",
   //display: 'popup',
-  scope: 'email'
+  scope: "email",
 });
 
 const postFacebook = passFace.authenticate("facebook", {
@@ -23,18 +23,20 @@ const postFacebook = passFace.authenticate("facebook", {
   failureRedirect: "/auth/login",
 });
 
-// const getTwitter = passTwit.authenticate("twitter");
+const getTwitter = passTwit.authenticate("twitter",{
+  scope: ['tweet.read', 'tweet.write', 'users.read']
+});
 
-// const postTwitter = passTwit.authenticate('twitter', {
-//   successRedirect: '/homepage',
-//   failureRedirect: '/auth/login' 
-// })
+const postTwitter = passTwit.authenticate("twitter", {
+  successRedirect: "/homepage",
+  failureRedirect: "/auth/login",
+});
 
 module.exports = {
   getGoogleAccount,
   postGoogleAccount,
   getFacebook,
   postFacebook,
-  // getTwitter,
-  // postTwitter
+  getTwitter,
+  postTwitter,
 };

@@ -43,17 +43,20 @@ module.exports = function (passport) {
 
   passport.serializeUser(function (user, done) {
     process.nextTick(function () {
-       done(null, {id: user.id, name: user.name, surname: user.surname});
+      done(null, { id: user.id, name: user.name, surname: user.surname });
     });
   });
 
   passport.deserializeUser(async function (user, done) {
-    const userInfo = await User.findById(user.id);
-    if (userInfo) {
-      return done(null, userInfo);
-    } else {
-      return done(null, user);
-    }
+    return done(null, user);
+    // if (user) {
+    //   const userInfo = await User.findById(user.id);
+    //   if (userInfo) {
+    //     return done(null, userInfo);
+    //   } else {
+    //     return done(null, user);
+    //   }
+    // }
   });
 
   // passport.serializeUser(function (user, done){
