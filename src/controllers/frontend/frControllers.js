@@ -3,11 +3,11 @@ const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 const { validationResult } = require("express-validator");
+const axios = require('axios');
+
 
 const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
-
- 
 
   if (req.user) {
     res.render("index", {

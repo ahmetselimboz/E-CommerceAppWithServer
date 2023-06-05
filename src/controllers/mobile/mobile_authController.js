@@ -13,64 +13,63 @@ const getFalseLogin = (req, res, next) => {};
 const getTrueLogin = (req, res, next) => {};
 
 const postLogin = (req, res, next) => {
-  
   console.log("geldim");
   try {
-    passport.authenticate("local", function (err, user, info) {
-      //console.log(req);
-      //console.log(user);
-      if (err) {
-        //console.log("cp1");
-        //console.log(err);
-      }
-      if(!user){
-        req.session.destroy();
-      }
-    
-      console.log(user);
-      if (!user) {
-        console.log("geldimfalse");
-        var status = false;
-        var truemesaj = "";
-
-        var falseUser = {
-          _id: "",
-          name: "",
-          surname: "",
-          email: "",
-          emailIsActive: false,
-          password: "",
-          createdAt: "",
-          updatedAt: "",
-          __v: 0,
-        };
-
-        res.json({
-          durum: status,
-          user: falseUser,
-          mesaj: info.message,
-        });
-      /*  if(req.session){
-          req.session.destroy();
-        }*/
-      }
-
-      req.logIn(user, function (err) {
-        console.log("cp1");
+      passport.authenticate("local", function (err, user, info) {
+        //console.log(req);
+        //console.log(user);
         if (err) {
-          //console.log("cp3");
+          //console.log("cp1");
           //console.log(err);
-        } else {
-          console.log("geldimtrue");
-          var status = true;
-          var truemesaj = " ";
-          //console.log(res.locals.login_error[0] );
-         res.json({
+        }
+        if (!user) {
+          req.session.destroy();
+        }
+
+        console.log(user);
+        if (!user) {
+          console.log("geldimfalse");
+          var status = false;
+          var truemesaj = "";
+
+          var falseUser = {
+            _id: "",
+            name: "",
+            surname: "",
+            email: "",
+            emailIsActive: false,
+            password: "",
+            createdAt: "",
+            updatedAt: "",
+            __v: 0,
+          };
+
+          res.json({
             durum: status,
-            user: req.user,
+            user: falseUser,
+            mesaj: info.message,
+          });
+          /*  if(req.session){
+            req.session.destroy();
+          }*/
+        }
+
+        req.logIn(user, function (err) {
+          console.log("cp1");
+          if (err) {
+            //console.log("cp3");
+            //console.log(err);
+          } else {
+            console.log("geldimtrue");
+            var status = true;
+            var truemesaj = " ";
+            //console.log(res.locals.login_error[0] );
+            res.json({
+              durum: status,
+              user: req.user,
             mesaj: truemesaj,
           });
-          if(req.session){
+          if (req.session) {
             req.session.destroy();
           }
         }
@@ -91,7 +90,7 @@ const getRegister = (req, res, next) => {
   });
 };
 const postRegister = async (req, res, next) => {
-  if(req.session){
+  if (req.session) {
     req.session.destroy();
   }
   console.log("istek geldi");
@@ -215,7 +214,6 @@ const postRegister = async (req, res, next) => {
 // }
 
 const getLogOut = (req, res, next) => {
-
   var durum = false;
 
   delete req.user;
@@ -232,7 +230,7 @@ const getLogOut = (req, res, next) => {
 };
 
 const postForgetPassword = async (req, res, next) => {
-  if(req.session){
+  if (req.session) {
     req.session.destroy();
   }
   var deger = false;
@@ -303,7 +301,7 @@ const postForgetPassword = async (req, res, next) => {
 };
 
 const getNewPassword = async (req, res, next) => {
-  if(req.session){
+  if (req.session) {
     req.session.destroy();
   }
   const tokenId = req.query.id;
@@ -341,7 +339,7 @@ const getNewPassword = async (req, res, next) => {
 };
 
 const postNewPassword = async (req, res, next) => {
-  if(req.session){
+  if (req.session) {
     req.session.destroy();
   }
   const hatalar = validationResult(req);
@@ -396,7 +394,7 @@ const postNewPassword = async (req, res, next) => {
 };
 
 const refreshLocalDb = async (req, res, next) => {
-  if(req.session){
+  if (req.session) {
     req.session.destroy();
   }
   if (req.body.email) {
@@ -404,37 +402,46 @@ const refreshLocalDb = async (req, res, next) => {
 
     if (_user) {
       res.json(_user.password);
-    }else{
+    } else {
       console.log("Request deki email ile eşleşme yok");
     }
-  }else{
+  } else {
     console.log("Request de email yok");
   }
 };
 
-
-const postNewGoogle= async (req, res, next) =>{
+const postNewGoogle = async (req, res, next) => {
   console.log(req.body);
 
-  if(req.body){
-    const _findUser = await User.findOne({email: req.body.email});
+  if (req.body) {
+    const _findUser = await User.findOne({ email: req.body.email });
 
-    if(!_findUser){
+    if (!_findUser) {
+      const name = req.body.name;
+      var nameArray = "";
+      var sonuc1 = name.split(" ");
+
+      for (let index = 0; index < sonuc1.length; index++) {
+        if (sonuc1[index] !== sonuc1[sonuc1.length - 1]) {
+          nameArray = nameArray + sonuc1[index];
+          nameArray = nameArray + " ";
+        }
+      }
       const newUser = new User();
-    newUser.name = req.body.name;
-    newUser.surname = "default";
-    newUser.email = req.body.email;
-    newUser.password = req.body.password;
-    newUser.emailIsActive = true;
-    newUser.save();
-   
-    return res.json(true);
-    }else{
+      newUser.name = nameArray;
+      newUser.surname = sonuc1[sonuc1.length - 1];
+      newUser.email = req.body.email;
+      newUser.password = req.body.password;
+      newUser.emailIsActive = true;
+      newUser.save();
+
+      return res.json(true);
+    } else {
       return res.json(false);
     }
   }
   return res.json(false);
-}
+};
 
 module.exports = {
   getFalseLogin,
@@ -450,5 +457,5 @@ module.exports = {
   postNewPassword,
   //getEmailConfirmed
   refreshLocalDb,
-  postNewGoogle
+  postNewGoogle,
 };

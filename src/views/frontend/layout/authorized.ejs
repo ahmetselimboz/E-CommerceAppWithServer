@@ -25,7 +25,7 @@
 
   <body>
     
-    <nav>
+    <nav class="nav">
       <div class="nav-top">
         <div class="main-logo">
           <a href="/">
@@ -49,7 +49,7 @@
             <div class="loggedin-btn"onclick="loggedCard()" onmouseenter="loggedCard()"><h3><%- user.name %> <%- user.surname %></h3><i class='bx bx-chevron-down' ></i></div>
             <div class="loggedin-card"  >
               <div class="logged-card-register">
-                <a id="logname" href="/auth/email-confirmed">Kullanıcı Bilgilerim</a>
+                <a id="logname" href="/auth/profile">Kullanıcı Bilgilerim</a>
               </div>
               <div class="logged-card-register">
                 <a id="logname" href="/auth/logout">Çıkış Yap</a>
@@ -58,7 +58,7 @@
           </div>
           
 
-          <a class="cart-btn" href=""><i class='bx bx-heart'></i></a>
+          <a class="cart-btn" href="/auth/profile"><i class='bx bx-heart'></i></a>
         </div>
       </div>
       <div class="nav-bottom">

@@ -5,7 +5,7 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
-const { resourceLimits } = require("worker_threads"); 
+const { resourceLimits } = require("worker_threads");
 const _ = require("passport-local-mongoose");
 
 const getLogin = (req, res, next) => {
@@ -26,8 +26,6 @@ const postLogin = (req, res, next) => {
     res.redirect("/auth/login");
   } else {
     try {
-
-
       passport.authenticate("local", {
         successRedirect: "/homepage",
         failureRedirect: "/auth/login",
@@ -111,7 +109,7 @@ const postRegister = async (req, res, next) => {
               console.log("Sending mail error: " + error);
             }
             console.log("Mail sended");
-            console.log(info);
+            //console.log(info);
             transporter.close();
           }
         );
@@ -148,7 +146,6 @@ const emailVerify = (req, res, next) => {
             });
 
             if (result) {
-             
               res.redirect("/auth/email-confirmed");
             } else {
               req.flash("error", [
@@ -165,11 +162,9 @@ const emailVerify = (req, res, next) => {
   }
 };
 
-
-const getEmailConfirmed = (req, res, next)=>{
-  res.render("emailConfirm",
-  {layout:false})
-}
+const getEmailConfirmed = (req, res, next) => {
+  res.render("emailConfirm", { layout: false });
+};
 
 const getLogOut = (req, res, next) => {
   req.logout(function (err) {
@@ -178,15 +173,13 @@ const getLogOut = (req, res, next) => {
     }
 
     req.session.destroy((error) => {
-      res.clearCookie('connect.sid');
-      
+      res.clearCookie("connect.sid");
+
       res.redirect("/homepage");
 
       // req.flash("success_message", [{msg: 'Basariyla cikis yapildi'}]);
       // res.redirect('/login');
-  })
-    
-    
+    });
   });
 };
 
@@ -224,7 +217,8 @@ const postForgetPassword = async (req, res, next) => {
 
         const url =
           process.env.WEB_SITE_URL +
-          "auth/new-password?" + "id=" +
+          "auth/new-password?" +
+          "id=" +
           _user.id +
           "&token=" +
           jwtPasswordToken;
@@ -276,7 +270,6 @@ const getNewPassword = async (req, res, next) => {
   //console.log(token);
   if (tokenId && token) {
     const _user = await User.findById(tokenId);
-    
 
     const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
 
@@ -312,12 +305,13 @@ const postNewPassword = async (req, res, next) => {
   if (!hatalar.isEmpty()) {
     req.flash("validation_error", hatalar.array());
 
-
-    res.redirect("/auth/new-password?id=" + req.body.id + "&token=" + req.body.token);
+    res.redirect(
+      "/auth/new-password?id=" + req.body.id + "&token=" + req.body.token
+    );
   } else {
     const _user = await User.findById(req.body.id);
 
-    const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password; 
+    const secret = process.env.FORGET_PASSWORD_SECRET + "-" + _user.password;
 
     if (req.body.token) {
       try {
@@ -348,7 +342,101 @@ const postNewPassword = async (req, res, next) => {
         console.log(error);
       }
     } else {
-         console.log("There is no token");
+      console.log("There is no token");
+    }
+  }
+};
+
+const getProfile = async (req, res, next) => {
+  if (req.user) {
+    var finduser = await User.findOne({ _id: req.user.id });
+  }
+
+  res.render("userProfile", {
+    layout: "./layout/profileLayout.ejs",
+    user: finduser,
+  });
+};
+
+const postProfile = async (req, res, next) => {
+  console.log(req.body);
+
+  if (req.body) {
+    const hatalar = validationResult(req);
+
+    if (!hatalar.isEmpty()) {
+      req.flash("validation_error", hatalar.array());
+
+      res.redirect("/auth/profile");
+    } else {
+      await User.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        surname: req.body.surname,
+        email: req.body.email,
+      });
+      req.flash("success_message", [
+        { msg: "Profil bilgileriniz güncellendi" },
+      ]);
+      res.redirect("/");
+    }
+  } else {
+    res.redirect("/auth/profile");
+  }
+};
+
+const getUpdatePassword = (req, res, next) => {
+  res.render("updatePassword", {
+    layout: "./layout/profileLayout.ejs",
+    user: req.user,
+  });
+};
+
+const postUpdatePassword = async (req, res, next) => {
+  console.log(req.body);
+  if (req.body) {
+    const hatalar = validationResult(req);
+
+    if (!hatalar.isEmpty()) {
+      req.flash("validation_error", hatalar.array());
+      //console.log("Validasyon hatası");
+      res.redirect("/auth/updatePassword");
+    } else {
+      try {
+        const _findUser = await User.findById(req.body.id);
+        //console.log(_findUser);
+        if (!_findUser) {
+          req.flash("error", ["Böyle bir kullanıcı kaydı bulunamadı"]);
+          //console.log("User yok");
+          res.redirect("/auth/updatePassword");
+        } else {
+          //console.log("Şifre karşılaştırılılıyor");
+          const checkPassword = await bcrypt.compare(
+            req.body.oldpass,
+            _findUser.password
+          );
+          //console.log(checkPassword);
+          //console.log("Şifre karşılaştırıldı");
+          if (!checkPassword) {
+            req.flash("error", ["Şifrenizin doğru olduğundan emin olunuz"]);
+            //console.log("Şifre Yanlış");
+            res.redirect("/auth/updatePassword");
+          } else {
+            await User.findByIdAndUpdate(req.body.id, {
+              password: await bcrypt.hash(req.body.newpass, 10),
+            });
+            //console.log("Şifre Güncellendi");
+            res.redirect("/");
+          }
+        }
+      } catch (error) {}
+    }
+  } else {
+    const hatalar = validationResult(req);
+
+    if (!hatalar.isEmpty()) {
+      req.flash("validation_error", hatalar.array());
+      //console.log("Validasyon hatası");
+      res.redirect("/auth/updatePassword");
     }
   }
 };
@@ -365,4 +453,8 @@ module.exports = {
   postForgetPassword,
   getNewPassword,
   postNewPassword,
+  getProfile,
+  postProfile,
+  getUpdatePassword,
+  postUpdatePassword,
 };

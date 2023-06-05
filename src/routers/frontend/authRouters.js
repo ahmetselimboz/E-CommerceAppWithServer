@@ -42,5 +42,12 @@ router.get("/facebook/callback", accountController.postFacebook);
 router.get("/twitter", accountController.getTwitter);
 router.get("/twitter/callback", accountController.postTwitter);
 
+
+router.get("/profile", authController.getProfile);
+router.post("/profile", validations.validateUpdateProfil(), authController.postProfile);
+
+router.get("/updatePassword", authController.getUpdatePassword);
+router.post("/updatePassword", validations.validateUpdatePassword(), authController.postUpdatePassword);
+
 router.get("/logout", authController.getLogOut);
 module.exports = router;

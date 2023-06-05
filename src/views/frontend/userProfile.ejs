@@ -1,0 +1,33 @@
+<div class="profile-top">
+  <h2><%- user.name %> <%- user.surname %></h2>
+</div>
+<div class="profile-bottom">
+  <form action="/auth/profile" method="post">
+    <div class="small-comment">
+      <div class="top-user">
+        <div id="user-pad">
+          <label for="Name">İsim</label>
+          <input id="user-input" type="text" name="name" value="<%- user.name %>"/>
+          <input type="hidden" name="id" value="<%- user.id %>">
+        </div>
+        <div id="user-pad">
+            <label for="Name">Soyisim</label>
+            <input id="user-input" type="text" name="surname"  value="<%- user.surname %>"/>
+          </div>
+      </div>
+    </div>
+    <div class="comment-desc">
+      <label for="email">Email</label>
+      <input
+        id="user-1-input"
+        type="text"
+        name="email"
+        value="<%- user.email %>"
+        disabled
+      />
+    </div>
+    <div class="user-btn-place">
+      <button type="submit" class="user-btn">Güncelle</button>
+    </div>
+  </form>
+</div>

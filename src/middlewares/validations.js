@@ -76,30 +76,76 @@ const validateEmail = () => {
   ];
 };
 
-const validateNewPassword = ()=>{
+const validateNewPassword = () => {
   return [
     body("password")
-    .trim()
-    .isLength({ min: 4 })
-    .withMessage("Şifreniz en az 4 karakter olmalıdır")
-    .isLength({ max: 20 })
-    .withMessage("Şifreniz en fazla 20 karakter olmalıdır"),
+      .trim()
+      .isLength({ min: 4 })
+      .withMessage("Şifreniz en az 4 karakter olmalıdır")
+      .isLength({ max: 20 })
+      .withMessage("Şifreniz en fazla 20 karakter olmalıdır"),
 
     body("repassword")
-    .trim()
-    .custom((value, { req }) => {
-      if (value !== req.body.password) {
-        throw new Error("Sifreler aynı değil");
-      }
-      return true;
-    }),
-  ]
-}
+      .trim()
+      .custom((value, { req }) => {
+        if (value !== req.body.password) {
+          throw new Error("Sifreler aynı değil");
+        }
+        return true;
+      }),
+  ];
+};
+
+validateUpdateProfil = () => {
+  return [
+    body("name")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("İsminiz en az 2 karakter olmalıdır")
+      .isLength({ max: 20 })
+      .withMessage("İsminiz en fazla 30 karakter olmalıdır"),
+
+    body("surname")
+      .trim()
+      .isLength({ min: 2 })
+      .withMessage("Soyisminiz en az 2 karakter olmalıdır")
+      .isLength({ max: 20 })
+      .withMessage("Soyisminiz en fazla 20 karakter olmalıdır"),
+  ];
+};
+
+validateUpdatePassword = () => {
+  return [
+    body("oldpass")
+      .trim()
+      .isLength({ min: 4 })
+      .withMessage("Şifreniz en az 4 karakter olmalıdır")
+      .isLength({ max: 20 })
+      .withMessage("Şifreniz en fazla 20 karakter olmalıdır"),
+    body("newpass")
+      .trim()
+      .isLength({ min: 4 })
+      .withMessage("Şifreniz en az 4 karakter olmalıdır")
+      .isLength({ max: 20 })
+      .withMessage("Şifreniz en fazla 20 karakter olmalıdır"),
+
+    body("renewpass")
+      .trim()
+      .custom((value, { req }) => {
+        if (value !== req.body.newpass) {
+          throw new Error("Sifreler aynı değil");
+        }
+        return true;
+      }),
+  ];
+};
 
 module.exports = {
   validateNewComment,
   validateLogin,
   validateNewUser,
   validateEmail,
-  validateNewPassword
+  validateNewPassword,
+  validateUpdateProfil,
+  validateUpdatePassword,
 };

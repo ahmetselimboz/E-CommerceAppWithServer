@@ -29,9 +29,9 @@ window.onscroll = function () {
     document.body.scrollTop > 100 ||
     document.documentElement.scrollTop > 100
   ) {
-    document.querySelector("nav").style.marginTop = "-120px";
+    document.querySelector(".nav").style.marginTop = "-120px";
   } else {
-    document.querySelector("nav").style.marginTop = "0";
+    document.querySelector(".nav").style.marginTop = "0";
   }
 };
 

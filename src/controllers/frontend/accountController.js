@@ -1,6 +1,7 @@
 const passGo = require("../../config/google_auth");
 const passFace = require("../../config/facebook_auth");
 const passTwit = require("../../config/twitter_auth");
+const axios = require('axios');
 
 const getGoogleAccount = passGo.authenticate("google", {
   scope: ["profile", "email"],
@@ -27,10 +28,16 @@ const getTwitter = passTwit.authenticate("twitter",{
   scope: ['tweet.read', 'tweet.write', 'users.read']
 });
 
-const postTwitter = passTwit.authenticate("twitter", {
-  successRedirect: "/homepage",
-  failureRedirect: "/auth/login",
-});
+const postTwitter = 
+  passTwit.authenticate("twitter", {
+    successRedirect:"/",
+    failureRedirect:"/auth/login"
+  });
+
+
+
+
+
 
 module.exports = {
   getGoogleAccount,
