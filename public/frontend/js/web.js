@@ -71,6 +71,19 @@ for (let j = 0; j < rankAll.length; j++) {
   }
 }
 
+
+const rankkAll = document.querySelectorAll("#ratingg");
+const rankkInput = document.querySelectorAll("#in-ratee");
+
+for (let j = 0; j < rankkAll.length; j++) {
+  for (let index = 0; index < rankkInput[j].value; index++) {
+    rankkAll[j].children[index].classList.add("bxs-star");
+  }
+}
+
+
+
+
 const star = document.querySelector(".stars");
 const starInput = document.querySelector("#in-stars");
 //star.children[0].classList.value = "bx bxs-star";

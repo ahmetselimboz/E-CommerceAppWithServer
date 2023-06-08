@@ -49,5 +49,10 @@ router.post("/profile", validations.validateUpdateProfil(), authController.postP
 router.get("/updatePassword", authController.getUpdatePassword);
 router.post("/updatePassword", validations.validateUpdatePassword(), authController.postUpdatePassword);
 
+router.get("/favorites", isAuthanticated.yes, authController.getFavorites);
+
+router.post("/addfavorite",isAuthanticated.yes, authController.addFavorite);
+
+
 router.get("/logout", authController.getLogOut);
 module.exports = router;

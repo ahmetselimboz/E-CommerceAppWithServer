@@ -1,4 +1,5 @@
 <section>
+ <form action="/auth/addfavorite" method="post">
   <div class="detail-panel">
     <div class="alertyy">
       <% if (locals.validation_error !=undefined || locals.success_message!=undefined || locals.login_error !=undefined) { %>
@@ -14,6 +15,7 @@
       <div class="detail-right">
         <div class="detail-title">
           <h3><%- data.api.title %></h3>
+          
 
           <div class="detail-author">
             <h6>Yazar:</h6>
@@ -22,7 +24,13 @@
           </div>
           <div class="detail-publisher">
             <h6>Yayınevi:</h6>
+            <input type="hidden" name="book" value="<%- data.api.id %>" />
 
+            <% if (data.user) { %>
+              <input type="hidden" name="user" value="<%- data.user.id %>" />
+            <% } %>
+
+            
             <h5>&nbsp;&nbsp;<%- data.api.publisher %></h5>
           </div>
         </div>
@@ -37,6 +45,7 @@
             <i class="bx bx-star"></i>
             <i class="bx bx-star"></i>
             <h2>(<%- data.com.number %>)</h2>
+            <input type="hidden" id="in-stars" value="<%- data.rat %>" />
           </div>
         </div>
         <div class="details">
@@ -48,7 +57,7 @@
             <h6>Kitap Boyutu:</h6>
 
             <h5>
-              &nbsp;&nbsp;<%- data.api.book_image_width %> mm x 
+              &nbsp;&nbsp;<%- data.api.book_image_width %> mm x
               <%-data.api.book_image_height %> mm
             </h5>
           </div>
@@ -67,6 +76,7 @@
       </div>
     </div>
   </div>
+ </form>
 </section>
 
 <section>
@@ -109,7 +119,7 @@
     </div>
   </div>
 </section>
-<input type="hidden" id="in-stars" value="<%- data.rat %>" />
+
 <section>
   <div id="pad" class="book-panel">
     <div class="title">
@@ -123,8 +133,8 @@
         <h1>Bu kitaba henüz bir yorum yapılmamıştır.</h1>
       </div>
 
-      <% } else { %> 
-      <% for( let index = 0; index < data.com.info.length;index++ ) { %>
+      <% } else { %> <% for( let index = 0; index < data.com.info.length;index++
+      ) { %>
 
       <div class="com">
         <div class="com-name">
@@ -184,8 +194,8 @@
     <div class="comment-container">
       <% if (!data.user) { %>
       <h1 id="comment-req-user">
-        Yorum yapmak için <a id="commentLink" href="/auth/login">giriş</a> yapmanız
-        gerekmektedir.
+        Yorum yapmak için
+        <a id="commentLink" href="/auth/login">giriş</a> yapmanız gerekmektedir.
       </h1>
       <% } else { %>
       <form action="/comment" method="post">

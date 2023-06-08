@@ -15,7 +15,7 @@ function book() {
         for (i = 0; i < result.data.results.lists.length; i++) {
           for (j = 0; j < result.data.results.lists[i].books.length; j++) {
             value = result.data.results.lists[i].books[j].buy_links;
-            console.log();
+            //console.log();
             var d = new Books();
             d.author = result.data.results.lists[i].books[j].author;
             d.book_image = result.data.results.lists[i].books[j].book_image;

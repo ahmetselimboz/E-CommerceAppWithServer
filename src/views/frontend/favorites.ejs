@@ -1,0 +1,61 @@
+<div class="fav-panel">
+  <div class="fav-container">
+    <div class="fav-title">
+      <h3>Favorilerim</h3>
+      <hr />
+    </div>
+    <% for( let index = 0; index < book.length; index++ ) { %>
+    
+    <div class="fav-col">
+      <div class="fav-img">
+        <img src="<%- book[index].book_image %>" alt="" />
+      </div>
+      <div class="fav-content">
+        <div class="fav-descs">
+          <div class="fav-detail-title">
+            <h3><%- book[index].title %></h3>
+            <div class="fav-detail-author">
+              <h6>Yazar:</h6>
+              &nbsp;
+              <h4><%- book[index].author %></h4>
+            </div>
+            <div class="fav-detail-publisher">
+              <h6>Yayınevi:</h6>
+
+              <h5>&nbsp;&nbsp;<%- book[index].publisher %></h5>
+            </div>
+            <div class="fav-detail-rank">
+              <h3>Değerlendirmeler</h3>
+              <hr class="rank" />
+              <div id="ratingg">
+                <i class="bx bx-star "></i>
+                <i class="bx bx-star "></i>
+                <i class="bx bx-star "></i>
+                <i class="bx bx-star "></i>
+                <i class="bx bx-star "></i>
+              </div>
+     
+              <input
+              type="hidden"
+              id="in-ratee"
+              value="<%- book[index].rating %>"
+            />
+            </div>
+          </div>
+        </div>
+        <div class="fav-links">
+          <div class="fav-detail-link">
+            <% for( let k = 0; k < book[index].buy_links.length; k++ ) { %>
+            <a href="<%- book[index].buy_links[k].url %>" target="_blank">
+              <h6><%- book[index].buy_links[k].name %></h6>
+              <p><%- book[index].buy_links[k].linkPrice %> TL</p>
+            </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <% } %>
+  </div>
+</div>

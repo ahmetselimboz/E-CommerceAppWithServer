@@ -7,6 +7,8 @@ const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
 const { resourceLimits } = require("worker_threads");
 const _ = require("passport-local-mongoose");
+const Books = require("../../models/bookModel");
+const Favorite = require("../../models/_favouriteModel");
 
 const getLogin = (req, res, next) => {
   //console.log(res.locals.login_error[0] );
@@ -424,6 +426,7 @@ const postUpdatePassword = async (req, res, next) => {
             await User.findByIdAndUpdate(req.body.id, {
               password: await bcrypt.hash(req.body.newpass, 10),
             });
+            req.flash("success_message", [{ msg: "Şifre Güncellendi" }]);
             //console.log("Şifre Güncellendi");
             res.redirect("/");
           }
@@ -437,6 +440,63 @@ const postUpdatePassword = async (req, res, next) => {
       req.flash("validation_error", hatalar.array());
       //console.log("Validasyon hatası");
       res.redirect("/auth/updatePassword");
+    }
+  }
+};
+
+const getFavorites = async (req,res,next)=>{
+  if (req.user) {
+    const findFavor = await Favorite.findOne({ userId: req.user.id });
+
+
+    res.render("favorites", {
+      book: findFavor.book,
+      user: req.user,
+      layout: "./layout/authorized.ejs",
+    });
+  } 
+}
+
+const addFavorite = async (req, res, next) => {
+
+  if (req.body) {
+   
+    const findFavor = await Favorite.findOne({ userId: req.body.user });
+    const findBook = await Books.findOne({ _id: req.body.book });
+
+    if (!findBook) {
+      req.flash("error", ["Favorilere kaydedilemedi. Lütfen tekrar deneyiniz"]);
+      console.log("Hata1");
+      res.redirect("/");
+    } else {
+      if (!findFavor && req.body.user) {
+        const newFavorite = new Favorite();
+        if (newFavorite.book.length == 0) {
+          var value = 0;
+        } else {
+          var value = newFavorite.book.length + 1;
+        }
+        newFavorite.userId = req.body.user;
+        newFavorite.book[value] = findBook;
+        newFavorite.save();
+        req.flash("success_message", [
+          { msg: "Kitap favorilerinize kaydedildi" },
+        ]);
+        res.redirect("/");
+      } else {
+        if (findFavor.book.length == 0) {
+          var value = 0;
+        } else {
+          var value = findFavor.book.length;
+        }
+
+        findFavor.book[value] = findBook;
+        findFavor.save();
+        req.flash("success_message", [
+          { msg: "Kitap favorilerinize kaydedildi" },
+        ]);
+        res.redirect("/");
+      }
     }
   }
 };
@@ -457,4 +517,6 @@ module.exports = {
   postProfile,
   getUpdatePassword,
   postUpdatePassword,
+  getFavorites,
+  addFavorite,
 };
