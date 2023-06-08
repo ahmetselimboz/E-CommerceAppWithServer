@@ -2,7 +2,7 @@ const yes = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }else{
-        console.log("Giriş yapilamamış");
+       
         req.flash('error', ["Lütfen giriş yapın"]);
        res.redirect("/auth/login")
     }
