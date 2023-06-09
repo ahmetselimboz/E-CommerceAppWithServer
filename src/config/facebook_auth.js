@@ -27,11 +27,18 @@ passport.use(
         newUser.emailIsActive = true;
         newUser.password = profile.id;
         newUser.save();
-
-        return done(null, newUser);
+        const info={
+          user: _findUser,
+          provider: "Facebook"
+        }
+        return done(null, info);
 
       } else {
-        return done(null, _findUser);
+        const info={
+          user: _findUser,
+          provider: "Facebook"
+        }
+        return done(null, info);
       }
     }
   )

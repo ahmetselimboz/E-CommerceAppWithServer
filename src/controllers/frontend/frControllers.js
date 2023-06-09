@@ -10,6 +10,7 @@ const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
 
   if (req.user) {
+
     res.render("index", {
       api: book,
       user: req.user,
@@ -95,7 +96,7 @@ const postComment = (req, res, next) => {
   } else {
  
     const com = new Comments();
-    com.nameSurname = `${ req.user.name} ${ req.user.surname}`;
+    com.nameSurname = `${ req.user.user.name} ${ req.user.user.surname}`;
     com.title = req.body.title;
     com.bookId = req.body.id;
     com.rank = req.body.rank;

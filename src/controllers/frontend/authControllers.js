@@ -351,12 +351,15 @@ const postNewPassword = async (req, res, next) => {
 
 const getProfile = async (req, res, next) => {
   if (req.user) {
-    var finduser = await User.findOne({ _id: req.user.id });
+    var finduser = await User.findOne({ _id: req.user.user.id });
+  }
+  const userrr = {
+    user: finduser
   }
 
   res.render("userProfile", {
     layout: "./layout/profileLayout.ejs",
-    user: finduser,
+    user: userrr,
   });
 };
 
@@ -387,6 +390,7 @@ const postProfile = async (req, res, next) => {
 };
 
 const getUpdatePassword = (req, res, next) => {
+  //console.log(req.user.user);
   res.render("updatePassword", {
     layout: "./layout/profileLayout.ejs",
     user: req.user,
@@ -394,7 +398,7 @@ const getUpdatePassword = (req, res, next) => {
 };
 
 const postUpdatePassword = async (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   if (req.body) {
     const hatalar = validationResult(req);
 
@@ -445,8 +449,8 @@ const postUpdatePassword = async (req, res, next) => {
 };
 
 const getFavorites = async (req,res,next)=>{
-  if (req.user) {
-    const findFavor = await Favorite.findOne({ userId: req.user.id });
+  if (req.user.user) {
+    const findFavor = await Favorite.findOne({ userId: req.user.user.id });
 
 
     res.render("favorites", {
@@ -460,7 +464,7 @@ const getFavorites = async (req,res,next)=>{
 const addFavorite = async (req, res, next) => {
 
   if (req.body) {
-   
+   console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
     const findBook = await Books.findOne({ _id: req.body.book });
 
@@ -470,6 +474,7 @@ const addFavorite = async (req, res, next) => {
       res.redirect("/");
     } else {
       if (!findFavor && req.body.user) {
+       
         const newFavorite = new Favorite();
         if (newFavorite.book.length == 0) {
           var value = 0;
@@ -482,8 +487,14 @@ const addFavorite = async (req, res, next) => {
         req.flash("success_message", [
           { msg: "Kitap favorilerinize kaydedildi" },
         ]);
-        res.redirect("/");
+        res.redirect("/auth/favorites");
       } else {
+        for (let index = 0; index < findFavor.book.length; index++) {
+          if (findFavor.book[index].id == req.body.book) {
+            req.flash("error", ["Eklemek istediğiniz kitap zaten favorilerinizde mevcut"]);
+            return res.redirect("/details/"+ req.body.book);
+          }
+         }
         if (findFavor.book.length == 0) {
           var value = 0;
         } else {
@@ -495,11 +506,23 @@ const addFavorite = async (req, res, next) => {
         req.flash("success_message", [
           { msg: "Kitap favorilerinize kaydedildi" },
         ]);
-        res.redirect("/");
+        res.redirect("/auth/favorites");
       }
     }
   }
 };
+
+const deleteFavorite = async (req,res,next)=>{
+  //console.log(req.params);
+
+  if (req.params) {
+    await Favorite.updateOne({userId: req.params.userId}, {$pull: {book: {_id: req.params.bookId}}});
+    req.flash("success_message", [
+      { msg: "Kitap favorilerinizden kaldırıldı" },
+    ]);
+    res.redirect("/auth/favorites");
+  }
+}
 
 module.exports = {
   getLogin,
@@ -519,4 +542,5 @@ module.exports = {
   postUpdatePassword,
   getFavorites,
   addFavorite,
+  deleteFavorite
 };

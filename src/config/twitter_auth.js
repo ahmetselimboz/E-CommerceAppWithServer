@@ -34,10 +34,17 @@ passport.use(
         newUser.password = profile.id;
         newUser.emailIsActive = true;
         newUser.save();
-     
-        return done(null, newUser);
+        const info={
+          user: _findUser,
+          provider: "Twitter"
+        }
+        return done(null, info);
       }else{
-        return done(null, _findUser);
+        const info={
+          user: _findUser,
+          provider: "Twitter"
+        }
+        return done(null, info);
       }
     }
   )

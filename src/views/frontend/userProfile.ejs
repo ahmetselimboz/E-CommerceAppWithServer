@@ -7,12 +7,12 @@
       <div class="top-user">
         <div id="user-pad">
           <label for="Name">İsim</label>
-          <input id="user-input" type="text" name="name" value="<%- user.name %>"/>
-          <input type="hidden" name="id" value="<%- user.id %>">
+          <input id="user-input" type="text" name="name" value="<%- user.user.name %>"/>
+          <input type="hidden" name="id" value="<%- user.user.id %>">
         </div>
         <div id="user-pad">
             <label for="Name">Soyisim</label>
-            <input id="user-input" type="text" name="surname"  value="<%- user.surname %>"/>
+            <input id="user-input" type="text" name="surname"  value="<%- user.user.surname %>"/>
           </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
         id="user-1-input"
         type="text"
         name="email"
-        value="<%- user.email %>"
+        value="<%- user.user.email %>"
         disabled
       />
     </div>

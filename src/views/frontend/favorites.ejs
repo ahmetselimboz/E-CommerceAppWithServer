@@ -1,34 +1,47 @@
 <div class="fav-panel">
+  <div class="alertyy">
+    <% if (locals.validation_error !=undefined||locals.success_message!=undefined || locals.login_error !=undefined) { %>
+    <%- include('./partials/_message') %> <% } %>
+  </div>
   <div class="fav-container">
     <div class="fav-title">
-      <h3><i class='bx bxs-heart'></i>&nbsp;Favorilerim</h3>
+      <h3><i class="bx bxs-heart"></i>&nbsp;Favorilerim</h3>
       <hr />
     </div>
-    <div class="fav-tit-area">
-      <div class="fav-urun">
-        <h3>Ürün</h3>
-        <hr />
+    
+    <% if (!book.length) { %>
+      <div class="fav-none-area">
+        <h3 class="fav-none">Favorilerde kitap bulunamadı</h3>
+        </div>
+    
+   <% } else { %>
+      <div class="fav-tit-area">
+        <div class="fav-urun">
+          <h3>Ürün</h3>
+          <hr />
+        </div>
+        <div class="fav-info">
+          <h3>Ürün Bilgisi</h3>
+          <hr />
+        </div>
+        <div class="fav-link">
+          <h3>Linkler</h3>
+          <hr />
+        </div>
+        <div class="fav-remove">
+          <h3>Kaldır</h3>
+          <hr />
+        </div>
       </div>
-      <div class="fav-info">
-        <h3>Ürün Bilgisi</h3>
-        <hr />
-      </div>
-      <div class="fav-link">
-        <h3>Linkler</h3>
-        <hr />
-      </div>
-      <div class="fav-remove">
-        <h3>Kaldır</h3>
-        <hr />
-      </div>
-    </div>
-    <% for( let index = 0; index < book.length; index++ ) { %>
-      <% if (index != 0) { %>
+      <% } %>
+    <% for( let index = book.length-1; index >= 0 ; index-- ) { %> 
+      <% if (index!= book.length-1) { %>
         <div class="fav-col-hr">
           <hr />
         </div>
-      <% } %>
       
+        
+        <% } %>
     <div class="fav-col">
       <div class="fav-img">
         <img src="<%- book[index].book_image %>" alt="" />
@@ -66,28 +79,29 @@
             </div>
           </div>
         </div>
-       
       </div>
       <div class="fav-links">
         <div class="fav-detail-link">
           <% for( let k = 0; k < book[index].buy_links.length; k++ ) { %>
           <a href="<%- book[index].buy_links[k].url %>" target="_blank">
-            <h6><%- book[index].buy_links[k].name %></h6>&nbsp;&nbsp;
+            <h6><%- book[index].buy_links[k].name %></h6>
+            &nbsp;&nbsp;
             <p><%- book[index].buy_links[k].linkPrice %> TL</p>
           </a>
           <% } %>
         </div>
       </div>
-      <form action="/auth/deletefavorite" method="post" >
-        <div class="fav-btn-panel">
-          <div class="fav-btn-area">
-            <button class="fav-btn" type="submit"><i class='bx bx-x'></i>Kaldır</button>
-          </div>
+
+      <div class="fav-btn-panel">
+        <div class="fav-btn-area">
+          <a
+            href="/auth/deletefavorite/<%- user.user.id %>/<%- book[index].id %>"
+            class="fav-btn"
+            ><i class="bx bx-x"></i>Kaldır</a
+          >
         </div>
-      </form>
-     
+      </div>
     </div>
-   
-    <% } %>
+     <% } %>
   </div>
 </div>

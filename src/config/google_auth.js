@@ -2,6 +2,7 @@ var GoogleStrategy = require("passport-google-oauth20");
 const passport = require("passport");
 require("dotenv").config();
 const User = require("../models/userModel");
+const session = require("express-session");
 
 
 const options = {
@@ -13,10 +14,12 @@ const options = {
   state: true,
 };
 
+
+
 passport.use(
   new GoogleStrategy(
     options,
-    async (accessToken, refreshToken, profile, done) => {
+     async (req, accessToken, refreshToken, profile, done) => {
       //console.log(profile);
       const _findUser = await User.findOne({email: profile.emails[0].value});
 
@@ -28,15 +31,26 @@ passport.use(
         newUser.emailIsActive = profile.emails[0].verified;
         newUser.password = profile.id;
         newUser.save();
-     
-        return done(null, newUser);
+        const info={
+          user: _findUser,
+          provider:"Google"
+        }
+       
+        return done(null, info);
       }else{
-        return done(null, _findUser);
+        const info={
+          user: _findUser,
+          provider: "Google"
+        }
+        
+        return done(null,info);
       }
     
     }
   )
 );
+
+
 
 
 

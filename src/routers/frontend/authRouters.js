@@ -34,7 +34,7 @@ router.post(
 );
 
 router.get("/google", accountController.getGoogleAccount);
-router.get("/google/callback", accountController.postGoogleAccount);
+router.get("/google/callback",accountController.postGoogleAccount);
 
 router.get("/facebook", accountController.getFacebook);
 router.get("/facebook/callback", accountController.postFacebook);
@@ -43,14 +43,14 @@ router.get("/twitter", accountController.getTwitter);
 router.get("/twitter/callback", accountController.postTwitter);
 
 
-router.get("/profile", authController.getProfile);
-router.post("/profile", validations.validateUpdateProfil(), authController.postProfile);
+router.get("/profile", isAuthanticated.yes,authController.getProfile);
+router.post("/profile", isAuthanticated.yes,validations.validateUpdateProfil(), authController.postProfile);
 
-router.get("/updatePassword", authController.getUpdatePassword);
-router.post("/updatePassword", validations.validateUpdatePassword(), authController.postUpdatePassword);
+router.get("/updatePassword", isAuthanticated.yes,authController.getUpdatePassword);
+router.post("/updatePassword", isAuthanticated.yes,validations.validateUpdatePassword(), authController.postUpdatePassword);
 
 router.get("/favorites", isAuthanticated.yes, authController.getFavorites);
-
+router.get("/deletefavorite/:userId/:bookId",isAuthanticated.yes, authController.deleteFavorite);
 router.post("/addfavorite",isAuthanticated.yes, authController.addFavorite);
 
 

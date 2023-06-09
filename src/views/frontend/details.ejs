@@ -26,8 +26,8 @@
             <h6>Yayınevi:</h6>
             <input type="hidden" name="book" value="<%- data.api.id %>" />
 
-            <% if (data.user) { %>
-              <input type="hidden" name="user" value="<%- data.user.id %>" />
+            <% if (data.user.user) { %>
+              <input type="hidden" name="user" value="<%- data.user.user.id %>" />
             <% } %>
 
             

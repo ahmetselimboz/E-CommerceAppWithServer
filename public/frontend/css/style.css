@@ -1318,7 +1318,7 @@ footer {
 
 .small-comment {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .top-comment {
@@ -2363,6 +2363,21 @@ label {
   padding: 1rem 3rem;
 }
 
+.top-user h2{
+  color: #c8c8c8;
+  font-size: 22px;
+  font-family: "Comfortaa", cursive;
+  display: flex;
+
+  align-items: center;
+}
+
+.top-user i{
+  color: #c8c8c8;
+  font-size: 60px;
+  font-family: "Comfortaa", cursive;
+}
+
 #user-pad {
   display: flex;
   flex-direction: column;
@@ -2422,7 +2437,7 @@ label {
 
 .fav-panel {
   width: 100%;
-  min-height: 750px;
+ height: auto;
   margin-top: 160px;
 }
 
@@ -2451,6 +2466,7 @@ label {
 
 .fav-container {
   padding: 3rem 0rem;
+  height: inherit;
 }
 
 .fav-tit-area {
@@ -2568,11 +2584,13 @@ label {
 .fav-descs {
   height: inherit;
   padding: 1rem;
+  width: 300px;
 }
 .fav-detail-title h3 {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 36px;
   padding: 1rem 0;
+  
 }
 
 .fav-detail-author {
@@ -2679,7 +2697,7 @@ label {
 
 
 .fav-btn-panel {
-  height: 100%;
+  
   transform: translateX(40px);
 }
 
@@ -2690,7 +2708,7 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: inherit;
+  height: 100%;
   /* padding: 3rem 5rem; */
 }
 
@@ -2741,7 +2759,26 @@ label {
   border: none;
   border-top: 0.3rem solid #7979796d;
   max-width: 80rem;
-
   border-radius: 10px;
   margin: 2.5rem auto;
+}
+
+.fav-none-area{
+ margin: 8rem 0;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.fav-none{
+  font-size: 35px;
+  color: #2a2a2a;
+  font-family: "Comfortaa", cursive;
+  background-color: #dedede;
+  padding: 5rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.334) 0px 0px 15px 3px;
 }

@@ -32,27 +32,37 @@ module.exports = function (passport) {
               message: "Lütfen emailinizi onaylayınız",
             });
           } else {
-            return done(null, _findUser);
+            const info={
+              user: _findUser,
+              provider:"Local"
+            }
+            return done(null, info);
           }
         }
       } catch (error) {
-        return done(error);
+        
       }
     })
   );
 
   passport.serializeUser(function (user, done) {
+    
     process.nextTick(function () {
-      done(null, { id: user.id, name: user.name, surname: user.surname });
+      done(null, { id: user.user.id, provider: user.provider});
     });
   });
 
   passport.deserializeUser(async function (user, done) {
     //return done(null, user);
     if (user) {
+      //console.log(user);
       const userInfo = await User.findById(user.id);
       if (userInfo) {
-        return done(null, userInfo);
+        const info = {
+          user:userInfo,
+          provider:user.provider
+        }
+        return done(null, info);
       } else {
         return done(null, user);
       }
