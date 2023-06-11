@@ -2725,6 +2725,7 @@ label {
   font-size: 20px;
   border-radius: 10px;
   transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  margin: 1rem 0;
 }
 
 .bx-x{
@@ -2781,4 +2782,44 @@ label {
   padding: 5rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.334) 0px 0px 15px 3px;
+}
+
+
+
+.fav-btn-det {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  padding: .8rem 7rem;
+  background-color: #fff;
+  border: 3px solid #119500;
+  color: #119500;
+  font-family: "Comfortaa", cursive;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.bx-search-alt-2{
+
+  color: #119500;
+  font-size: 30px;
+
+}
+
+.fav-btn-det:hover {
+  background-color: #119500;
+  border: 3px solid #119500;
+  color: #fff;
+  box-shadow: #1195008e 0px 0px 15px 3px;
+}
+
+.fav-btn-det:hover .bx-search-alt-2{
+  color: #fff;
+}
+
+.fav-btn-det:focus {
+  color: #0a5500;
+  border: 3px solid #0a5500;
 }

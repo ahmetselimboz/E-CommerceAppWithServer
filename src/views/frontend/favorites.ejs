@@ -1,47 +1,43 @@
 <div class="fav-panel">
   <div class="alertyy">
-    <% if (locals.validation_error !=undefined||locals.success_message!=undefined || locals.login_error !=undefined) { %>
-    <%- include('./partials/_message') %> <% } %>
+    <% if (locals.validation_error!=undefined||locals.success_message!=undefined || locals.login_error!=undefined) { %> <%- include('./partials/_message') %> <% } %>
   </div>
   <div class="fav-container">
     <div class="fav-title">
       <h3><i class="bx bxs-heart"></i>&nbsp;Favorilerim</h3>
       <hr />
     </div>
-    
+
     <% if (!book.length) { %>
-      <div class="fav-none-area">
-        <h3 class="fav-none">Favorilerde kitap bulunamadı</h3>
-        </div>
-    
-   <% } else { %>
-      <div class="fav-tit-area">
-        <div class="fav-urun">
-          <h3>Ürün</h3>
-          <hr />
-        </div>
-        <div class="fav-info">
-          <h3>Ürün Bilgisi</h3>
-          <hr />
-        </div>
-        <div class="fav-link">
-          <h3>Linkler</h3>
-          <hr />
-        </div>
-        <div class="fav-remove">
-          <h3>Kaldır</h3>
-          <hr />
-        </div>
+    <div class="fav-none-area">
+      <h3 class="fav-none">Favorilerde kitap bulunamadı</h3>
+    </div>
+
+    <% } else { %>
+    <div class="fav-tit-area">
+      <div class="fav-urun">
+        <h3>Ürün</h3>
+        <hr />
       </div>
-      <% } %>
-    <% for( let index = book.length-1; index >= 0 ; index-- ) { %> 
-      <% if (index!= book.length-1) { %>
-        <div class="fav-col-hr">
-          <hr />
-        </div>
-      
-        
-        <% } %>
+      <div class="fav-info">
+        <h3>Ürün Bilgisi</h3>
+        <hr />
+      </div>
+      <div class="fav-link">
+        <h3>Linkler</h3>
+        <hr />
+      </div>
+      <div class="fav-remove">
+        <h3>Kaldır</h3>
+        <hr />
+      </div>
+    </div>
+    <% } %> <% for( let index = book.length-1; index >= 0 ; index-- ) { %>
+     <% if(index!= book.length-1) { %>
+    <div class="fav-col-hr">
+      <hr />
+    </div>
+    <% } %>
     <div class="fav-col">
       <div class="fav-img">
         <img src="<%- book[index].book_image %>" alt="" />
@@ -95,13 +91,19 @@
       <div class="fav-btn-panel">
         <div class="fav-btn-area">
           <a
+            href="/details/<%- book[index].id %>"
+            class="fav-btn-det"
+            ><i class='bx bx-search-alt-2'></i>&nbsp;İncele</a
+          >
+          <a
             href="/auth/deletefavorite/<%- user.user.id %>/<%- book[index].id %>"
             class="fav-btn"
             ><i class="bx bx-x"></i>Kaldır</a
           >
+          
         </div>
       </div>
     </div>
-     <% } %>
+    <% } %>
   </div>
 </div>
