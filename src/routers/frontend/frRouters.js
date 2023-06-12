@@ -11,4 +11,6 @@ router.post('/comment',  validations.validateNewComment(), isAuthenticated.yes, 
 
 router.get('/comment/:id', frontController.getAllComments);
 
+router.get("/page/:name/:pg", frontController.getPage);
+
 module.exports = router;

@@ -3,14 +3,12 @@ const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 const { validationResult } = require("express-validator");
-const axios = require('axios');
-
+const axios = require("axios");
 
 const getHomePage = async (req, res, next) => {
   const book = await Books.find({}).limit(21);
 
   if (req.user) {
-
     res.render("index", {
       api: book,
       user: req.user,
@@ -32,8 +30,6 @@ const getDetails = async (req, res, next) => {
   var roundRat = 0;
   var user;
 
- 
-
   const value = await Books.find({}).skip(21).limit(7);
   const book = await Books.findById(id);
   const comment2 = await Comments.find({ bookId: id });
@@ -53,8 +49,6 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
-
-
 
   if (req.user) {
     res.render("details", {
@@ -94,9 +88,8 @@ const postComment = (req, res, next) => {
     //     layout: "./layout/auth_layout.ejs", hatalar: hatalar.array()
     // })
   } else {
- 
     const com = new Comments();
-    com.nameSurname = `${ req.user.user.name} ${ req.user.user.surname}`;
+    com.nameSurname = `${req.user.user.name} ${req.user.user.surname}`;
     com.title = req.body.title;
     com.bookId = req.body.id;
     com.rank = req.body.rank;
@@ -153,11 +146,52 @@ const getAllComments = async (req, res, next) => {
         com: { info: comment, count: comCount, num: numbers, rating: rat },
         book: book,
       },
-  
+
       layout: "./layout/nonAuthorized.ejs",
     });
   }
+};
 
+const getPage = async (req, res, next) => {
+  var title;
+  const book = await Books.find({}).limit(21);
+  console.log(req.params);
+  if (req.params.name == "edebiyat") {
+    title = "Edebiyat";
+  }else  if (req.params.name == "bilim-kurgu") {
+    title = "Bilim Kurgu";
+  }else  if (req.params.name == "cocuk") {
+    title = "Çocuk";
+  }else  if (req.params.name == "kisisel-gelisim") {
+    title = "Kişisel Gelişim";
+  }else if (req.params.name == "tarih") {
+    title = "Tarih";
+  }else if (req.params.name == "psikoloji") {
+    title = "Psikoloji";
+  }else if (req.params.name == "felsefe") {
+    title = "Felsefe";
+  }
+
+
+
+
+  if (req.params) {
+    console.log(title);
+    if (req.user) {
+      res.render("defaultPage", {
+        title: title,
+        user: req.user,
+        api: book,
+        layout: "./layout/authorized.ejs",
+      });
+    } else {
+      res.render("defaultPage", {
+        title: title,
+        api: book,
+        layout: "./layout/nonAuthorized.ejs",
+      });
+    }
+  }
 };
 
 module.exports = {
@@ -165,4 +199,5 @@ module.exports = {
   getDetails,
   postComment,
   getAllComments,
+  getPage,
 };

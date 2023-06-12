@@ -1,0 +1,33 @@
+<div class="page-panel">
+  <div class="title">
+    <h3><%- title %></h3>
+    <hr />
+  </div>
+
+  <div class="card-area">
+    <% for( let index = 0; index < 7; index++ ) { %>
+    <div class="page-item">
+      <a href="/details/<%- api[index]._id %>">
+        <div class="page-book-img">
+          <img src="<%- api[index].book_image %>" />
+        </div>
+        <div class="page-book-info">
+          <h3><%- api[index].title %></h3>
+          <div class="page-book-author">
+            <h4><%- api[index].author %></h4>
+          </div>
+          <div class="page-book-publisher">
+            <h5><%- api[index].publisher %></h5>
+          </div>
+        </div>
+        <div class="page-det">
+          <div class="page-book-detail">
+            <h6>İncele</h6>
+            <i class="bx bx-chevron-up"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>
