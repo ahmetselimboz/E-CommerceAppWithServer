@@ -464,13 +464,13 @@ const getFavorites = async (req,res,next)=>{
 const addFavorite = async (req, res, next) => {
 
   if (req.body) {
-   console.log(req.body);
+   //console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
     const findBook = await Books.findOne({ _id: req.body.book });
 
     if (!findBook) {
       req.flash("error", ["Favorilere kaydedilemedi. Lütfen tekrar deneyiniz"]);
-      console.log("Hata1");
+      //console.log("Hata1");
       res.redirect("/");
     } else {
       if (!findFavor && req.body.user) {
