@@ -1,3 +1,7 @@
+
+
+
+
 $(document).ready(function () {
   $(".customer-logos").slick({
     slidesToShow: 5,
@@ -56,8 +60,6 @@ function rate(stars) {
   }
 }
 
-
-
 function follow(item) {
   document.querySelector("#rank-in").value = item.href.slice(-1);
 }
@@ -71,7 +73,6 @@ for (let j = 0; j < rankAll.length; j++) {
   }
 }
 
-
 const rankkAll = document.querySelectorAll("#ratingg");
 const rankkInput = document.querySelectorAll("#in-ratee");
 
@@ -81,17 +82,16 @@ for (let j = 0; j < rankkAll.length; j++) {
   }
 }
 
-
-
-
 const star = document.querySelector(".stars");
 const starInput = document.querySelector("#in-stars");
 //star.children[0].classList.value = "bx bxs-star";
 
 //console.log(star.children[0].classList.value);
 
-for (k = 0; k < starInput.value; k++) {
-  star.children[k].classList.value = "bx bxs-star";
+if (starInput) {
+  for (k = 0; k < starInput.value; k++) {
+    star.children[k].classList.value = "bx bxs-star";
+  }
 }
 
 function passwordHide() {
@@ -111,9 +111,6 @@ function passwordShow() {
   //console.log(passInput);
 }
 
-
-
-
 function fadeIn() {
   setInterval(hideLogCard, 5000);
 }
@@ -125,12 +122,11 @@ function logCard() {
   const log = document.querySelector(".log-card");
   opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
   if (opacity < 1) {
-    log.style.visibility = "visible"
+    log.style.visibility = "visible";
     while (opacity < 1) {
       opacity = opacity + 0.1;
       log.style.opacity = opacity;
     }
-    
   }
   fadeIn();
 }
@@ -145,27 +141,24 @@ function hideLogCard() {
       opacity = opacity - 0.1;
       log.style.opacity = opacity;
     }
-    log.style.visibility = "hidden"
+    log.style.visibility = "hidden";
   }
 }
-
 
 function fadedIn() {
   setInterval(hideLoggedCard, 5000);
 }
 
-
 function loggedCard() {
   const log = document.querySelector(".loggedin-card");
   opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
   if (opacity < 1) {
-    log.style.visibility = "visible"
-    
+    log.style.visibility = "visible";
+
     while (opacity < 1) {
       opacity = opacity + 0.1;
       log.style.opacity = opacity;
     }
-    
   }
   fadedIn();
 }
@@ -176,11 +169,10 @@ function hideLoggedCard() {
   const log = document.querySelector(".loggedin-card");
   opacity = Number(window.getComputedStyle(log).getPropertyValue("opacity"));
   if (opacity == 1) {
-    log.style.visibility = "hidden"
+    log.style.visibility = "hidden";
     while (opacity >= 0) {
       opacity = opacity - 0.1;
       log.style.opacity = opacity;
     }
-  
   }
 }

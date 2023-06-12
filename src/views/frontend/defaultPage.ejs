@@ -1,11 +1,11 @@
 <div class="page-panel">
-  <div class="title">
-    <h3><%- title %></h3>
-    <hr />
+  <div id="title">
+    <h3 id="title-h3"><%- title %></h3>
+    <hr id="title-hr" />
   </div>
 
   <div class="card-area">
-    <% for( let index = 0; index < 7; index++ ) { %>
+    <% for( let index = 0; index < api.length; index++ ) { %>
     <div class="page-item">
       <a href="/details/<%- api[index]._id %>">
         <div class="page-book-img">
@@ -29,5 +29,33 @@
       </a>
     </div>
     <% } %>
+  </div>
+  <div class="page-pagination">
+    <div class="pagination">
+      <% if (params.pg == 1) { %>
+      <a href="/page/<%- params.name %>/1">&laquo;</a>
+      <a href="/page/<%- params.name %>/1" class="active">1</a>
+      <% } else { %>
+      <a href="/page/<%- params.name %>/<%- params.pg-1 %>">&laquo;</a>
+      <a href="/page/<%- params.name %>/1">1</a>
+
+      <% } %> 
+      <% if (params.pg == 2) { %>
+      <a href="/page/<%- params.name %>/2" class="active">2</a> 
+      <% } else { %>
+        <a href="/page/<%- params.name %>/2" >2</a> 
+  
+        <% } %>
+
+      <% if (params.pg == 3) { %>
+      <a href="/page/<%- params.name %>/3" class="active">3</a>
+      <a href="/page/<%- params.name %>/3">&raquo;</a>
+      <% } else { %>
+      <a href="/page/<%- params.name %>/3">3</a>
+      <a href="/page/<%- params.name %>/<%- parseInt(params.pg)+1 %>"
+        >&raquo;</a
+      >
+      <% } %>
+    </div>
   </div>
 </div>

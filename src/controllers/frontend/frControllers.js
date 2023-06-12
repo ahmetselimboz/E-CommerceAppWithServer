@@ -154,32 +154,103 @@ const getAllComments = async (req, res, next) => {
 
 const getPage = async (req, res, next) => {
   var title;
-  const book = await Books.find({}).limit(21);
+  var book
   console.log(req.params);
+  if (req.params) {
+  
   if (req.params.name == "edebiyat") {
     title = "Edebiyat";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(0).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(20).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(40).limit(12);
+    }
   }else  if (req.params.name == "bilim-kurgu") {
     title = "Bilim Kurgu";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(52).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(72).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(92).limit(12);
+    }
   }else  if (req.params.name == "cocuk") {
     title = "Çocuk";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(104).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(124).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(136).limit(12);
+    }
   }else  if (req.params.name == "kisisel-gelisim") {
     title = "Kişisel Gelişim";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(148).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(168).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(188).limit(12);
+    }
   }else if (req.params.name == "tarih") {
     title = "Tarih";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(0).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(20).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(40).limit(12);
+    }
   }else if (req.params.name == "psikoloji") {
     title = "Psikoloji";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(52).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(72).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(92).limit(12);
+    }
   }else if (req.params.name == "felsefe") {
     title = "Felsefe";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(104).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(124).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(136).limit(12);
+    }
   }
+  else if (req.params.name == "yeni-cikan-kitaplar") {
+    title = "Yeni Çıkan Kitaplar";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(104).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(124).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(136).limit(12);
+    }
+  }
+  else if (req.params.name == "indirimdekiler") {
+    title = "İndirimdekiler";
+    if (req.params.pg == "1") {
+      book = await Books.find({}).skip(0).limit(20);
+    }else if(req.params.pg == "2"){
+      book = await Books.find({}).skip(20).limit(20);
+    }else if(req.params.pg == "3"){
+      book = await Books.find({}).skip(40).limit(12);
+    }
+  }
+  
 
 
-
-
-  if (req.params) {
+ 
     console.log(title);
     if (req.user) {
       res.render("defaultPage", {
         title: title,
+        params: req.params,
         user: req.user,
         api: book,
         layout: "./layout/authorized.ejs",
@@ -188,6 +259,7 @@ const getPage = async (req, res, next) => {
       res.render("defaultPage", {
         title: title,
         api: book,
+        params: req.params,
         layout: "./layout/nonAuthorized.ejs",
       });
     }
