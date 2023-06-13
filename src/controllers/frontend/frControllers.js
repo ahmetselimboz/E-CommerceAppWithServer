@@ -155,7 +155,7 @@ const getAllComments = async (req, res, next) => {
 const getPage = async (req, res, next) => {
   var title;
   var book
-  console.log(req.params);
+  //console.log(req.params);
   if (req.params) {
   
   if (req.params.name == "edebiyat") {
@@ -246,7 +246,7 @@ const getPage = async (req, res, next) => {
 
 
  
-    console.log(title);
+    //console.log(title);
     if (req.user) {
       res.render("defaultPage", {
         title: title,

@@ -1318,7 +1318,7 @@ footer {
 
 .small-comment {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .top-comment {
