@@ -1,3 +1,6 @@
+/*------------------GLOBAL-------------------*/
+
+
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap");
@@ -72,9 +75,7 @@ p {
   margin: 0;
 }
 
-.marginnn {
-  margin-top: 159px;
-}
+/*------------------NAVBAR-------------------*/
 
 .nav {
   width: 100%;
@@ -346,6 +347,10 @@ p {
   font-weight: bolder;
   text-decoration: none;
 }
+
+
+/*------------------HOMEPAGE-------------------*/
+
 
 .bg {
   background-image: url("../assets/7035204_66.jpg");
@@ -864,6 +869,9 @@ p {
   height: 150px;
 }
 
+/*------------------FOOTER-------------------*/
+
+
 footer {
   padding: 1rem 0;
   background-color: #f2f2f2;
@@ -965,6 +973,9 @@ footer {
   color: #fff;
   font-size: 18px;
 }
+
+/*------------------DETAİLS-------------------*/
+
 
 .detail-panel {
   margin-top: 100px;
@@ -1439,6 +1450,13 @@ footer {
   float: none;
 }
 
+/*------------------ALL-COMMENTS-------------------*/
+
+
+.marginnn {
+  margin-top: 159px;
+}
+
 .comdet {
   padding: 5rem 4rem 3rem 4rem;
   width: 100%;
@@ -1596,7 +1614,9 @@ td h6 {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-/*=============LOGIN================*/
+
+/*------------------LOGIN-------------------*/
+
 
 label {
   margin: 0;
@@ -1885,7 +1905,7 @@ label {
   border-bottom: 2px solid #119500;
 }
 
-/*=======Register=======*/
+/*------------------REGISTER-------------------*/
 
 .login-panel input {
   font-family: "Poppins", sans-serif;
@@ -1990,7 +2010,18 @@ label {
   border-bottom: 3px solid #119500;
 }
 
-/*=============================*/
+
+/*------------------ALERT-CARD-------------------*/
+.profile-panel {
+  width: 100%;
+  height: 740px;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+
 .alertyy {
   right: 0;
   height: auto;
@@ -2278,6 +2309,9 @@ label {
   }
 }
 
+/*------------------NAVBAR-PROFILE-CARD-------------------*/
+
+
 .sidebarmenu ul {
   list-style-type: none;
   padding: 10px 0;
@@ -2317,14 +2351,8 @@ label {
   margin-right: 10px;
 }
 
-.profile-panel {
-  width: 100%;
-  height: 740px;
-  margin-top: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
+/*------------------PROFILE-NAME-UPDATE-------------------*/
+
 
 .profile-top {
   width: 82%;
@@ -2434,6 +2462,8 @@ label {
   background-color: #e3e3e3;
   color: #626262;
 }
+
+/*------------------FAVORITES-------------------*/
 
 .fav-panel {
   width: 100%;
@@ -2813,9 +2843,10 @@ label {
   border: 3px solid #0a5500;
 }
 
+/*------------------PAGES-------------------*/
+
 .page-panel {
   width: 100%;
-  
   margin-top: 160px;
   padding: 3rem 2rem;
   height: auto;
@@ -2824,14 +2855,11 @@ label {
 .page-container{
   padding: 3rem 2rem;
   height: inherit;
-  
 }
 
 .card-area{
- 
   padding: 0 9rem;
   width: 100%;
-
 }
 
 

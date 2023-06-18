@@ -1,6 +1,5 @@
 
-
-
+////////////////////SLİDER EFEKTİ////////////////////////
 
 $(document).ready(function () {
   $(".customer-logos").slick({
@@ -28,6 +27,9 @@ $(document).ready(function () {
   });
 });
 
+
+////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
+
 window.onscroll = function () {
   if (
     document.body.scrollTop > 100 ||
@@ -39,30 +41,28 @@ window.onscroll = function () {
   }
 };
 
-// const api = new BookApi();
-// var item = document.querySelectorAll(".book-img img");
-// const value = api.api();
-// value.then((result) => {
-//     console.log(item.length);
-//   for (i = 0; i < item.length; i++) {
-//     item[i].src=result[0].books[i].book_image;
-//   }
-// });
 
-function rate(stars) {
-  const starElements = document.getElementsByClassName("star");
-  for (let i = 0; i < starElements.length; i++) {
-    if (i < stars) {
-      starElements[i].classList.add("star-filled");
-    } else {
-      starElements[i].classList.remove("star-filled");
-    }
-  }
-}
+
+// function rate(stars) {
+//   const starElements = document.getElementsByClassName("star");
+//   for (let i = 0; i < starElements.length; i++) {
+//     if (i < stars) {
+//       starElements[i].classList.add("star-filled");
+//     } else {
+//       starElements[i].classList.remove("star-filled");
+//     }
+//   }
+// }
+
+//////////VERİLEN YILDIZ DEĞERİNİ REQUESTE EKLEME////////////////c
+
 
 function follow(item) {
   document.querySelector("#rank-in").value = item.href.slice(-1);
 }
+
+////////////////////YORUM YILDIZ GÖSTER////////////////////////
+
 
 const rankAll = document.querySelectorAll("#rating");
 const rankInput = document.querySelectorAll("#in-rate");
@@ -73,6 +73,8 @@ for (let j = 0; j < rankAll.length; j++) {
   }
 }
 
+////////////////////FAVORİLER ORTALAMA YILDIZ GÖSTER////////////////////////
+
 const rankkAll = document.querySelectorAll("#ratingg");
 const rankkInput = document.querySelectorAll("#in-ratee");
 
@@ -82,17 +84,22 @@ for (let j = 0; j < rankkAll.length; j++) {
   }
 }
 
+
+
+////////////////////DETAYLAR ORTALAMA YILDIZ GÖSTER////////////////////////
+
 const star = document.querySelector(".stars");
 const starInput = document.querySelector("#in-stars");
-//star.children[0].classList.value = "bx bxs-star";
 
-//console.log(star.children[0].classList.value);
 
 if (starInput) {
   for (k = 0; k < starInput.value; k++) {
     star.children[k].classList.value = "bx bxs-star";
   }
 }
+
+
+////////////////////ŞİFRE GÖSTER & GİZLE////////////////////////
 
 function passwordHide() {
   const passInput = document.querySelector("#password");
@@ -110,6 +117,9 @@ function passwordShow() {
   passInput.type = "text";
   //console.log(passInput);
 }
+
+
+////////////////////KAYIT OL & GİRİŞ YAP KARTI////////////////////////
 
 function fadeIn() {
   setInterval(hideLogCard, 5000);
@@ -145,6 +155,9 @@ function hideLogCard() {
   }
 }
 
+////////////////////BİLGİLERİM & ÇIKIŞ YAP KARTI////////////////////////
+
+
 function fadedIn() {
   setInterval(hideLoggedCard, 5000);
 }
@@ -176,3 +189,5 @@ function hideLoggedCard() {
     }
   }
 }
+
+////////////////////////////////////////////////////////////////////
