@@ -1,19 +1,23 @@
-<div class="bg"></div>
 
-<section>
-  <div class="header-panel">
-    <div class="alertyy">
-      <% if (locals.validation_error !=undefined || locals.success_message!=undefined || locals.login_error !=undefined) { %>
-       <%- include('./partials/_message') %> <% } %>
-      
-    </div>
-    <div class="header-title">
-      <h1>Kitap Dağı</h1>
-      <div class="header-alt-title">
-        <h4>Dağ kadar kitabın tek adresi..</h4>
+
+<section style="height: inherit;">
+  <div class="bg">
+    <div class="header-panel">
+      <div class="alertyy">
+        <% if (locals.validation_error !=undefined || locals.success_message!=undefined || locals.login_error !=undefined) { %>
+         <%- include('./partials/_message') %> <% } %>
+        
+      </div>
+      <div class="header-title">
+        <h1>Kitap Dağı</h1>
+        <div class="header-alt-title">
+          <h4>Dağ kadar kitabın tek adresi..</h4>
+        </div>
       </div>
     </div>
+
   </div>
+ 
 </section>
 
 <section class="box-center">

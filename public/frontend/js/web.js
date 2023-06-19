@@ -9,7 +9,7 @@ $(document).ready(function () {
     autoplaySpeed: 1500,
     arrows: false,
     dots: false,
-    pauseOnHover: false,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 768,
@@ -18,9 +18,9 @@ $(document).ready(function () {
         },
       },
       {
-        breakpoint: 520,
+        breakpoint: 480,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
         },
       },
     ],
