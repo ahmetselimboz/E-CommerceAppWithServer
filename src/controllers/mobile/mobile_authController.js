@@ -2,7 +2,7 @@ const { validationResult } = require("express-validator");
 const User = require("../../models/userModel");
 const passport = require("passport");
 require("../../config/passport_local")(passport);
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
 const { log } = require("console");
