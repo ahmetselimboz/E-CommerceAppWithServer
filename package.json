@@ -2,10 +2,12 @@
   "name": "e-commerceappwithserver",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "jest app.test.js",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "build": "npm install && npm run build",
+    "serve": "node app.js"
   },
   "keywords": [],
   "author": "",

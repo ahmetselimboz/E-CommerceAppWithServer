@@ -9,14 +9,14 @@
 
 /*---------------------------------------------------------------------------*/
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
-}
+} */
 
 /*---------------------------------------------------------------------------*/
 
@@ -390,7 +390,7 @@ p {
   display: none;
 }
 
-.res-bottom-btn{
+.res-bottom-btn {
   display: none;
 }
 
@@ -440,8 +440,6 @@ p {
     margin-right: 1rem;
   }
 
-  
-
   .res-menu-btn {
     display: inline;
     right: 0;
@@ -459,7 +457,6 @@ p {
     color: #16be00;
     border-top: 0px solid #16be00;
     border-bottom: 5px solid #16be00;
-  
   }
 
   .nav-bottom-ul {
@@ -470,36 +467,36 @@ p {
     align-items: center;
   }
 
-  .nav-bottom-ul li{
-    margin: .5rem 0;
+  .nav-bottom-ul li {
+    margin: 0.5rem 0;
   }
 
   .nav-bottom-ul a {
     color: #16be00;
     font-size: 17px;
- 
+
     font-family: "Poppins", sans-serif;
     font-weight: lighter;
     transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
   }
-  .res-bottom-btn{
+  .res-bottom-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .nav-bottom span{
+  .nav-bottom span {
     display: block;
     width: 60%;
     border-bottom: 1px solid #16be00;
   }
-  .res-bottom-btn a{
+  .res-bottom-btn a {
     color: #16be00;
     font-size: 17px;
     font-family: "Poppins", sans-serif;
     font-weight: lighter;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
-
+}
   @media screen and (min-width: 481px) and (max-width: 768px) {
   }
   @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -3255,4 +3252,4 @@ p {
     background-color: #ddd;
     border-radius: 5px;
   }
-}
+
