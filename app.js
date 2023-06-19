@@ -83,7 +83,7 @@ app.use("/auth", authRouter);
 app.use("/mobile", mobile_frRouter);
 app.use("/mobile/auth", mobile_authRouter);
 
-app.listen(3000, () => {
-  console.log(`Server is standing to 3000 port`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is standing to ${process.env.PORT} port`);
 });
 
