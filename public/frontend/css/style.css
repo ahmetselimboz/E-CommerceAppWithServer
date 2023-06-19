@@ -1027,9 +1027,7 @@ p {
 
 @media screen and (max-width: 480px) {
   .bg {
-
     height: inherit;
-  
   }
   .header-panel {
     margin-top: 0;
@@ -1037,6 +1035,15 @@ p {
     height: 634px;
     margin-bottom: 5rem;
   }
+
+  .header-title h1 {
+    font-size: 50px;
+  }
+
+  .header-alt-title h4 {
+    font-size: 25px;
+  }
+
   .card-panel ul {
     display: flex;
     flex-direction: column;
@@ -1088,7 +1095,6 @@ p {
   }
 
   .slide {
-    
     padding: 2rem 0;
     height: 560px !important;
   }
@@ -1109,8 +1115,24 @@ p {
     align-items: center;
     margin: 3rem 0;
   }
-  
+  .book-info h3 {
+    font-size: 20px;
+  }
 
+  .book-author h4 {
+    font-size: 18px;
+  }
+
+  .book-publisher h5 {
+    font-size: 17px;
+  }
+
+  .book-detail h6 {
+    font-size: 16px;
+  }
+  .book-detail h6 {
+    font-size: 18px;
+  }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
