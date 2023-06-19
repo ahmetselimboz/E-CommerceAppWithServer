@@ -1102,7 +1102,7 @@ p {
   }
 
   .book-img {
-    height: auto;
+    height: 180px;
   }
 
   .slide {
@@ -1126,23 +1126,34 @@ p {
     align-items: center;
     margin: 3rem 0;
   }
+
+  .book-info{
+    height: 110px;
+  }
+
   .book-info h3 {
-    font-size: 20px;
+    font-size: 14px;
   }
 
   .book-author h4 {
-    font-size: 18px;
+    font-size: 12px;
   }
 
   .book-publisher h5 {
-    font-size: 17px;
+    font-size: 11px;
   }
 
   .book-detail h6 {
     font-size: 16px;
   }
-  .book-detail h6 {
-    font-size: 18px;
+  .book-detail i {
+    font-size: 25px;
+  }
+  .customer-logos {
+    width: 100%;
+    margin: 2rem auto;
+    /* padding: 2rem 0rem; */
+  
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
