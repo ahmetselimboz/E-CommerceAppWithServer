@@ -24,16 +24,20 @@
   </head>
 
   <body>
-    
     <nav class="nav">
       <div class="nav-top">
         <div class="main-logo">
           <a href="/">
-            <img src="/frontend/assets/pngwing.com.png" />
+            <img src="/frontend/assets/com.png" />
           </a>
           <p>Kitap Dağı</p>
-          
+          <div class="res-menu-btn">
+            <i id="search-icon" class="bx bx-search"></i>
+            <!-- <i id="user-icon" class="bx bx-user-circle"></i> -->
+            <i id="menu-icon" class="bx bx-menu"></i>
+          </div>
         </div>
+
         <form class="search" action="">
           <input
             class="search-area"
@@ -47,8 +51,10 @@
         </form>
         <div class="nav-btn">
           <div class="log">
-            <div class="login-btn"onclick="logCard()" onmouseenter="logCard()"><i class="bx bx-user-circle"></i></div>
-            <div class="log-card" >
+            <div class="login-btn" onclick="logCard()" onmouseenter="logCard()">
+              <i class="bx bx-user-circle"></i>
+            </div>
+            <div class="log-card">
               <div class="log-card-register">
                 <a id="logname" href="/auth/register">Kayıt Ol</a>
               </div>
@@ -57,12 +63,20 @@
               </div>
             </div>
           </div>
-          
 
-          <a class="cart-btn" href="/auth/favorites"><i class='bx bx-heart'></i></a>
+          <a class="cart-btn" href="/auth/favorites"
+            ><i class="bx bx-heart"></i
+          ></a>
         </div>
       </div>
       <div class="nav-bottom">
+        <div class="res-bottom-btn">
+          <a href="#">Kayıt Ol</a>
+          <a href="#">Giriş Yap</a>
+          <a href="#">Favoriler</a>
+          <span></span>
+        </div>
+
         <ul class="nav-bottom-ul">
           <li><a href="/page/edebiyat/1">Edebiyat</a></li>
           <li><a href="/page/bilim-kurgu/1">Bilim Kurgu</a></li>
@@ -81,7 +95,7 @@
         <div class="footer-col" id="col">
           <div class="footer-logo">
             <a href="#">
-              <img src="/frontend/assets/pngwing.com.png" />
+              <img src="/frontend/assets/com.png" />
             </a>
             <p>Kitap Dağı</p>
           </div>
@@ -116,7 +130,9 @@
               <hr class="footer-underline" />
               <ul>
                 <li><a href="/">Anasayfa</a></li>
-                <li><a href="/page/yeni-cikan-kitaplar/1">Yeni Çıkan Kitaplar</a></li>
+                <li>
+                  <a href="/page/yeni-cikan-kitaplar/1">Yeni Çıkan Kitaplar</a>
+                </li>
                 <li><a href="/page/indirimdekiler/1">İndirimdekiler</a></li>
                 <li><a href="/auth/favorites">Favorilerim</a></li>
                 <li><a href="../pages/ContactMe.html">İletişim</a></li>
