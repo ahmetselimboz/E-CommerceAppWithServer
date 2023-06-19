@@ -154,16 +154,15 @@ p {
   object-fit: contain;
 }
 
-.display-none{
-
+.display-none {
   display: none !important;
 }
 
 .search {
   width: 50%;
   display: flex;
- 
-  transition: .4s ease-in-out;
+
+  transition: 0.4s ease-in-out;
 }
 
 .search-area {
@@ -427,12 +426,9 @@ p {
     color: #16be00;
   }
   .search {
-    
     margin: 1rem 0;
     width: 80%;
   }
-
-  
 
   .search-area {
     font-size: 11px;
@@ -461,7 +457,6 @@ p {
     font-size: 35px;
   }
   .nav-bottom {
-    
     background-color: #f2f2f2;
     color: #16be00;
     border-top: 0px solid #16be00;
@@ -790,7 +785,7 @@ p {
 
 .item:hover .book-detail h6 {
   font-weight: bolder;
-  
+
   color: #16be00;
 }
 
@@ -801,7 +796,7 @@ p {
 
 .det {
   width: 100%;
-  
+
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -809,7 +804,6 @@ p {
 
 .book-detail {
   padding: 1rem 0;
- 
 }
 
 .book-detail h6 {
@@ -1096,7 +1090,6 @@ p {
   }
 
   .book-panel {
-
     padding: 3rem 0;
   }
 
@@ -1106,7 +1099,6 @@ p {
     margin-left: 0;
   }
   .title hr {
-
     margin: 1rem auto;
   }
 
@@ -1136,7 +1128,7 @@ p {
     margin: 3rem 0;
   }
 
-  .book-info{
+  .book-info {
     height: 110px;
   }
 
@@ -1162,7 +1154,6 @@ p {
     width: 100%;
     margin: 2rem auto;
     /* padding: 2rem 0rem; */
-  
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -3283,7 +3274,7 @@ label {
   height: auto;
 }
 .page-book-info h3 {
-  font-size: 14px;
+  font-size: 18px;
   padding: 0 1rem;
   font-family: "Poppins", sans-serif;
   color: #16be00;
@@ -3296,16 +3287,11 @@ label {
   margin: 1rem 0.4rem 0.2rem 0.4rem;
 }
 .page-book-author h4 {
-  font-size: 12px;
+  font-size: 16px;
   font-family: "Poppins", sans-serif;
   color: #16be00;
 }
 
-.page-book-author h6 {
-  font-size: 12px;
-  font-family: "Poppins", sans-serif;
-  color: #626262;
-}
 
 .page-book-publisher {
   display: flex;
@@ -3313,14 +3299,8 @@ label {
   padding: 0.2rem 0;
 }
 
-.page-book-publisher h6 {
-  font-size: 11px;
-  font-family: "Poppins", sans-serif;
-  color: #626262;
-}
-
 .page-book-publisher h5 {
-  font-size: 11px;
+  font-size: 15px;
 
   font-family: "Poppins", sans-serif;
   color: #16be00;
@@ -3390,23 +3370,21 @@ label {
     padding: 0;
     width: 100%;
     text-align: center;
-}
+  }
 
-#title {
-  text-align: center;
-  padding: 0; 
-  margin-left: 0;
-}
-#title-h3 {
+  #title {
+    text-align: center;
+    padding: 0;
+    margin-left: 0;
+  }
+  #title-h3 {
+    width: auto;
+  }
 
-  width: auto;
-}
-
-#title-hr {
-  text-align: center;
-  margin: 1rem auto;
-}
-
+  #title-hr {
+    text-align: center;
+    margin: 1rem auto;
+  }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
