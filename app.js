@@ -68,13 +68,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-    
-
-
-
-
 app.get("/", (req, res, next) => {
-  //res.status(200).send("It worked")
+ 
   res.redirect("/homepage");
 });
 
