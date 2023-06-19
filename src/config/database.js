@@ -6,7 +6,7 @@ const uri = process.env.MONGODB_CONNECTION_STRING;
 mongoose.connect(uri, {
   serverSelectionTimeoutMS: 5000
   
-}).then(()=>console.log('Connected Database')).catch(err => console.log(err.reason));
+}).then().catch(err => err.reason);
 
 
 // const kPrimaryColor = Color(0xFF0C9869);

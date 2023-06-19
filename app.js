@@ -74,6 +74,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get("/", (req, res, next) => {
+  //res.status(200).send("It worked")
   res.redirect("/homepage");
 });
 
@@ -82,6 +83,7 @@ app.use("/auth", authRouter);
 app.use("/mobile", mobile_frRouter);
 app.use("/mobile/auth", mobile_authRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is standing to ${process.env.PORT} port`);
+app.listen(3000, () => {
+  console.log(`Server is standing to 3000 port`);
 });
+
