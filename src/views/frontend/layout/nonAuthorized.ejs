@@ -32,13 +32,13 @@
           </a>
           <p>Kitap Dağı</p>
           <div class="res-menu-btn">
-            <i id="search-icon" class="bx bx-search"></i>
+            <i onclick="navshow()" id="search-icon" class="bx bx-search"></i>
             <!-- <i id="user-icon" class="bx bx-user-circle"></i> -->
-            <i id="menu-icon" class="bx bx-menu"></i>
+            <i onclick="navmenushow()" id="menu-icon" class="bx bx-menu"></i>
           </div>
         </div>
 
-        <form class="search" action="">
+        <form class="search display-none" action="">
           <input
             class="search-area"
             type="text"
@@ -49,7 +49,7 @@
             <i class="bx bx-search"></i>&nbsp;Ara
           </button>
         </form>
-        <div class="nav-btn">
+        <div class="nav-btn display-none">
           <div class="log">
             <div class="login-btn" onclick="logCard()" onmouseenter="logCard()">
               <i class="bx bx-user-circle"></i>
@@ -69,11 +69,11 @@
           ></a>
         </div>
       </div>
-      <div class="nav-bottom">
+      <div class="nav-bottom display-none">
         <div class="res-bottom-btn">
-          <a href="#">Kayıt Ol</a>
-          <a href="#">Giriş Yap</a>
-          <a href="#">Favoriler</a>
+          <a href="/auth/register">Kayıt Ol</a>
+          <a href="/auth/login">Giriş Yap</a>
+          <a href="/auth/favorites">Favoriler</a>
           <span></span>
         </div>
 

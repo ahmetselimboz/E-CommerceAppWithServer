@@ -28,6 +28,18 @@ $(document).ready(function () {
 });
 
 
+
+
+ function navshow() {
+  
+  document.querySelector(".search").classList.toggle("display-none");    
+}
+ function navmenushow() {
+  
+  document.querySelector(".nav-bottom").classList.toggle("display-none");    
+}
+
+
 ////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
 
 window.onscroll = function () {
