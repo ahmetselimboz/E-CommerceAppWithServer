@@ -114,7 +114,7 @@ p {
 }
 
 .transfomY-5 {
-  transform: translateY(-500px) !important;
+  transform: translateY(-800px) !important;
 }
 .nav-top-slide {
   height: 68px !important;
@@ -412,6 +412,9 @@ p {
 }
 
 @media screen and (max-width: 480px) {
+  .nav {
+    z-index: 0;
+  }
   .nav-top {
     display: flex;
     flex-direction: column;
@@ -1874,13 +1877,11 @@ footer {
   }
   .com-date h5 {
     font-size: 14px;
-   
   }
   .rate-non {
     font-size: 22px;
   }
   .comment-container {
-    
     padding: 1rem 0rem;
   }
   .comment-container form {
@@ -1888,18 +1889,16 @@ footer {
     padding: 2rem 0rem;
     width: 100%;
   }
-  .small-comment{
+  .small-comment {
     flex-direction: column;
   }
 
   #sm-input {
     width: auto;
   }
-  .bottom-comment{
+  .bottom-comment {
     padding: 2rem 5rem;
   }
-
- 
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
