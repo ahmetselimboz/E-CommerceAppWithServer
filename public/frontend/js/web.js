@@ -62,9 +62,19 @@ function navmenushow() {
 //   }
 // });
 
-////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
 
+////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
 window.onscroll = function () {
+  if (viewport_width <= 480) {
+    if (
+      document.body.scrollTop < 100 ||
+      document.documentElement.scrollTop < 100
+    ) {
+      document.querySelector(".nav-bottom").classList.add("display-none");
+      document.querySelector(".search").classList.add("display-none");
+    }
+  }
+
   if (
     document.body.scrollTop > 100 ||
     document.documentElement.scrollTop > 100
