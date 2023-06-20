@@ -1338,7 +1338,13 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 2rem 0;
   }
+
+  .footer-logo p{
+    transform: none;
+  }
+
   .footer-logo img {
     height: 110px;
   }
