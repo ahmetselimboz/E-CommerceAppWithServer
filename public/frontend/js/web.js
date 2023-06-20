@@ -67,8 +67,8 @@ function navmenushow() {
 window.onscroll = function () {
   if (viewport_width <= 480) {
     if (
-      document.body.scrollTop < 100 ||
-      document.documentElement.scrollTop < 100
+      document.body.scrollTop > 200 ||
+      document.documentElement.scrollTop > 200
     ) {
       document.querySelector(".nav-bottom").classList.add("display-none");
       document.querySelector(".search").classList.add("display-none");
