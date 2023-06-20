@@ -1849,8 +1849,8 @@ footer {
     flex-direction: column;
   }
   .detail-link {
-    display: block;
-    /* flex-wrap: wrap; */
+    /* display: block; */
+    flex-wrap: wrap;
   }
 
   .detail-link a {
