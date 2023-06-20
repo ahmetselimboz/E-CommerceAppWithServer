@@ -43,10 +43,12 @@ if (viewport_width > 480) {
 }
 
 async function  navshow() {
+  document.querySelector("#search-icon").classList.toggle("res-menu-click");
   document.querySelector(".search").classList.toggle("display-none");
   document.querySelector(".nav-top").classList.toggle("nav-top-slide");
 }
 function navmenushow() {
+  document.querySelector("#menu-icon").classList.toggle("res-menu-click");
   document.querySelector(".nav-bottom").classList.toggle("transfomY-5");
 }
 
