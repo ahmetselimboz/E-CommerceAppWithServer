@@ -47,8 +47,12 @@ async function  navshow() {
   document.querySelector("#search-icon").classList.toggle("res-menu-click");
   document.querySelector(".search").classList.toggle("display-none");
   document.querySelector(".nav-top").classList.toggle("nav-top-slide");
+  document.querySelector("#menu-icon").classList.remove("res-menu-click");
+
 }
 function navmenushow() {
+  document.querySelector("#search-icon").classList.remove("res-menu-click");
+
   document.querySelector(".search").classList.add("display-none");
   document.querySelector(".nav-top").classList.add("nav-top-slide");
   
