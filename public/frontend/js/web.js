@@ -43,11 +43,15 @@ if (viewport_width > 480) {
 }
 
 async function  navshow() {
+  document.querySelector(".nav-bottom").classList.add("transfomY-5");
   document.querySelector("#search-icon").classList.toggle("res-menu-click");
   document.querySelector(".search").classList.toggle("display-none");
   document.querySelector(".nav-top").classList.toggle("nav-top-slide");
 }
 function navmenushow() {
+  document.querySelector(".search").classList.add("display-none");
+  document.querySelector(".nav-top").classList.add("nav-top-slide");
+  
   document.querySelector("#menu-icon").classList.toggle("res-menu-click");
   document.querySelector(".nav-bottom").classList.toggle("transfomY-5");
 }
