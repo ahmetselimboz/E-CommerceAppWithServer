@@ -24,16 +24,22 @@
   </head>
 
   <body>
-    
     <nav class="nav">
-      <div class="nav-top">
+      <div class="nav-top nav-top-slide">
         <div class="main-logo">
           <a href="/">
             <img src="/frontend/assets/com.png" />
           </a>
-          <p>Kitap Dağı</p>
+          <a href="/">
+            <p>Kitap Dağı</p>
+          </a>
+          <div class="res-menu-btn">
+            <i onclick="navshow()" id="search-icon" class="bx bx-search"></i>
+            <!-- <i id="user-icon" class="bx bx-user-circle"></i> -->
+            <i onclick="navmenushow()" id="menu-icon" class="bx bx-menu"></i>
+          </div>
         </div>
-        <form class="search" action="">
+        <form class="search display-none" action="">
           <input
             class="search-area"
             type="text"
@@ -46,8 +52,15 @@
         </form>
         <div class="nav-btn">
           <div class="loggedin">
-            <div class="loggedin-btn"onclick="loggedCard()" onmouseenter="loggedCard()"><h3><%- user.user.name %> <%- user.user.surname %></h3><i class='bx bx-chevron-down' ></i></div>
-            <div class="loggedin-card"  >
+            <div
+              class="loggedin-btn"
+              onclick="loggedCard()"
+              onmouseenter="loggedCard()"
+            >
+              <h3><%- user.user.name %> <%- user.user.surname %></h3>
+              <i class="bx bx-chevron-down"></i>
+            </div>
+            <div class="loggedin-card">
               <div class="logged-card-register">
                 <a id="logname" href="/auth/profile">Kullanıcı Bilgilerim</a>
               </div>
@@ -56,12 +69,21 @@
               </div>
             </div>
           </div>
-          
 
-          <a class="cart-btn" href="/auth/favorites"><i class='bx bx-heart'></i></a>
+          <a class="cart-btn" href="/auth/favorites"
+            ><i class="bx bx-heart"></i
+          ></a>
         </div>
       </div>
-      <div class="nav-bottom">
+      <div class="nav-bottom transfomY-5">
+        <div class="res-bottom-btn">
+          <a href="/"><i class="bx bx-user"></i>&nbsp;<%- user.user.name %> <%- user.user.surname %></a>
+          <a href="/auth/favorites"><i class="bx bx-heart"></i>&nbsp;Favoriler</a>
+          <a href="/auth/profile"><i class='bx bx-chevron-right'></i>&nbsp;Kullanıcı Bilgilerim</a>
+          <a href="/auth/logout"><i class='bx bx-chevron-right'></i>&nbsp;Çıkış Yap</a>
+
+        </div>
+        <p></p>
         <ul class="nav-bottom-ul">
           <li><a href="/page/edebiyat/1">Edebiyat</a></li>
           <li><a href="/page/bilim-kurgu/1">Bilim Kurgu</a></li>
@@ -115,7 +137,9 @@
               <hr class="footer-underline" />
               <ul>
                 <li><a href="/">Anasayfa</a></li>
-                <li><a href="/page/yeni-cikan-kitaplar/1">Yeni Çıkan Kitaplar</a></li>
+                <li>
+                  <a href="/page/yeni-cikan-kitaplar/1">Yeni Çıkan Kitaplar</a>
+                </li>
                 <li><a href="/page/indirimdekiler/1">İndirimdekiler</a></li>
                 <li><a href="/auth/favorites">Favorilerim</a></li>
                 <li><a href="../pages/ContactMe.html">İletişim</a></li>

@@ -1879,6 +1879,26 @@ footer {
   .rate-non {
     font-size: 22px;
   }
+  .comment-container {
+    
+    padding: 1rem 0rem;
+  }
+  .comment-container form {
+    margin: 0rem;
+    padding: 2rem 0rem;
+    width: 100%;
+  }
+  .small-comment{
+    flex-direction: column;
+  }
+
+  #sm-input {
+    width: auto;
+  }
+  .bottom-comment{
+    padding: 2rem 5rem;
+  }
+
  
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -2457,8 +2477,9 @@ label {
 
 .alertyy {
   right: 0;
-  height: auto;
-  z-index: 7;
+  width: 100px;
+  height: 100px;
+  z-index: 15;
   background-color: transparent;
   position: fixed;
   animation: ekso 3.5s forwards;
@@ -2483,7 +2504,7 @@ label {
   justify-content: flex-end;
   right: 0;
   height: auto;
-  z-index: 7;
+  z-index: 15;
   background-color: transparent;
   align-items: center;
 }
