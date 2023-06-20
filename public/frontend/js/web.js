@@ -1,6 +1,3 @@
-
-
-
 ////////////////////SLİDER EFEKTİ////////////////////////
 
 $(document).ready(function () {
@@ -32,7 +29,6 @@ $(document).ready(function () {
 var viewport_width = window.innerWidth;
 
 if (viewport_width <= 480) {
-  
   //document.querySelector(".search").classList.add("display-none");
   //document.querySelector(".nav-top").classList.add("nav-top-slide");
 }
@@ -42,20 +38,19 @@ if (viewport_width > 480) {
   document.querySelector(".nav-bottom").classList.remove("transfomY-5");
 }
 
-async function  navshow() {
+async function navshow() {
   document.querySelector(".nav-bottom").classList.add("transfomY-5");
   document.querySelector("#search-icon").classList.toggle("res-menu-click");
   document.querySelector(".search").classList.toggle("display-none");
   document.querySelector(".nav-top").classList.toggle("nav-top-slide");
   document.querySelector("#menu-icon").classList.remove("res-menu-click");
-
 }
 function navmenushow() {
   document.querySelector("#search-icon").classList.remove("res-menu-click");
 
   document.querySelector(".search").classList.add("display-none");
   document.querySelector(".nav-top").classList.add("nav-top-slide");
-  
+
   document.querySelector("#menu-icon").classList.toggle("res-menu-click");
   document.querySelector(".nav-bottom").classList.toggle("transfomY-5");
 }
@@ -83,7 +78,6 @@ function navmenushow() {
 //   }
 // });
 
-
 ////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
 window.onscroll = function () {
   if (viewport_width <= 480) {
@@ -94,7 +88,8 @@ window.onscroll = function () {
       document.querySelector(".nav-bottom").classList.add("transfomY-5");
       document.querySelector(".search").classList.add("display-none");
       document.querySelector(".nav-top").classList.add("nav-top-slide");
-
+      document.querySelector("#search-icon").classList.remove("res-menu-click");
+      document.querySelector("#menu-icon").classList.remove("res-menu-click");
     }
   }
 
