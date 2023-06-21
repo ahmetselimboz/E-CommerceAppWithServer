@@ -454,7 +454,7 @@ const getFavorites = async (req, res, next) => {
     const findFavor = await Favorite.findOne({ userId: req.user.user.id });
     if (!findFavor) {
       res.render("favorites", {
-        book: "none",
+        book: 0,
         user: req.user,
         layout: "./layout/authorized.ejs",
       });
