@@ -546,6 +546,10 @@ p {
   .res-bottom-btn a:hover {
     font-weight: bolder;
   }
+
+  #logged-border{
+    border-bottom: 1.5px solid #16be00;
+  }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
@@ -3211,7 +3215,7 @@ label {
   margin: 1rem 0;
 }
 
-.bx-x {
+#x {
   color: #ff3d3d;
   font-size: 45px;
 }
