@@ -122,14 +122,14 @@ const getAllComments = async (req, res, next) => {
 
   //console.log(numbers);
 
-  res.render("allComments", {
-    data: {
-      com: { info: comment, count: comCount, num: numbers, rating: rat },
-      book: book,
-    },
+  // res.render("allComments", {
+  //   data: {
+  //     com: { info: comment, count: comCount, num: numbers, rating: rat },
+  //     book: book,
+  //   },
 
-    layout: "./layout/nonAuthorized.ejs",
-  });
+  //   layout: "./layout/nonAuthorized.ejs",
+  // });
 
   if (req.user) {
     res.render("allComments", {

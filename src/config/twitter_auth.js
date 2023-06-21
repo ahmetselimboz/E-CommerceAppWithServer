@@ -9,7 +9,7 @@ passport.use(
       clientType: "confidential",
       clientID: process.env.TWITTER_CONSUMER_KEY,
       clientSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: "http://localhost:3000/auth/twitter/callback",
+      callbackURL: process.env.WEB_SITE_URL + "auth/twitter/callback",
     
     },
     async (token, tokenSecret, profile, done) => {
