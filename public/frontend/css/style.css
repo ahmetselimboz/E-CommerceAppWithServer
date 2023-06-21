@@ -1909,6 +1909,9 @@ footer {
   .bottom-comment {
     padding: 2rem 5rem;
   }
+
+  
+  
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
@@ -2078,6 +2081,55 @@ td h6 {
   color: #2a2a2a;
   font-size: 26px;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+
+  .marginnn{
+    margin:0;
+  }
+
+  .comdet{
+    margin:5rem 0;
+    padding: 0;
+  }
+
+  .comdet-panel {
+    flex-direction: column;
+  }
+
+  .comdet-img-box{
+    margin: 0 auto;
+  }
+
+  .comdet-det h5{
+    margin:2rem 0 1rem 0;
+    justify-content: center;
+  }
+
+  .comdet-line{
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .comdet-title{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .comdet-rank{
+    margin:0;
+  }
+
+  .comdet-num{
+    margin:0;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
 }
 
 /*------------------LOGIN-------------------*/
