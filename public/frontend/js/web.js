@@ -98,8 +98,11 @@ window.onscroll = function () {
     document.documentElement.scrollTop > 100
   ) {
     document.querySelector(".nav").style.marginTop = "-120px";
+
+
   } else {
     document.querySelector(".nav").style.marginTop = "0";
+
   }
 };
 

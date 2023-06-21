@@ -5,7 +5,6 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
-const { resourceLimits } = require("worker_threads");
 const _ = require("passport-local-mongoose");
 const Books = require("../../models/bookModel");
 const Favorite = require("../../models/_favouriteModel");
@@ -32,8 +31,8 @@ const postLogin = (req, res, next) => {
         successRedirect: "/homepage",
         failureRedirect: "/auth/login",
         failureFlash: true,
-        successFlash: true
-      })(req, res, next)
+        successFlash: true,
+      })(req, res, next);
     } catch (error) {}
   }
 };
@@ -170,20 +169,17 @@ const getEmailConfirmed = (req, res, next) => {
 };
 
 const getLogOut = (req, res, next) => {
-  req.flash("error", [
-    "Bir hata oluştu. Lütfen tekrar kayıt olunuz.",
-  ]);
+  req.flash("error", ["Bir hata oluştu. Lütfen tekrar kayıt olunuz."]);
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
-   
+
     req.session.destroy((error) => {
       res.clearCookie("connect.sid");
-      
+
       res.redirect("/homepage");
 
-      
       // res.redirect('/login');
     });
   });
@@ -358,8 +354,8 @@ const getProfile = async (req, res, next) => {
     var finduser = await User.findOne({ _id: req.user.user.id });
   }
   const userrr = {
-    user: finduser
-  }
+    user: finduser,
+  };
 
   res.render("userProfile", {
     layout: "./layout/profileLayout.ejs",
@@ -452,23 +448,29 @@ const postUpdatePassword = async (req, res, next) => {
   }
 };
 
-const getFavorites = async (req,res,next)=>{
+const getFavorites = async (req, res, next) => {
   if (req.user.user) {
+
     const findFavor = await Favorite.findOne({ userId: req.user.user.id });
-
-
-    res.render("favorites", {
-      book: findFavor.book,
-      user: req.user,
-      layout: "./layout/authorized.ejs",
-    });
-  } 
-}
+    if (!findFavor) {
+      res.render("favorites", {
+        book: "none",
+        user: req.user,
+        layout: "./layout/authorized.ejs",
+      });
+    } else {
+      res.render("favorites", {
+        book: findFavor.book,
+        user: req.user,
+        layout: "./layout/authorized.ejs",
+      });
+    }
+  }
+};
 
 const addFavorite = async (req, res, next) => {
-
   if (req.body) {
-   //console.log(req.body);
+    //console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
     const findBook = await Books.findOne({ _id: req.body.book });
 
@@ -478,7 +480,6 @@ const addFavorite = async (req, res, next) => {
       res.redirect("/");
     } else {
       if (!findFavor && req.body.user) {
-       
         const newFavorite = new Favorite();
         if (newFavorite.book.length == 0) {
           var value = 0;
@@ -495,10 +496,12 @@ const addFavorite = async (req, res, next) => {
       } else {
         for (let index = 0; index < findFavor.book.length; index++) {
           if (findFavor.book[index].id == req.body.book) {
-            req.flash("error", ["Eklemek istediğiniz kitap zaten favorilerinizde mevcut"]);
-            return res.redirect("/details/"+ req.body.book);
+            req.flash("error", [
+              "Eklemek istediğiniz kitap zaten favorilerinizde mevcut",
+            ]);
+            return res.redirect("/details/" + req.body.book);
           }
-         }
+        }
         if (findFavor.book.length == 0) {
           var value = 0;
         } else {
@@ -516,17 +519,20 @@ const addFavorite = async (req, res, next) => {
   }
 };
 
-const deleteFavorite = async (req,res,next)=>{
+const deleteFavorite = async (req, res, next) => {
   //console.log(req.params);
 
   if (req.params) {
-    await Favorite.updateOne({userId: req.params.userId}, {$pull: {book: {_id: req.params.bookId}}});
+    await Favorite.updateOne(
+      { userId: req.params.userId },
+      { $pull: { book: { _id: req.params.bookId } } }
+    );
     req.flash("success_message", [
       { msg: "Kitap favorilerinizden kaldırıldı" },
     ]);
     res.redirect("/auth/favorites");
   }
-}
+};
 
 module.exports = {
   getLogin,
@@ -546,5 +552,5 @@ module.exports = {
   postUpdatePassword,
   getFavorites,
   addFavorite,
-  deleteFavorite
+  deleteFavorite,
 };
