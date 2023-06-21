@@ -3401,7 +3401,7 @@ label {
 @media screen and (max-width: 480px) {
   .fav-panel{
     margin-top: 100px;
-    height: inherit;
+
   }
   .fav-title{
     margin:0;
