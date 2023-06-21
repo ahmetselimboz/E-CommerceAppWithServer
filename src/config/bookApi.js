@@ -9,7 +9,7 @@ function book() {
       "https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=NAF05od30BpNhBNEmIuTNGOAIpUU72a7"
     );
     response
-      .then((result) => {
+      .then((result) => { 
         
         //console.log(result);
         for (i = 0; i < result.data.results.lists.length; i++) {

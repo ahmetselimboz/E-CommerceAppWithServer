@@ -23,15 +23,22 @@
     <title>Kitap Dağı | Dağ Kadar Kitabın Tek Adresi</title>
   </head>
   <body>
-    <nav class="nav" style="border-bottom: 6px solid #16be00">
-      <div class="nav-top">
+    <nav class="nav" >
+      <div class="nav-top nav-top-slide">
         <div class="main-logo">
           <a href="/">
             <img src="/frontend/assets/pngwing.com.png" />
           </a>
-          <p>Kitap Dağı</p>
+          <a href="/">
+            <p>Kitap Dağı</p>
+          </a>
+          <div class="res-menu-btn">
+            <i onclick="navshow()" id="search-icon" class="bx bx-search"></i>
+            <!-- <i id="user-icon" class="bx bx-user-circle"></i> -->
+            <i onclick="navmenushow()" id="menu-icon" class="bx bx-menu"></i>
+          </div>
         </div>
-        <form class="search" action="">
+        <form class="search display-none" action="">
           <input
             class="search-area"
             type="text"
@@ -62,8 +69,27 @@
             </div>
           </div>
 
-          <a class="cart-btn" href=""><i class='bx bx-heart'></i></a>
+          <a class="cart-btn" href="/auth/favorites"><i class='bx bx-heart'></i></a>
         </div>
+      </div>
+      <div class="nav-bottom transfomY-5">
+        <div class="res-bottom-btn">
+          <a id="logged-border" href="/"><i class="bx bx-user"></i>&nbsp;<%- user.user.name %> <%- user.user.surname %></a>
+          <a href="/auth/favorites"><i class="bx bx-heart"></i>&nbsp;Favoriler</a>
+          <a href="/auth/profile"><i class='bx bx-book-content'></i>&nbsp;Kullanıcı Bilgilerim</a>
+          <a href="/auth/logout"><i class='bx bx-x'></i>&nbsp;Çıkış Yap</a>
+
+        </div>
+        <p></p>
+        <ul class="nav-bottom-ul">
+          <li><a href="/page/edebiyat/1">Edebiyat</a></li>
+          <li><a href="/page/bilim-kurgu/1">Bilim Kurgu</a></li>
+          <li><a href="/page/cocuk/1">Çocuk</a></li>
+          <li><a href="/page/kisisel-gelisim/1">Kişisel Gelişim</a></li>
+          <li><a href="/page/tarih/1">Tarih</a></li>
+          <li><a href="/page/psikoloji/1">Psikoloji</a></li>
+          <li><a href="/page/felsefe/1">Felsefe</a></li>
+        </ul>
       </div>
     </nav>
 
