@@ -36,7 +36,7 @@ module.exports = function (passport) {
               user: _findUser,
               provider:"Local"
             }
-            return done(null, info);
+            return done(null, info , {message:"Giriş yapıldı"});
           }
         }
       } catch (error) {

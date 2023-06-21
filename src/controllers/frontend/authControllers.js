@@ -32,7 +32,8 @@ const postLogin = (req, res, next) => {
         successRedirect: "/homepage",
         failureRedirect: "/auth/login",
         failureFlash: true,
-      })(req, res, next);
+        successFlash: true
+      })(req, res, next)
     } catch (error) {}
   }
 };
@@ -169,17 +170,20 @@ const getEmailConfirmed = (req, res, next) => {
 };
 
 const getLogOut = (req, res, next) => {
+  req.flash("error", [
+    "Bir hata oluştu. Lütfen tekrar kayıt olunuz.",
+  ]);
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
-
+   
     req.session.destroy((error) => {
       res.clearCookie("connect.sid");
-
+      
       res.redirect("/homepage");
 
-      // req.flash("success_message", [{msg: 'Basariyla cikis yapildi'}]);
+      
       // res.redirect('/login');
     });
   });
