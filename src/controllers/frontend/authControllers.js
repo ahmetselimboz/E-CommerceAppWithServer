@@ -89,7 +89,7 @@ const postRegister = async (req, res, next) => {
           { expiresIn: "1d" }
         );
 
-        const url = "http://localhost:3000/" + "auth/verify?id=" + jwtToken;
+        const url = "process.env.WEB_SITE_URL" + "auth/verify?id=" + jwtToken;
 
         let transporter = nodemailer.createTransport({
           service: "gmail",
