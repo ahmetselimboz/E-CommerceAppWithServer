@@ -3104,7 +3104,7 @@ label {
   color: #626262;
 }
 
-.user-input-pass{
+.user-input-pass {
   outline: none;
   border: 2px solid #626262;
   font-size: 14px;
@@ -3155,17 +3155,18 @@ label {
   }
 
   .profile-top h2 {
-
     font-size: 30px;
-
-}
-.profile-top {
-  width: 100%;
-  height: 30%;
-  display: flex;
-margin-top:3rem;
-  padding: 2rem;
-}
+  }
+  .profile-top {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    margin-top: 3rem;
+    padding: 2rem;
+  }
+  .top-user h2 {
+    font-size: 15px;
+  }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
