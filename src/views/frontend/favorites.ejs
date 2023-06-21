@@ -81,7 +81,7 @@
           <% for( let k = 0; k < book[index].buy_links.length; k++ ) { %>
           <a href="<%- book[index].buy_links[k].url %>" target="_blank">
             <h6><%- book[index].buy_links[k].name %></h6>
-            &nbsp;&nbsp;
+          
             <p><%- book[index].buy_links[k].linkPrice %> TL</p>
           </a>
           <% } %>
@@ -98,7 +98,7 @@
           <a
             href="/auth/deletefavorite/<%- user.user.id %>/<%- book[index].id %>"
             class="fav-btn"
-            ><i class="bx bx-x"></i>Kaldır</a
+            ><i id="fav-x" class="bx bx-x"></i>Kaldır</a
           >
           
         </div>

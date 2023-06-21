@@ -547,8 +547,8 @@ p {
     font-weight: bolder;
   }
 
-  #logged-border{
-    border-bottom: 1.5px solid #16be00;
+  #logged-border {
+    /* border-bottom: 1.5px solid #16be00; */
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -1345,7 +1345,7 @@ footer {
     margin: 2rem 0;
   }
 
-  .footer-logo p{
+  .footer-logo p {
     transform: none;
   }
 
@@ -1909,9 +1909,6 @@ footer {
   .bottom-comment {
     padding: 2rem 5rem;
   }
-
-  
-  
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
 }
@@ -2084,13 +2081,12 @@ td h6 {
 }
 
 @media screen and (max-width: 480px) {
-
-  .marginnn{
-    margin:0;
+  .marginnn {
+    margin: 0;
   }
 
-  .comdet{
-    margin:5rem 0;
+  .comdet {
+    margin: 5rem 0;
     padding: 0;
   }
 
@@ -2098,31 +2094,31 @@ td h6 {
     flex-direction: column;
   }
 
-  .comdet-img-box{
+  .comdet-img-box {
     margin: 0 auto;
   }
 
-  .comdet-det h5{
-    margin:2rem 0 1rem 0;
+  .comdet-det h5 {
+    margin: 2rem 0 1rem 0;
     justify-content: center;
   }
 
-  .comdet-line{
+  .comdet-line {
     width: 80%;
     margin: 0 auto;
   }
 
-  .comdet-title{
+  .comdet-title {
     flex-direction: column;
     align-items: center;
   }
 
-  .comdet-rank{
-    margin:0;
+  .comdet-rank {
+    margin: 0;
   }
 
-  .comdet-num{
-    margin:0;
+  .comdet-num {
+    margin: 0;
   }
 }
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -3255,7 +3251,8 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 140px;
+  height: 50px;
   padding: 0.1rem 7rem;
   background-color: #fff;
   border: 3px solid #ff3d3d;
@@ -3270,6 +3267,9 @@ label {
 #x {
   color: #ff3d3d;
   font-size: 45px;
+}
+#fav-x{
+  font-size: 30px;
 }
 
 .fav-btn:hover {
@@ -3324,7 +3324,8 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 140px;
+  height: 50px;
   padding: 0.8rem 7rem;
   background-color: #fff;
   border: 3px solid #119500;
@@ -3356,6 +3357,72 @@ label {
   border: 3px solid #0a5500;
 }
 
+@media screen and (max-width: 480px) {
+  .fav-panel{
+    margin-top: 100px;
+  }
+  .fav-title{
+    margin:0;
+  }
+  .fav-title h3{
+    justify-content: center;
+  }
+  .fav-title hr{
+    margin:1rem auto;
+  }
+  .fav-col{
+    margin:2rem 0;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fav-tit-area {
+    display: none;
+  }
+  .fav-descs{
+    width: max-content;
+  }
+  .fav-links{
+    justify-content: center;
+    margin:2rem;
+    
+  }
+  .fav-btn-panel{
+    transform: none;
+  }
+
+  .fav-detail-link{
+    display: inline-block;
+    width: 240px;
+  }
+
+  .fav-detail-link a {
+    margin:1rem;
+    float: left;
+    width: 100px;
+    height: 80px;
+    display: grid;
+  }
+
+  .fav-btn-det{
+    width: 140px;
+    height: 50px;
+  }
+
+  #fav-x{
+    font-size: 30px;
+  }
+  .fav-btn{
+    width: 140px;
+    height: 50px;
+  }
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+}
 /*------------------PAGES-------------------*/
 
 .page-panel {
