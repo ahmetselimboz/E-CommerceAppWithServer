@@ -3,6 +3,7 @@ const frontController = require("../../controllers/frontend/frControllers")
 const validations = require('../../middlewares/validations');
 const isAuthenticated = require("../../middlewares/isAuthanticated");
 
+router.get('/', frontController.getHomePage);
 router.get('/homepage', frontController.getHomePage);
 router.get('/details/:id', frontController.getDetails);
 

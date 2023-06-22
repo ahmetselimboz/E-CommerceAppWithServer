@@ -70,7 +70,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res, next) => {
  
-  res.redirect("/homepage");
+  res.redirect("/");
 });
 
 app.use("/", frRouter);
