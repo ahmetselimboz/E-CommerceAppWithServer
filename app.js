@@ -68,10 +68,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.get("/", (req, res, next) => {
+// app.get("/", (req, res, next) => {
  
-  res.redirect("/");
-});
+//   res.redirect("/");
+// });
 
 app.use("/", frRouter);
 app.use("/auth", authRouter);
