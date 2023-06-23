@@ -3648,15 +3648,18 @@ label {
   height: inherit;
 }
 
+
 .card-area {
   padding: 0 8rem;
-  width: 100%;
+  max-width: 1479px;
+  margin:0 auto;
 }
 
 #title {
   text-align: left;
   padding: 2rem 4rem;
-  margin-left: 65px;
+  margin: 0 auto;
+  width: 1479px;
 }
 
 #title-h3 {
