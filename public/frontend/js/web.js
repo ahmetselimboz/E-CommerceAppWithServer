@@ -11,28 +11,37 @@ $(document).ready(function () {
     pauseOnHover: true,
     responsive: [
       {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 480,
+        breakpoint: 481,
         settings: {
           slidesToShow: 2,
         },
       },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    
+      {
+        breakpoint: 1201,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+
+      
     ],
   });
 });
 
 var viewport_width = window.innerWidth;
 
-if (viewport_width <= 480) {
-  //document.querySelector(".search").classList.add("display-none");
-  //document.querySelector(".nav-top").classList.add("nav-top-slide");
-}
-if (viewport_width > 480) {
+// if (viewport_width <= 480) {
+//   document.querySelector(".search").classList.add("display-none");
+//   document.querySelector(".nav-top").classList.add("nav-top-slide");
+// }
+if (viewport_width > 1024) {
   document.querySelector(".search").classList.remove("display-none");
   document.querySelector(".nav-top").classList.remove("nav-top-slide");
   document.querySelector(".nav-bottom").classList.remove("transfomY-5");
@@ -80,7 +89,7 @@ function navmenushow() {
 
 ////////////////////NAVBAR SCROLL EFEKTİ////////////////////////
 window.onscroll = function () {
-  if (viewport_width <= 480) {
+  if (viewport_width <= 1024) {
     if (
       document.body.scrollTop > 200 ||
       document.documentElement.scrollTop > 200
