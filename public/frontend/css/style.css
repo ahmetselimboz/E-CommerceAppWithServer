@@ -2410,6 +2410,8 @@ footer {
   .detail-link {
     /* display: block; */
     flex-wrap: wrap;
+    width: 60%;
+    margin: 0 auto;
   }
 
   .detail-link a {
