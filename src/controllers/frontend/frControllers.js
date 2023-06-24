@@ -6,6 +6,17 @@ const { validationResult } = require("express-validator");
 const axios = require("axios");
 
 const getHomePage = async (req, res, next) => {
+
+//   var num = ["00","25","50","75","99"]
+
+// function  getRndInteger(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) ) + min;
+// }
+ 
+
+
+//   console.log(getRndInteger(10,70) + ","+ num[getRndInteger(0,4)]+" TL");
+
   const book = await Books.find({}).limit(21);
 
   if (req.user) {

@@ -3,7 +3,15 @@ const Books = require("../models/bookModel");
 
 var value = [];
 
+var num = ["00","25","50","75","99"]
+
+function  getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+
 function book() {
+
   try {
     const response = axios.get(
       "https://api.nytimes.com/svc/books/v3/lists/full-overview.json?api-key=NAF05od30BpNhBNEmIuTNGOAIpUU72a7"
@@ -34,7 +42,7 @@ function book() {
             for (let index = 0; index < value.length; index++) {
               if (value[index] !== undefined) {
                 d.buy_links[index] = value[index];
-                d.buy_links[index].linkPrice = "0.00";
+                d.buy_links[index].linkPrice = getRndInteger(10,70) + ","+ num[getRndInteger(0,4)];
               }
             }
             d.save();
@@ -48,5 +56,5 @@ function book() {
     console.log(error.data.fault);
   }
 }
-
+ 
 //book();
