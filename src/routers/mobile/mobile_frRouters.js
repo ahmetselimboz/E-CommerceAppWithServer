@@ -7,4 +7,6 @@ router.post('/comment', mobile_frController.postComment);
 
 router.post('/newcomment', mobile_frController.postNewComment);
 
+router.get("/page/:name", mobile_frController.getPage);
+
 module.exports = router;
