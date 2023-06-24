@@ -2547,6 +2547,87 @@ footer {
   }
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .detail-panel {
+    margin-top: 100px;
+    padding: 0;
+
+    width: 100%;
+  }
+  .detail-container {
+    padding: 6rem 0rem 3rem 0rem;
+  }
+  .detail-left {
+    width: auto;
+  }
+  .detail-img {
+    height: auto;
+    margin: 0 auto;
+    width: 300px;
+  }
+  .detail-right {
+    width: fit-content;
+    margin: 1rem 2rem;
+  }
+  .detail-desc {
+    flex-direction: column;
+  }
+  .detail-link {
+    /* display: block; */
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .detail-link a {
+    margin: 1rem 0.5rem;
+    display: grid;
+    height: 80px;
+    float: left;
+  }
+
+  .com-container {
+    padding: 1rem;
+  }
+  .com-name {
+    align-items: normal;
+  }
+  .com-title h2 {
+    font-size: 15px;
+  }
+  .com-desc h2 {
+    font-size: 16px;
+  }
+  .com-date h5 {
+    font-size: 14px;
+  }
+  .rate-non {
+    font-size: 22px;
+  }
+  .comment-container {
+    padding: 1rem 8rem;
+  }
+  .comment-container form {
+    margin: 0rem;
+    padding: 2rem 0rem;
+    width: 100%;
+  }
+  /* .small-comment {
+    flex-direction: column;
+  } */
+
+  #sm-input {
+    width: auto;
+  }
+  .bottom-comment {
+    padding: 2rem 5rem;
+  }
+
+  #commentLink {
+    border-bottom: 0px;
+  }
+  #commentLink:hover {
+    border-bottom: 0px;
+  }
 }
 
 /*------------------ALL-COMMENTS-------------------*/
@@ -4492,6 +4573,32 @@ label {
   }
 }
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .fav-tit-area {
+    display: none;
+  }
+
+  .fav-col {
+    padding: 2rem 10rem;
+   
+  }
+ /*
+  .fav-content {
+    margin: 1rem 0rem;
+    height: inherit;
+  } */
+
+  .fav-detail-link {
+    display: inline-block;
+    width: 240px;
+  }
+
+  .fav-detail-link a {
+    margin: 1rem;
+    float: left;
+    width: 100px;
+    height: 80px;
+    display: grid;
+  }
 }
 /*------------------PAGES-------------------*/
 
