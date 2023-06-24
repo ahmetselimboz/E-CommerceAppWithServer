@@ -1,21 +1,19 @@
 const { Logger } = require("mongodb");
 const Books = require("../../models/bookModel");
+const Image = require("../../models/_imagesModel");
 const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 const { validationResult } = require("express-validator");
 const axios = require("axios");
 
 const getHomePage = async (req, res, next) => {
+  //   var num = ["00","25","50","75","99"]
 
-//   var num = ["00","25","50","75","99"]
+  // function  getRndInteger(min, max) {
+  //   return Math.floor(Math.random() * (max - min + 1) ) + min;
+  // }
 
-// function  getRndInteger(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1) ) + min;
-// }
- 
-
-
-//   console.log(getRndInteger(10,70) + ","+ num[getRndInteger(0,4)]+" TL");
+  //   console.log(getRndInteger(10,70) + ","+ num[getRndInteger(0,4)]+" TL");
 
   const book = await Books.find({}).limit(21);
 
@@ -165,98 +163,92 @@ const getAllComments = async (req, res, next) => {
 
 const getPage = async (req, res, next) => {
   var title;
-  var book
+  var book;
   //console.log(req.params);
   if (req.params) {
-  
-  if (req.params.name == "edebiyat") {
-    title = "Edebiyat";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(0).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(20).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(40).limit(12);
+    if (req.params.name == "edebiyat") {
+      title = "Edebiyat";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(0).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(20).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(40).limit(12);
+      }
+    } else if (req.params.name == "bilim-kurgu") {
+      title = "Bilim Kurgu";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(52).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(72).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(92).limit(12);
+      }
+    } else if (req.params.name == "cocuk") {
+      title = "Çocuk";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(104).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(124).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(136).limit(12);
+      }
+    } else if (req.params.name == "kisisel-gelisim") {
+      title = "Kişisel Gelişim";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(148).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(168).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(188).limit(12);
+      }
+    } else if (req.params.name == "tarih") {
+      title = "Tarih";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(0).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(20).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(40).limit(12);
+      }
+    } else if (req.params.name == "psikoloji") {
+      title = "Psikoloji";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(52).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(72).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(92).limit(12);
+      }
+    } else if (req.params.name == "felsefe") {
+      title = "Felsefe";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(104).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(124).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(136).limit(12);
+      }
+    } else if (req.params.name == "yeni-cikan-kitaplar") {
+      title = "Yeni Çıkan Kitaplar";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(104).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(124).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(136).limit(12);
+      }
+    } else if (req.params.name == "indirimdekiler") {
+      title = "İndirimdekiler";
+      if (req.params.pg == "1") {
+        book = await Books.find({}).skip(0).limit(20);
+      } else if (req.params.pg == "2") {
+        book = await Books.find({}).skip(20).limit(20);
+      } else if (req.params.pg == "3") {
+        book = await Books.find({}).skip(40).limit(12);
+      }
     }
-  }else  if (req.params.name == "bilim-kurgu") {
-    title = "Bilim Kurgu";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(52).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(72).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(92).limit(12);
-    }
-  }else  if (req.params.name == "cocuk") {
-    title = "Çocuk";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(104).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(124).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(136).limit(12);
-    }
-  }else  if (req.params.name == "kisisel-gelisim") {
-    title = "Kişisel Gelişim";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(148).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(168).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(188).limit(12);
-    }
-  }else if (req.params.name == "tarih") {
-    title = "Tarih";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(0).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(20).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(40).limit(12);
-    }
-  }else if (req.params.name == "psikoloji") {
-    title = "Psikoloji";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(52).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(72).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(92).limit(12);
-    }
-  }else if (req.params.name == "felsefe") {
-    title = "Felsefe";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(104).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(124).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(136).limit(12);
-    }
-  }
-  else if (req.params.name == "yeni-cikan-kitaplar") {
-    title = "Yeni Çıkan Kitaplar";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(104).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(124).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(136).limit(12);
-    }
-  }
-  else if (req.params.name == "indirimdekiler") {
-    title = "İndirimdekiler";
-    if (req.params.pg == "1") {
-      book = await Books.find({}).skip(0).limit(20);
-    }else if(req.params.pg == "2"){
-      book = await Books.find({}).skip(20).limit(20);
-    }else if(req.params.pg == "3"){
-      book = await Books.find({}).skip(40).limit(12);
-    }
-  }
-  
 
-
- 
     //console.log(title);
     if (req.user) {
       res.render("defaultPage", {
@@ -277,10 +269,38 @@ const getPage = async (req, res, next) => {
   }
 };
 
+const getImages = async (req, res, next) => {
+
+  // const img = new Image();
+  // img.image = "";
+  // img.save();
+  const sonuc = await Image.findById("64972c9dd42cbb42fc59c14f");
+
+  res.render("image", {
+    layout: false,
+    image: sonuc.image
+  })
+};
+
+const postImages = async (req,res, next) =>{
+  console.log(req.file);
+  try {
+    if (req.file) {
+      const sonuc = await Image.findByIdAndUpdate("64972c9dd42cbb42fc59c14f", {image: req.file.filename});
+
+      if (sonuc) {
+        res.redirect("/");
+      }
+    }
+  } catch (error) {}
+}
+
 module.exports = {
   getHomePage,
   getDetails,
   postComment,
   getAllComments,
   getPage,
+  getImages,
+  postImages
 };

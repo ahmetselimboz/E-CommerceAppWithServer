@@ -5,12 +5,8 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
-const { log } = require("console");
-const { boolean } = require("webidl-conversions");
-const { read } = require("fs");
 
-const getFalseLogin = (req, res, next) => {};
-const getTrueLogin = (req, res, next) => {};
+
 
 const postLogin = (req, res, next) => {
   console.log("geldim");
@@ -76,19 +72,10 @@ const postLogin = (req, res, next) => {
       });
     })(req, res, next);
 
-    // passport.authenticate("local", {
-    //     successRedirect: "auth/truelogin",
-    //     failureRedirect: "auth/falselogin",
-    //     failureFlash: true,
-    //   })(req, res, next);
   } catch (error) {}
 };
 
-const getRegister = (req, res, next) => {
-  res.render("register", {
-    layout: false,
-  });
-};
+
 const postRegister = async (req, res, next) => {
   if (req.session) {
     req.session.destroy();
@@ -444,10 +431,9 @@ const postNewGoogle = async (req, res, next) => {
 };
 
 module.exports = {
-  getFalseLogin,
-  getTrueLogin,
+
   postLogin,
-  getRegister,
+ 
   postRegister,
   //emailVerify,
   getLogOut,
