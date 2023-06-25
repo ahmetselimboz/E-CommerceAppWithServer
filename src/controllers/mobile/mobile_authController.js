@@ -443,7 +443,7 @@ const getFavorites = async (req, res, next) => {
       });
     } else {
       res.send({
-        book: findFavore.book,
+        book: findFavor.book,
       });
     }
   }
