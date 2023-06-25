@@ -274,25 +274,30 @@ const getImages = async (req, res, next) => {
   // const img = new Image();
   // img.image = "";
   // img.save();
-  const sonuc = await Image.findById("64972c9dd42cbb42fc59c14f");
-
+  const sonuc = await Image.find({});
+  console.log(sonuc[1]);
   res.render("image", {
     layout: false,
-    image: sonuc.image
+    image: sonuc
   })
 };
 
 const postImages = async (req,res, next) =>{
-  console.log(req.file);
-  try {
-    if (req.file) {
-      const sonuc = await Image.findByIdAndUpdate("64972c9dd42cbb42fc59c14f", {image: req.file.filename});
 
-      if (sonuc) {
-        res.redirect("/");
-      }
+  try {
+    console.log(req.body);
+    console.log(req.files);
+    const { body, files } = req;
+ 
+    for (let f = 0; f < files.length; f += 1) {
+      await uploadFile(files[f]);
     }
-  } catch (error) {}
+ 
+    console.log(body);
+    res.status(200).send("Form Submitted");
+  } catch (f) {
+    res.send(f.message);
+  }
 }
 
 module.exports = {

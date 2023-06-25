@@ -1,10 +1,15 @@
 
 
-<form action="/images" method="post" enctype="multipart/form-data">
-    <div class="img-box" style="width: 300px;height: 300px;">
-        <img src="../../uploads/images/<%- image %>" alt="" style="width: 100%;">
-    </div>
-    
-    <input type="file" name="images" id="">
+<form action="/image/upload" method="post" enctype="multipart/form-data">
+
+        <% for( let index = 0; index <image.length; index++ ) { %>
+            <h1><%- image.name %></h1>
+            <div class="img-box" style="width: 300px;height: 300px;">
+                <img src="https://drive.google.com/uc?export=view&id=<%- image[index].fotoId %>" alt="" style="width: 100%;">
+                <!-- <img src="../../uploads/images/" alt="" style="width: 100%;"> -->
+            </div>
+        <% } %>
+
+    <input type="file" name="images" id="" multiple>
     <button type="submit">Gonder</button>
 </form>

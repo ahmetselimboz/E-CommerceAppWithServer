@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema(
   {
-    image: {
+    fotoId:{
+      type:String,
+      trim:true,
+    },
+    name: {
       type: String,
       default: "defaultUser.png",
     },
