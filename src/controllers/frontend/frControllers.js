@@ -53,7 +53,7 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
-  
+
 
   if (req.user) {
     res.render("details", {
@@ -225,8 +225,8 @@ const getPage = async (req, res, next) => {
       } else if (req.params.pg == "3") {
         book = await Books.find({}).skip(136).limit(12);
       }
-    } else if (req.params.name == "yeni-cikan-kitaplar") {
-      title = "Yeni Çıkan Kitaplar";
+    } else if (req.params.name == "cok-satan-kitaplar") {
+      title = "Çok Satan Kitaplar";
       if (req.params.pg == "1") {
         book = await Books.find({}).skip(104).limit(20);
       } else if (req.params.pg == "2") {

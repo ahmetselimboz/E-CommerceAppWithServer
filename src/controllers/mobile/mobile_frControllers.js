@@ -98,8 +98,8 @@ const getPage = async (req, res, next) => {
       title = "Felsefe";
       book = await Books.find({}).skip(46).limit(46);
 
-    } else if (req.params.name == "yeni-cikan-kitaplar") {
-      title = "Yeni Çıkan Kitaplar";
+    } else if (req.params.name == "cok-satan-kitaplar") {
+      title = "Çok Satan Kitaplar";
       book = await Books.find({}).skip(92).limit(46);
       
     } else if (req.params.name == "indirimdekiler") {
