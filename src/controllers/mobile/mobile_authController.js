@@ -434,8 +434,12 @@ const postNewGoogle = async (req, res, next) => {
 const getFavorites = async (req,res,next)=>{
   var list = [];
   if (req.params) {
-console.log(req.params.userId);
+//console.log(req.params.userId);
     const findFavor = await Favorite.findOne({ userId: req.params.userId });
+
+    
+    
+    
     if (!findFavor) {
       res.send({
         book: list

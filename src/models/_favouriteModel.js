@@ -3,9 +3,13 @@ const Schema = mongoose.Schema;
 const buySchema = new Schema({ name: String, url: String, linkPrice: String });
 
 const favoriteBookSchema = new Schema({
-  bookId: {
+  _id: {
     type: String,
     //required: true,
+    trim: true,
+  },
+  buy_links: {
+    type: [buySchema],
     trim: true,
   },
   author: {
@@ -40,10 +44,7 @@ const favoriteBookSchema = new Schema({
     type: String,
     trim: true,
   },
-  buy_links: {
-    type: [buySchema],
-    trim: true,
-  },
+
   rating: {
     type: String,
     trim: true,
