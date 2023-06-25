@@ -430,6 +430,25 @@ const postNewGoogle = async (req, res, next) => {
   return res.json(false);
 };
 
+
+const getFavorites = async (req,res,next)=>{
+  var list = [];
+  if (req.params) {
+
+    const findFavor = await Favorite.findOne({ userId: req.params.userId });
+    if (!findFavor) {
+      res.send({
+        book: list
+      })
+      
+    } else {
+      res.send({
+        book: findFavor.book
+      });
+    }
+  }
+}
+
 module.exports = {
 
   postLogin,
@@ -444,4 +463,5 @@ module.exports = {
   //getEmailConfirmed
   refreshLocalDb,
   postNewGoogle,
+  getFavorites
 };
