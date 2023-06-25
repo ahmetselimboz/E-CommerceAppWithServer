@@ -59,7 +59,7 @@ app.use(passport.session());
 //app.use(passport.authenticate('session'));
 
 
-const multerConfig = require("./src/config/multer_config");
+
 const frRouter = require("./src/routers/frontend/frRouters");
 const authRouter = require("./src/routers/frontend/authRouters");
 const mobile_frRouter = require("./src/routers/mobile/mobile_frRouters");
@@ -73,7 +73,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
  
 //   res.redirect("/");
 // });
-app.use("/image", multerConfig)
+
 app.use("/", frRouter);
 app.use("/auth", authRouter);
 app.use("/mobile", mobile_frRouter);

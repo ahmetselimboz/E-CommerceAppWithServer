@@ -5,15 +5,10 @@ const Comments = require("../../models/commentModel");
 //const moment = require('momentjs');
 const { validationResult } = require("express-validator");
 const axios = require("axios");
+const uploadFile = require("../../config/multer_config");
 
 const getHomePage = async (req, res, next) => {
-  //   var num = ["00","25","50","75","99"]
 
-  // function  getRndInteger(min, max) {
-  //   return Math.floor(Math.random() * (max - min + 1) ) + min;
-  // }
-
-  //   console.log(getRndInteger(10,70) + ","+ num[getRndInteger(0,4)]+" TL");
 
   const book = await Books.find({}).limit(21);
 
@@ -275,7 +270,7 @@ const getImages = async (req, res, next) => {
   // img.image = "";
   // img.save();
   const sonuc = await Image.find({});
-  console.log(sonuc[1]);
+ 
   res.render("image", {
     layout: false,
     image: sonuc
@@ -283,18 +278,23 @@ const getImages = async (req, res, next) => {
 };
 
 const postImages = async (req,res, next) =>{
-
   try {
-    console.log(req.body);
-    console.log(req.files);
+    //console.log(req.body);
+    //console.log(req.files);
     const { body, files } = req;
- 
+
     for (let f = 0; f < files.length; f += 1) {
       await uploadFile(files[f]);
+      if (data) {
+        const img = new Image();
+        img.fotoId = data.id;
+        img.name = data.name;
+        img.save();
+        console.log(`Uploaded file ${data.name} ${data.id}`);
+      }
     }
- 
-    console.log(body);
-    res.status(200).send("Form Submitted");
+
+    res.redirect("/images");
   } catch (f) {
     res.send(f.message);
   }
