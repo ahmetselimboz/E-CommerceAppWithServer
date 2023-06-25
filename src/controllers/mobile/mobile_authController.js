@@ -5,7 +5,7 @@ require("../../config/passport_local")(passport);
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
-
+const Favorite = require("../../models/_favouriteModel");
 
 
 const postLogin = (req, res, next) => {
@@ -434,7 +434,7 @@ const postNewGoogle = async (req, res, next) => {
 const getFavorites = async (req,res,next)=>{
   var list = [];
   if (req.params) {
-
+console.log(req.params.userId);
     const findFavor = await Favorite.findOne({ userId: req.params.userId });
     if (!findFavor) {
       res.send({
