@@ -456,7 +456,10 @@ const addFavorite = async (req, res, next) => {
     const findBook = await Books.findOne({ _id: req.body.book });
 
     if (!findBook) {
-      res.send(false);
+      res.send({
+        durum: false,
+        mesaj: "Favorilere kaydedilemedi. Lütfen tekrar deneyiniz"
+      });
     } else {
       if (!findFavor && req.body.user) {
         const newFavorite = new Favorite();
@@ -469,11 +472,17 @@ const addFavorite = async (req, res, next) => {
         newFavorite.book[value] = findBook;
         newFavorite.save();
 
-        res.send(true);
+        res.send({
+          durum: true,
+          mesaj: " "
+        });
       } else {
         for (let index = 0; index < findFavor.book.length; index++) {
           if (findFavor.book[index].id == req.body.book) {
-            res.send(true);
+            return res.send({
+              durum: false,
+              mesaj: "Eklemek istediğiniz kitap zaten favorilerinizde mevcut"
+            });
           }
         }
         if (findFavor.book.length == 0) {
@@ -485,7 +494,10 @@ const addFavorite = async (req, res, next) => {
         findFavor.book[value] = findBook;
         findFavor.save();
 
-        res.send(true);
+        res.send({
+          durum: true,
+          mesaj: " "
+        });
       }
     }
   }
