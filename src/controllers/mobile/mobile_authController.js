@@ -519,7 +519,7 @@ const deleteFavorite = async (req, res, next) => {
 };
 
 const postProfile = async (req, res, next) => {
-  //console.log(req.body);
+  console.log(req.body);
 
   if (req.body) {
     
