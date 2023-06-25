@@ -450,24 +450,31 @@ const postUpdatePassword = async (req, res, next) => {
 
 const getFavorites = async (req, res, next) => {
   if (req.user.user) {
-
+    var dizi = [];
     const findFavor = await Favorite.findOne({ userId: req.user.user.id });
 
-
-   
-    if (!findFavor) {
-      res.render("favorites", {
-        book: 0,
-        user: req.user,
-        layout: "./layout/authorized.ejs",
-      });
-    } else {
-      res.render("favorites", {
-        book: findFavor.book,
-        user: req.user,
-        layout: "./layout/authorized.ejs",
-      });
+   if(!findFavor){
+    res.render("favorites", {
+      book: 0,
+      user: req.user,
+      layout: "./layout/authorized.ejs",
+    });
+   }else{
+    for (let index = 0; index < findFavor.book.length; index++) {
+      const book = await Books.findById(findFavor.book[index].id);
+      dizi.push(book);
     }
+    //console.log(dizi);
+    
+
+    res.render("favorites", {
+      book: dizi,
+      user: req.user,
+      layout: "./layout/authorized.ejs",
+    });
+   }
+   
+
   }
 };
 
@@ -490,7 +497,7 @@ const addFavorite = async (req, res, next) => {
           var value = newFavorite.book.length + 1;
         }
         newFavorite.userId = req.body.user;
-        newFavorite.book[value] = findBook;
+        newFavorite.book[value] = findBook.id;
         newFavorite.save();
         req.flash("success_message", [
           { msg: "Kitap favorilerinize kaydedildi" },
@@ -511,7 +518,7 @@ const addFavorite = async (req, res, next) => {
           var value = findFavor.book.length;
         }
 
-        findFavor.book[value] = findBook;
+        findFavor.book[value] = findBook.id;
         findFavor.save();
         req.flash("success_message", [
           { msg: "Kitap favorilerinize kaydedildi" },

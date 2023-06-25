@@ -431,19 +431,20 @@ const postNewGoogle = async (req, res, next) => {
 const getFavorites = async (req, res, next) => {
   var list = [];
   if (req.params) {
-    //console.log(req.params.userId);
-   
-
+    var dizi = [];
     const findFavor = await Favorite.findOne({ userId: req.params.userId });
-   
-
     if (!findFavor) {
       res.send({
         book: list,
       });
     } else {
+      for (let index = 0; index < findFavor.book.length; index++) {
+        const book = await Book.findById(findFavor.book[index].id);
+        dizi.push(book);
+      }
+
       res.send({
-        book: findFavor.book,
+        book: dizi,
       });
     }
   }
@@ -451,14 +452,14 @@ const getFavorites = async (req, res, next) => {
 
 const addFavorite = async (req, res, next) => {
   if (req.body) {
-    console.log(req.body);
+    //console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
     const findBook = await Book.findOne({ _id: req.body.book });
 
     if (!findBook) {
       res.send({
         durum: false,
-        mesaj: "Favorilere kaydedilemedi. Lütfen tekrar deneyiniz"
+        mesaj: "Favorilere kaydedilemedi. Lütfen tekrar deneyiniz",
       });
     } else {
       if (!findFavor && req.body.user) {
@@ -469,20 +470,19 @@ const addFavorite = async (req, res, next) => {
           var value = newFavorite.book.length + 1;
         }
         newFavorite.userId = req.body.user;
-        newFavorite.book[value] = findBook;
+        newFavorite.book[value] = findBook.id;
         newFavorite.save();
 
         res.send({
           durum: true,
-          mesaj: " "
+          mesaj: " ",
         });
-        
       } else {
         for (let index = 0; index < findFavor.book.length; index++) {
           if (findFavor.book[index].id == req.body.book) {
             return res.send({
               durum: false,
-              mesaj: "Eklemek istediğiniz kitap zaten favorilerinizde mevcut"
+              mesaj: "Eklemek istediğiniz kitap zaten favorilerinizde mevcut",
             });
           }
         }
@@ -492,18 +492,17 @@ const addFavorite = async (req, res, next) => {
           var value = findFavor.book.length;
         }
 
-        findFavor.book[value] = findBook;
+        findFavor.book[value] = findBook.id;
         findFavor.save();
 
         res.send({
           durum: true,
-          mesaj: " "
+          mesaj: " ",
         });
       }
     }
   }
 };
-
 
 const deleteFavorite = async (req, res, next) => {
   //console.log(req.params);
@@ -513,9 +512,9 @@ const deleteFavorite = async (req, res, next) => {
       { userId: req.params.userId },
       { $pull: { book: { _id: req.params.bookId } } }
     );
-    res.send(true)
-  }else{
-    res.send(false)
+    res.send(true);
+  } else {
+    res.send(false);
   }
 };
 
@@ -534,5 +533,5 @@ module.exports = {
   postNewGoogle,
   getFavorites,
   addFavorite,
-  deleteFavorite
+  deleteFavorite,
 };

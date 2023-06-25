@@ -8,64 +8,64 @@ const favoriteBookSchema = new Schema({
     //required: true,
     trim: true,
   },
-  buy_links: {
-    type: [buySchema],
-    trim: true,
-  },
-  author: {
-    type: String,
-    trim: true,
-  },
-  book_image: {
-    type: String,
-    trim: true,
-  },
-  book_image_width: {
-    type: String,
-    trim: true,
-  },
-  book_image_height: {
-    type: String,
-    trim: true,
-  },
-  description: {
-    type: String,
-    trim: true,
-  },
-  price: {
-    type: String,
-    trim: true,
-  },
-  publisher: {
-    type: String,
-    trim: true,
-  },
-  title: {
-    type: String,
-    trim: true,
-  },
+  // buy_links: {
+  //   type: [buySchema],
+  //   trim: true,
+  // },
+  // author: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // book_image: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // book_image_width: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // book_image_height: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // description: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // price: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // publisher: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // title: {
+  //   type: String,
+  //   trim: true,
+  // },
 
-  rating: {
-    type: String,
-    trim: true,
-  },
-  createdAt: {
-    type: String,
-    trim: true,
-    default: " ",
-  },
+  // rating: {
+  //   type: String,
+  //   trim: true,
+  // },
+  // createdAt: {
+  //   type: String,
+  //   trim: true,
+  //   default: " ",
+  // },
 
-  updatedAt: {
-    type: String,
-    trim: true,
-    default: " ",
-  },
+  // updatedAt: {
+  //   type: String,
+  //   trim: true,
+  //   default: " ",
+  // },
 
-  __v: {
-    type: Number,
-    trim: true,
-    default: " ",
-  },
+  // __v: {
+  //   type: Number,
+  //   trim: true,
+  //   default: " ",
+  // },
 });
 const favoriteSchema = new Schema(
   {
