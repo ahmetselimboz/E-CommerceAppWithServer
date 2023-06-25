@@ -1,5 +1,6 @@
 const Books = require("../../models/bookModel");
 const Comments = require("../../models/commentModel");
+const bookOfDayFunc = require("../../config/bookOfDayConfig");
 
 const getMobileHomepage = async (req, res, next) => {
   if (req.session) {
@@ -68,40 +69,32 @@ const postNewComment = (req, res, next) => {
 const getPage = async (req, res, next) => {
   var title;
   var book;
- 
+
   if (req.params) {
     if (req.params.name == "edebiyat") {
       title = "Edebiyat";
       book = await Books.find({}).skip(0).limit(46);
-   
     } else if (req.params.name == "bilim-kurgu") {
       title = "Bilim Kurgu";
       book = await Books.find({}).skip(46).limit(46);
-      
     } else if (req.params.name == "cocuk") {
       title = "Çocuk";
       book = await Books.find({}).skip(92).limit(46);
-   
     } else if (req.params.name == "kisisel-gelisim") {
       title = "Kişisel Gelişim";
       book = await Books.find({}).skip(148).limit(46);
-   
     } else if (req.params.name == "tarih") {
       title = "Tarih";
       book = await Books.find({}).skip(194).limit(46);
-
     } else if (req.params.name == "psikoloji") {
       title = "Psikoloji";
       book = await Books.find({}).skip(0).limit(46);
-    
     } else if (req.params.name == "felsefe") {
       title = "Felsefe";
       book = await Books.find({}).skip(46).limit(46);
-
     } else if (req.params.name == "cok-satan-kitaplar") {
       title = "Çok Satan Kitaplar";
       book = await Books.find({}).skip(92).limit(46);
-      
     } else if (req.params.name == "indirimdekiler") {
       title = "İndirimdekiler";
       book = await Books.find({}).skip(148).limit(46);
@@ -110,19 +103,30 @@ const getPage = async (req, res, next) => {
     if (title && book) {
       res.send({
         title: title,
-        book: book
-      })
-    }else{
+        book: book,
+      });
+    } else {
       res.send({
-        status: false
-      })
+        status: false,
+      });
     }
   }
+};
+
+const getBookOfDay = async (req, res, next) => {
+  const bookday = await bookOfDayFunc();
+
+  const book = await Books.findById(bookday.dayBookId);
+
+  res.send({
+    book: [book],
+  });
 };
 
 module.exports = {
   getMobileHomepage,
   postComment,
   postNewComment,
-  getPage
+  getPage,
+  getBookOfDay,
 };

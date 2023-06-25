@@ -1,11 +1,12 @@
-const { Logger } = require("mongodb");
 const Books = require("../../models/bookModel");
 const Image = require("../../models/_imagesModel");
 const Comments = require("../../models/commentModel");
-//const moment = require('momentjs');
+
 const { validationResult } = require("express-validator");
-const axios = require("axios");
+
 const uploadFile = require("../../config/multer_config");
+const bookOfDayFunc = require("../../config/bookOfDayConfig");
+
 
 const getHomePage = async (req, res, next) => {
 
@@ -53,7 +54,6 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
-
 
   if (req.user) {
     res.render("details", {
@@ -266,19 +266,18 @@ const getPage = async (req, res, next) => {
 };
 
 const getImages = async (req, res, next) => {
-
   // const img = new Image();
   // img.image = "";
   // img.save();
   const sonuc = await Image.find({});
- 
+
   res.render("image", {
     layout: false,
-    image: sonuc
-  })
+    image: sonuc,
+  });
 };
 
-const postImages = async (req,res, next) =>{
+const postImages = async (req, res, next) => {
   try {
     //console.log(req.body);
     //console.log(req.files);
@@ -299,7 +298,13 @@ const postImages = async (req,res, next) =>{
   } catch (f) {
     res.send(f.message);
   }
-}
+};
+
+const getBookOfDay = async (req, res, next) => {
+  const bookday = await bookOfDayFunc();
+  
+  res.redirect("/details/" + bookday.dayBookId);
+};
 
 module.exports = {
   getHomePage,
@@ -308,5 +313,6 @@ module.exports = {
   getAllComments,
   getPage,
   getImages,
-  postImages
+  postImages,
+  getBookOfDay,
 };

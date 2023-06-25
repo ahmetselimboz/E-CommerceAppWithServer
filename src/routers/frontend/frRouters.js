@@ -18,4 +18,6 @@ router.get('/comment/:id', frontController.getAllComments);
 
 router.get("/page/:name/:pg", frontController.getPage);
 
+router.get("/book-of-the-day", frontController.getBookOfDay)
+
 module.exports = router;

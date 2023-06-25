@@ -9,4 +9,6 @@ router.post('/newcomment', mobile_frController.postNewComment);
 
 router.get("/page/:name", mobile_frController.getPage);
 
+router.get("/book-of-the-day", mobile_frController.getBookOfDay)
+
 module.exports = router;
