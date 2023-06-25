@@ -30,5 +30,11 @@ router.get("/deletefavorite/:userId/:bookId",mobile_authController.deleteFavorit
 router.post("/addfavorite",mobile_authController.addFavorite);
 
 
+//router.get("/profile", mobile_authController.getProfile);
+router.post("/profile",mobile_authController.postProfile);
+
+//router.get("/updatePassword",mobile_authController.getUpdatePassword);
+//router.post("/updatePassword",mobile_authController.postUpdatePassword);
+
 
 module.exports = router;

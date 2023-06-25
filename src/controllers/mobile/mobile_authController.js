@@ -518,6 +518,29 @@ const deleteFavorite = async (req, res, next) => {
   }
 };
 
+const postProfile = async (req, res, next) => {
+  //console.log(req.body);
+
+  if (req.body) {
+    
+      await User.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        surname: req.body.surname,
+      });
+      
+      res.send({
+        durum: true,
+        mesaj: "Profil bilgileriniz güncellendi"
+      })
+    
+  } else {
+    res.send({
+      durum: false,
+      mesaj: "Bir hata oluştu lütfen daha sonra tekrar deneyiniz"
+    })
+  }
+};
+
 module.exports = {
   postLogin,
 
@@ -534,4 +557,5 @@ module.exports = {
   getFavorites,
   addFavorite,
   deleteFavorite,
+  postProfile
 };
