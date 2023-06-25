@@ -62,7 +62,7 @@ const favoriteBookSchema = new Schema({
   },
 
   __v: {
-    type: String,
+    type: Number,
     trim: true,
     default: " ",
   },
