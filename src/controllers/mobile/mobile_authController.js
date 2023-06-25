@@ -453,7 +453,7 @@ const addFavorite = async (req, res, next) => {
   if (req.body) {
     console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
-    const findBook = await Books.findOne({ _id: req.body.book });
+    const findBook = await Book.findOne({ _id: req.body.book });
 
     if (!findBook) {
       res.send({
@@ -476,6 +476,7 @@ const addFavorite = async (req, res, next) => {
           durum: true,
           mesaj: " "
         });
+        
       } else {
         for (let index = 0; index < findFavor.book.length; index++) {
           if (findFavor.book[index].id == req.body.book) {

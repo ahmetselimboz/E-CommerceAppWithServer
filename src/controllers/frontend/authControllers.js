@@ -452,16 +452,9 @@ const getFavorites = async (req, res, next) => {
   if (req.user.user) {
 
     const findFavor = await Favorite.findOne({ userId: req.user.user.id });
-    // console.log(findFavor);
-    // for (let index = 0; index < findFavor.book.length; index++) {
-    //   console.log("Kitabin id si: " + findFavor.book[index].id);
-    //   const book = await Books.findById(findFavor.book[index].id);
-    
-    //   await Favorite.findByIdAndUpdate(req.params.userId, {rating: book.rating});
-    // }
 
-    //  const findFavore = await Favorite.findOne({ userId: req.params.userId });
-    //  console.log(findFavore);
+
+   
     if (!findFavor) {
       res.render("favorites", {
         book: 0,

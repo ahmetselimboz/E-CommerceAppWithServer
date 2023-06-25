@@ -53,6 +53,7 @@ const getDetails = async (req, res, next) => {
   roundRat = Math.round(rating);
 
   await Books.findByIdAndUpdate(id, { rating: rating.toString() });
+  
 
   if (req.user) {
     res.render("details", {
