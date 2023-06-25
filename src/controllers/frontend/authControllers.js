@@ -470,7 +470,7 @@ const getFavorites = async (req, res, next) => {
 
 const addFavorite = async (req, res, next) => {
   if (req.body) {
-    //console.log(req.body);
+    console.log(req.body);
     const findFavor = await Favorite.findOne({ userId: req.body.user });
     const findBook = await Books.findOne({ _id: req.body.book });
 

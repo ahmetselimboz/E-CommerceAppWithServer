@@ -449,6 +449,51 @@ console.log(req.params.userId);
   }
 }
 
+const addFavorite = async (req, res, next) => {
+  if (req.body) {
+    console.log(req.body);
+    const findFavor = await Favorite.findOne({ userId: req.body.user });
+    const findBook = await Books.findOne({ _id: req.body.book });
+
+    if (!findBook) {
+      
+      res.send(false);
+
+    } else {
+      if (!findFavor && req.body.user) {
+        const newFavorite = new Favorite();
+        if (newFavorite.book.length == 0) {
+          var value = 0;
+        } else {
+          var value = newFavorite.book.length + 1;
+        }
+        newFavorite.userId = req.body.user;
+        newFavorite.book[value] = findBook;
+        newFavorite.save();
+       
+        res.send(true);
+      } else {
+        for (let index = 0; index < findFavor.book.length; index++) {
+          if (findFavor.book[index].id == req.body.book) {
+          
+            res.send(true);
+          }
+        }
+        if (findFavor.book.length == 0) {
+          var value = 0;
+        } else {
+          var value = findFavor.book.length;
+        }
+
+        findFavor.book[value] = findBook;
+        findFavor.save();
+        
+        res.send(true);
+      }
+    }
+  }
+};
+
 module.exports = {
 
   postLogin,
@@ -463,5 +508,6 @@ module.exports = {
   //getEmailConfirmed
   refreshLocalDb,
   postNewGoogle,
-  getFavorites
+  getFavorites,
+  addFavorite
 };

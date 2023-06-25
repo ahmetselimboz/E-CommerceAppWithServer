@@ -27,7 +27,7 @@ router.post("/google", mobile_authController.postNewGoogle)
 
 router.get("/favorites/:userId", mobile_authController.getFavorites);
 // router.get("/deletefavorite/:userId/:bookId",isAuthanticated.yes, authController.deleteFavorite);
-// router.post("/addfavorite",isAuthanticated.yes, authController.addFavorite);
+ router.post("/addfavorite",mobile_authController.addFavorite);
 
 
 
