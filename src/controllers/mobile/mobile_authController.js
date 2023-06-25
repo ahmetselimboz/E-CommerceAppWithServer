@@ -6,63 +6,63 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const jsonwebtoken = require("jsonwebtoken");
 const Favorite = require("../../models/_favouriteModel");
-
+const Book = require("../../models/bookModel");
 
 const postLogin = (req, res, next) => {
   console.log("geldim");
   try {
-      passport.authenticate("local", function (err, user, info) {
-        //console.log(req);
-        //console.log(user);
-        if (err) {
-          //console.log("cp1");
-          //console.log(err);
-        }
-        if (!user) {
-          req.session.destroy();
-        }
+    passport.authenticate("local", function (err, user, info) {
+      //console.log(req);
+      //console.log(user);
+      if (err) {
+        //console.log("cp1");
+        //console.log(err);
+      }
+      if (!user) {
+        req.session.destroy();
+      }
 
-        console.log(user);
-        if (!user) {
-          console.log("geldimfalse");
-          var status = false;
-          var truemesaj = "";
+      console.log(user);
+      if (!user) {
+        console.log("geldimfalse");
+        var status = false;
+        var truemesaj = "";
 
-          var falseUser = {
-            _id: "",
-            name: "",
-            surname: "",
-            email: "",
-            emailIsActive: false,
-            password: "",
-            createdAt: "",
-            updatedAt: "",
-            __v: 0,
-          };
+        var falseUser = {
+          _id: "",
+          name: "",
+          surname: "",
+          email: "",
+          emailIsActive: false,
+          password: "",
+          createdAt: "",
+          updatedAt: "",
+          __v: 0,
+        };
 
-          res.json({
-            durum: status,
-            user: falseUser,
-            mesaj: info.message,
-          });
-          /*  if(req.session){
+        res.json({
+          durum: status,
+          user: falseUser,
+          mesaj: info.message,
+        });
+        /*  if(req.session){
             req.session.destroy();
           }*/
-        }
+      }
 
-        req.logIn(user, function (err) {
-          console.log("cp1");
-          if (err) {
-            //console.log("cp3");
-            //console.log(err);
-          } else {
-            console.log("geldimtrue");
-            var status = true;
-            var truemesaj = " ";
-            //console.log(res.locals.login_error[0] );
-            res.json({
-              durum: status,
-              user: req.user,
+      req.logIn(user, function (err) {
+        console.log("cp1");
+        if (err) {
+          //console.log("cp3");
+          //console.log(err);
+        } else {
+          console.log("geldimtrue");
+          var status = true;
+          var truemesaj = " ";
+          //console.log(res.locals.login_error[0] );
+          res.json({
+            durum: status,
+            user: req.user,
             mesaj: truemesaj,
           });
           if (req.session) {
@@ -71,10 +71,8 @@ const postLogin = (req, res, next) => {
         }
       });
     })(req, res, next);
-
   } catch (error) {}
 };
-
 
 const postRegister = async (req, res, next) => {
   if (req.session) {
@@ -430,28 +428,26 @@ const postNewGoogle = async (req, res, next) => {
   return res.json(false);
 };
 
-
-const getFavorites = async (req,res,next)=>{
+const getFavorites = async (req, res, next) => {
   var list = [];
   if (req.params) {
-//console.log(req.params.userId);
-    const findFavor = await Favorite.findOne({ userId: req.params.userId });
+    //console.log(req.params.userId);
+   
 
-    
-    
-    
+    const findFavor = await Favorite.findOne({ userId: req.params.userId });
+   
+
     if (!findFavor) {
       res.send({
-        book: list
-      })
-      
+        book: list,
+      });
     } else {
       res.send({
-        book: findFavor.book
+        book: findFavore.book,
       });
     }
   }
-}
+};
 
 const addFavorite = async (req, res, next) => {
   if (req.body) {
@@ -460,9 +456,7 @@ const addFavorite = async (req, res, next) => {
     const findBook = await Books.findOne({ _id: req.body.book });
 
     if (!findBook) {
-      
       res.send(false);
-
     } else {
       if (!findFavor && req.body.user) {
         const newFavorite = new Favorite();
@@ -474,12 +468,11 @@ const addFavorite = async (req, res, next) => {
         newFavorite.userId = req.body.user;
         newFavorite.book[value] = findBook;
         newFavorite.save();
-       
+
         res.send(true);
       } else {
         for (let index = 0; index < findFavor.book.length; index++) {
           if (findFavor.book[index].id == req.body.book) {
-          
             res.send(true);
           }
         }
@@ -491,17 +484,31 @@ const addFavorite = async (req, res, next) => {
 
         findFavor.book[value] = findBook;
         findFavor.save();
-        
+
         res.send(true);
       }
     }
   }
 };
 
-module.exports = {
 
+const deleteFavorite = async (req, res, next) => {
+  //console.log(req.params);
+
+  if (req.params) {
+    await Favorite.updateOne(
+      { userId: req.params.userId },
+      { $pull: { book: { _id: req.params.bookId } } }
+    );
+    res.send(true)
+  }else{
+    res.send(false)
+  }
+};
+
+module.exports = {
   postLogin,
- 
+
   postRegister,
   //emailVerify,
   getLogOut,
@@ -513,5 +520,6 @@ module.exports = {
   refreshLocalDb,
   postNewGoogle,
   getFavorites,
-  addFavorite
+  addFavorite,
+  deleteFavorite
 };
