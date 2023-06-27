@@ -44,6 +44,7 @@ const postLogin = (req, res, next) => {
           durum: status,
           user: falseUser,
           mesaj: info.message,
+          mailgiris: false
         });
         /*  if(req.session){
             req.session.destroy();
@@ -64,6 +65,7 @@ const postLogin = (req, res, next) => {
             durum: status,
             user: req.user,
             mesaj: truemesaj,
+            mailgiris: false
           });
           if (req.session) {
             req.session.destroy();
