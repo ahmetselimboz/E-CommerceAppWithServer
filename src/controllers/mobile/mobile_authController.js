@@ -650,6 +650,8 @@ const postUpdatePassword = async (req, res, next) => {
   }
 };
 
+
+
 module.exports = {
   postLogin,
   postRegister,

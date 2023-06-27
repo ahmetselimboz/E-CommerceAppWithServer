@@ -124,10 +124,31 @@ const getBookOfDay = async (req, res, next) => {
   });
 };
 
+const getSearch = async (req, res, next) => {
+  if (req.params) {
+    console.log(req.params);
+    const _findBook = await Books.find({ title: { $regex: req.params.name, $options:"i" } });
+
+    if (_findBook) {
+      res.send({
+        title: "Arama Sonuçları",
+        book: _findBook,
+      });
+    } else {
+      res.send({
+        status: false,
+      });
+    }
+
+
+  }
+};
+
 module.exports = {
   getMobileHomepage,
   postComment,
   postNewComment,
   getPage,
   getBookOfDay,
+  getSearch
 };

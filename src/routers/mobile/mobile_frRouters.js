@@ -11,4 +11,6 @@ router.get("/page/:name", mobile_frController.getPage);
 
 router.get("/book-of-the-day", mobile_frController.getBookOfDay)
 
+router.get("/search/:name", mobile_frController.getSearch)
+
 module.exports = router;

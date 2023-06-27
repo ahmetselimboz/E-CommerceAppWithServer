@@ -7,10 +7,7 @@ const { validationResult } = require("express-validator");
 const uploadFile = require("../../config/multer_config");
 const bookOfDayFunc = require("../../config/bookOfDayConfig");
 
-
 const getHomePage = async (req, res, next) => {
-  console.log(req.user);
-
   const book = await Books.find({}).limit(21);
 
   if (req.user) {
@@ -302,8 +299,39 @@ const postImages = async (req, res, next) => {
 
 const getBookOfDay = async (req, res, next) => {
   const bookday = await bookOfDayFunc();
-  
+
   res.redirect("/details/" + bookday.dayBookId);
+};
+
+const postSearch = async (req, res, next) => {
+  if (req.body) {
+    console.log(req.body);
+    const _findBook = await Books.find({ title: { $regex: req.body.search, $options:"i" } });
+
+   
+
+
+    if (req.user) {
+      res.render("defaultPage", {
+        title: "Arama Sonuçları",
+        params: {pg:"0"},
+        user: req.user,
+        api: _findBook,
+        layout: "./layout/authorized.ejs",
+      });
+    } else {
+      res.render("defaultPage", {
+        title: "Arama Sonuçları",
+        api: _findBook,
+        params: {pg:"0"},
+        layout: "./layout/nonAuthorized.ejs",
+      });
+    }
+
+
+
+
+  }
 };
 
 module.exports = {
@@ -315,4 +343,5 @@ module.exports = {
   getImages,
   postImages,
   getBookOfDay,
+  postSearch,
 };

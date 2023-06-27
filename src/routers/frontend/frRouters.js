@@ -20,4 +20,6 @@ router.get("/page/:name/:pg", frontController.getPage);
 
 router.get("/book-of-the-day", frontController.getBookOfDay)
 
+router.post("/search", frontController.postSearch)
+
 module.exports = router;
