@@ -409,7 +409,7 @@ const getGoogleInfo = async (req, res, next) => {
     if (_user) {
       res.json({
         durum: true,
-        user: {user:_user},
+        user: { user: _user },
         mesaj: truemesaj,
         mailgiris: false,
       });
@@ -428,7 +428,7 @@ const getGoogleInfo = async (req, res, next) => {
 
       res.json({
         durum: false,
-        user: {user:falseUser},
+        user: { user: falseUser },
         mesaj: truemesaj,
         mailgiris: false,
       });
@@ -585,17 +585,60 @@ const postProfile = async (req, res, next) => {
   }
 };
 
+const postUpdatePassword = async (req, res, next) => {
+  if (req.body) {
+    try {
+      const _findUser = await User.findOne({ email: req.body.email });
+
+      if (!_findUser) {
+        res.send({
+          durum: false,
+          password: "",
+          mesaj: "Böyle bir kullanıcı kaydı bulunamadı",
+        });
+      } else {
+        const checkPassword = await bcrypt.compare(
+          req.body.oldpass,
+          _findUser.password
+        );
+        if (!checkPassword) {
+          res.send({
+            durum: false,
+            password: "",
+            mesaj: "Şifrenizin doğru olduğundan emin olunuz",
+          });
+        } else {
+          const sonuc = await User.findOneAndUpdate(
+            { email: req.body.email },
+            {
+              password: await bcrypt.hash(req.body.newpass, 10),
+            }
+          );
+
+          res.send({
+            durum: true,
+            password: sonuc.password,
+            mesaj: "Şifre Güncellendi",
+          });
+        }
+      }
+    } catch (error) {}
+  } else {
+    res.send({
+      durum: false,
+       password: "",
+      mesaj: "Bir hata oluştu. Lütfen tekrar deneyiniz",
+    });
+  }
+};
+
 module.exports = {
   postLogin,
-
   postRegister,
-  //emailVerify,
   getLogOut,
-  //getForgetPassword,
   postForgetPassword,
   getNewPassword,
   postNewPassword,
-  //getEmailConfirmed
   refreshLocalDb,
   postNewGoogle,
   getFavorites,
@@ -603,4 +646,5 @@ module.exports = {
   deleteFavorite,
   postProfile,
   getGoogleInfo,
+  postUpdatePassword,
 };

@@ -35,7 +35,7 @@ router.post("/addfavorite",mobile_authController.addFavorite);
 router.post("/profile",mobile_authController.postProfile);
 
 //router.get("/updatePassword",mobile_authController.getUpdatePassword);
-//router.post("/updatePassword",mobile_authController.postUpdatePassword);
+router.post("/updatePassword",mobile_authController.postUpdatePassword);
 
 
 module.exports = router;
