@@ -44,7 +44,7 @@ const postLogin = (req, res, next) => {
 
         res.json({
           durum: status,
-          user: falseUser,
+          user: {user: falseUser},
           mesaj: info.message,
           mailgiris: true,
         });
