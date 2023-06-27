@@ -40,6 +40,8 @@ const postLogin = (req, res, next) => {
           __v: 0,
         };
 
+        console.log(info.message);
+
         res.json({
           durum: status,
           user: falseUser,
