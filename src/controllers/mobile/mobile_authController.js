@@ -78,6 +78,14 @@ const postLogin = (req, res, next) => {
   } catch (error) {}
 };
 
+
+//$2a$10$h3q1Iuokby7L1M3w0T3gle08NuoJhyR5tpTmQOaTvne8B3hqnuWRO
+
+
+//$2a$10$EaWQpT30H6vragSMofrcFO4kq1blsu5CABr5LGKR2yRISjwj18yPu
+
+
+
 const postRegister = async (req, res, next) => {
   if (req.session) {
     req.session.destroy();
@@ -619,6 +627,7 @@ const postUpdatePassword = async (req, res, next) => {
               password: await bcrypt.hash(req.body.newpass, 10),
             }
           );
+          console.log(sonuc);
           console.log("Şifre Güncellendi");
           res.send({
             durum: true,
