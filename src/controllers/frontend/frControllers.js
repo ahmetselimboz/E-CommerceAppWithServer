@@ -306,31 +306,41 @@ const getBookOfDay = async (req, res, next) => {
 const postSearch = async (req, res, next) => {
   if (req.body) {
     console.log(req.body);
-    const _findBook = await Books.find({ title: { $regex: req.body.search, $options:"i" } });
+    const _findBook = await Books.find({
+      title: { $regex: req.body.search, $options: "i" },
+    });
 
-   
-
-
-    if (req.user) {
+    if (req.user && _findBook) {
       res.render("defaultPage", {
         title: "Arama Sonuçları",
-        params: {pg:"0"},
+        params: { pg: "0" },
         user: req.user,
         api: _findBook,
         layout: "./layout/authorized.ejs",
       });
-    } else {
+    } else if (!req.user && _findBook) {
       res.render("defaultPage", {
         title: "Arama Sonuçları",
         api: _findBook,
-        params: {pg:"0"},
+        params: { pg: "0" },
+        layout: "./layout/nonAuthorized.ejs",
+      });
+    } else if (req.user && !_findBook) {
+      res.render("defaultPage", {
+        title: "Arama Sonuçları",
+        api: 0,
+        user: req.user,
+        params: { pg: "0" },
+        layout: "./layout/nonAuthorized.ejs",
+      });
+    } else if (!req.user && !_findBook) {
+      res.render("defaultPage", {
+        title: "Arama Sonuçları",
+        api: 0,
+        params: { pg: "0" },
         layout: "./layout/nonAuthorized.ejs",
       });
     }
-
-
-
-
   }
 };
 
