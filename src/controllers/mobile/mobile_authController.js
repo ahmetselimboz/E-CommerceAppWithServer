@@ -621,12 +621,15 @@ const postUpdatePassword = async (req, res, next) => {
             mesaj: "Şifrenizin doğru olduğundan emin olunuz",
           });
         } else {
-          const sonuc = await User.findOneAndUpdate(
+           await User.findOneAndUpdate(
             { email: req.body.email },
             {
               password: await bcrypt.hash(req.body.newpass, 10),
             }
           );
+
+          const sonuc = await  User.findOne({email: req.body.email});
+
           console.log(sonuc);
           console.log("Şifre Güncellendi");
           res.send({
