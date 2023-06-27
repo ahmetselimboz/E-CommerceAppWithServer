@@ -44,7 +44,7 @@ const postLogin = (req, res, next) => {
           durum: status,
           user: falseUser,
           mesaj: info.message,
-          mailgiris: true
+          mailgiris: true,
         });
         /*  if(req.session){
             req.session.destroy();
@@ -65,7 +65,7 @@ const postLogin = (req, res, next) => {
             durum: status,
             user: req.user,
             mesaj: truemesaj,
-            mailgiris: true
+            mailgiris: true,
           });
           if (req.session) {
             req.session.destroy();
@@ -397,6 +397,47 @@ const refreshLocalDb = async (req, res, next) => {
   }
 };
 
+const getGoogleInfo = async (req, res, next) => {
+  if (req.session) {
+    req.session.destroy();
+  }
+  if (req.body.email) {
+    const _user = await User.findOne({ email: req.body.email });
+
+    var truemesaj = "";
+
+    if (_user) {
+      res.json({
+        durum: true,
+        user: _user,
+        mesaj: truemesaj,
+        mailgiris: false,
+      });
+    } else {
+      var falseUser = {
+        _id: "",
+        name: "",
+        surname: "",
+        email: "",
+        emailIsActive: false,
+        password: "",
+        createdAt: "",
+        updatedAt: "",
+        __v: 0,
+      };
+
+      res.json({
+        durum: false,
+        user: falseUser,
+        mesaj: truemesaj,
+        mailgiris: false,
+      });
+    }
+  } else {
+    console.log("Request de email yok");
+  }
+};
+
 const postNewGoogle = async (req, res, next) => {
   console.log(req.body);
 
@@ -524,22 +565,23 @@ const postProfile = async (req, res, next) => {
   console.log(req.body);
 
   if (req.body) {
-     
-      await User.findOneAndUpdate({email:req.body.email}, {
+    await User.findOneAndUpdate(
+      { email: req.body.email },
+      {
         name: req.body.name,
         surname: req.body.surname,
-      });
-      
-      res.send({
-        durum: true,
-        mesaj: "Profil bilgileriniz güncellendi"
-      })
-    
+      }
+    );
+
+    res.send({
+      durum: true,
+      mesaj: "Profil bilgileriniz güncellendi",
+    });
   } else {
     res.send({
       durum: false,
-      mesaj: "Bir hata oluştu lütfen daha sonra tekrar deneyiniz"
-    })
+      mesaj: "Bir hata oluştu lütfen daha sonra tekrar deneyiniz",
+    });
   }
 };
 
@@ -559,5 +601,6 @@ module.exports = {
   getFavorites,
   addFavorite,
   deleteFavorite,
-  postProfile
+  postProfile,
+  getGoogleInfo,
 };

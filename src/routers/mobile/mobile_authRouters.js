@@ -8,6 +8,7 @@ const passport = require("../../config/google_auth");
 router.post("/login", mobile_authController.postLogin);
 
 router.post("/localDb", mobile_authController.refreshLocalDb);
+router.post("/getGoogleInfo", mobile_authController.getGoogleInfo);
 
 
 router.post("/register", mobile_authController.postRegister);
