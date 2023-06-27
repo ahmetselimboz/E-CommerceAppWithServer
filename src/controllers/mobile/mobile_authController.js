@@ -524,8 +524,8 @@ const postProfile = async (req, res, next) => {
   console.log(req.body);
 
   if (req.body) {
-    
-      await User.findByIdAndUpdate(req.body.id, {
+     
+      await User.findOneAndUpdate({email:req.body.email}, {
         name: req.body.name,
         surname: req.body.surname,
       });
