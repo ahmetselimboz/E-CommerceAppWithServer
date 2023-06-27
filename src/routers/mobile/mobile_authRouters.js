@@ -38,4 +38,8 @@ router.post("/profile",mobile_authController.postProfile);
 router.post("/updatePassword",mobile_authController.postUpdatePassword);
 
 
+//yol + /mobile/auth/updatePassword
+
+
+
 module.exports = router;

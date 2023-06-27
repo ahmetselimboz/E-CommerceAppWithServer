@@ -587,10 +587,12 @@ const postProfile = async (req, res, next) => {
 
 const postUpdatePassword = async (req, res, next) => {
   if (req.body) {
+    console.log(req.body);
     try {
       const _findUser = await User.findOne({ email: req.body.email });
 
       if (!_findUser) {
+        console.log("Böyle bir kullanıcı kaydı bulunamadı");
         res.send({
           durum: false,
           password: "",
@@ -602,6 +604,7 @@ const postUpdatePassword = async (req, res, next) => {
           _findUser.password
         );
         if (!checkPassword) {
+          console.log("Şifrenizin doğru olduğundan emin olunuz");
           res.send({
             durum: false,
             password: "",
@@ -614,7 +617,7 @@ const postUpdatePassword = async (req, res, next) => {
               password: await bcrypt.hash(req.body.newpass, 10),
             }
           );
-
+          console.log("Şifre Güncellendi");
           res.send({
             durum: true,
             password: sonuc.password,
@@ -624,6 +627,7 @@ const postUpdatePassword = async (req, res, next) => {
       }
     } catch (error) {}
   } else {
+    console.log("Bir hata oluştu. Lütfen tekrar deneyiniz");
     res.send({
       durum: false,
        password: "",
