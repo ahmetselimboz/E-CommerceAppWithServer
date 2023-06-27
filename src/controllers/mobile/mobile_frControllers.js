@@ -3,6 +3,7 @@ const Comments = require("../../models/commentModel");
 const bookOfDayFunc = require("../../config/bookOfDayConfig");
 
 const getMobileHomepage = async (req, res, next) => {
+
   if (req.session) {
     req.session.destroy();
   }

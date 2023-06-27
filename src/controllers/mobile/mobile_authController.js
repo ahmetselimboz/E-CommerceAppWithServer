@@ -409,7 +409,7 @@ const getGoogleInfo = async (req, res, next) => {
     if (_user) {
       res.json({
         durum: true,
-        user: _user,
+        user: {user:_user},
         mesaj: truemesaj,
         mailgiris: false,
       });
@@ -428,7 +428,7 @@ const getGoogleInfo = async (req, res, next) => {
 
       res.json({
         durum: false,
-        user: falseUser,
+        user: {user:falseUser},
         mesaj: truemesaj,
         mailgiris: false,
       });

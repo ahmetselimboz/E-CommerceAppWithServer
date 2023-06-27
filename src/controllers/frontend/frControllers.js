@@ -9,7 +9,7 @@ const bookOfDayFunc = require("../../config/bookOfDayConfig");
 
 
 const getHomePage = async (req, res, next) => {
-
+  console.log(req.user);
 
   const book = await Books.find({}).limit(21);
 
