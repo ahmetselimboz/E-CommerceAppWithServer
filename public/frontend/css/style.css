@@ -834,6 +834,135 @@ p {
   }
 }
 
+.popup-back {
+  width: 100%;
+  background-color: #00000095;
+  height: inherit;
+  position: fixed;
+  z-index: 50;
+
+}
+
+.popup-x{
+  position: absolute;
+  right: 0;
+  margin: 1rem;
+  color:#9f9f9f;
+  font-size: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.296) 0px 0px 15px 4px;
+  transition: .2s ease-in-out;
+}
+
+.popup-x:hover{
+
+  color:#626262;
+
+}
+
+.popup-card {
+  width: 500px;
+  height: 345px;
+  padding: 2rem;
+  background-color: #f8f8f8;
+  border-radius:10px;
+  border:4px solid #cecece;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 15px 2px;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.popup-icon {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+}
+
+.popup-icon i {
+  color: #16be00;
+  font-size: 60px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #dedede;
+  border:3px solid #118f00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.popup-text{
+  width:100%;
+  height:auto;
+  text-align: center;
+  font-family: "Comfortaa", cursive;
+  padding: 2rem 1rem;
+}
+
+
+
+.popup-link{
+  width:100%;
+  height:auto;
+  display: flex;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+}
+.popup-link a{
+  font-size: 15px;
+  color: #119400;
+  font-family: "Comfortaa", cursive;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+
+  transition: .2s ease-in-out;
+}
+
+.popup-link a i{
+  font-size: 22px;
+  color: #119400;
+  font-family: "Comfortaa", cursive;
+  font-weight: bolder;
+
+}
+
+.popup-link a:hover{
+  font-size: 16px;
+
+
+
+}
+
+@media screen and (max-width: 480px) {
+
+
+  .popup-card {
+    width: 90%;
+    height: auto;
+  }
+
+  .popup-text h3{
+    font-size:20px;
+  }
+
+
+}
+@media screen and (min-width: 481px) and (max-width: 768px) {
+}
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+}
+
 /*------------------HOMEPAGE-------------------*/
 
 .bg {
@@ -4581,9 +4710,8 @@ label {
 
   .fav-col {
     padding: 2rem 10rem;
-   
   }
- /*
+  /*
   .fav-content {
     margin: 1rem 0rem;
     height: inherit;

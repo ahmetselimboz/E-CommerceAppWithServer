@@ -255,3 +255,7 @@ function hideLoggedCard() {
 }
 
 ////////////////////////////////////////////////////////////////////
+
+function popup() {
+  document.querySelector(".popup-back").style.display = "none";
+}
