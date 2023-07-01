@@ -1,3 +1,18 @@
+// Local Storage'da "popupShown" anahtarını kontrol edin
+const popupShown = sessionStorage.getItem("popupShown");
+
+console.log(popupShown);
+// Eğer anahtar yoksa (popup daha önce gösterilmemişse), popup'ı açın ve anahtarı kaydedin
+if (!popupShown) {
+  console.log("Merhaba");
+  document.querySelector(".popup-back").style.display = "block";
+  sessionStorage.setItem("popupShown", "true");
+}
+
+function popup() {
+  document.querySelector(".popup-back").style.display = "none";
+}
+
 ////////////////////SLİDER EFEKTİ////////////////////////
 
 $(document).ready(function () {
@@ -22,15 +37,13 @@ $(document).ready(function () {
           slidesToShow: 3,
         },
       },
-    
+
       {
         breakpoint: 1201,
         settings: {
           slidesToShow: 4,
         },
       },
-
-      
     ],
   });
 });
@@ -107,11 +120,8 @@ window.onscroll = function () {
     document.documentElement.scrollTop > 100
   ) {
     document.querySelector(".nav").style.marginTop = "-120px";
-
-
   } else {
     document.querySelector(".nav").style.marginTop = "0";
-
   }
 };
 
@@ -255,13 +265,3 @@ function hideLoggedCard() {
 }
 
 ////////////////////////////////////////////////////////////////////
-
-document.addEventListener("DOMContentLoaded", ()=>{
-  var pop = documnet.querySelector(".popup-back");
-  pop.style.display = "block";
-})
-
-
-function popup() {
-  document.querySelector(".popup-back").style.display = "none";
-}
