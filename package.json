@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest app.test.js",
     "start": "nodemon app.js",
-    "build": "npm install",
+    "build": "npm run build",
     "serve": "node app.js"
   },
   "keywords": [],
