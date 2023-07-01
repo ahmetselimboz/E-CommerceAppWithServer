@@ -256,6 +256,12 @@ function hideLoggedCard() {
 
 ////////////////////////////////////////////////////////////////////
 
+document.addEventListener("DOMContentLoaded", ()=>{
+  var pop = documnet.querySelector(".popup-back");
+  pop.style.display = "block";
+})
+
+
 function popup() {
   document.querySelector(".popup-back").style.display = "none";
 }

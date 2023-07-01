@@ -840,7 +840,7 @@ p {
   height: inherit;
   position: fixed;
   z-index: 50;
-
+  display: none;
 }
 
 .popup-x{
