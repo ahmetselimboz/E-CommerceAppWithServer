@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name=”keywords” content="kitapdagi, Kitap Dağı, Dağ kadar kitap" />
+    <meta name="”keywords”" content="kitapdagi, Kitap Dağı, Dağ kadar kitap" />
 
     <link
       rel="shortcut icon"
@@ -47,7 +47,6 @@
             type="text"
             placeholder="Aradığınız kitabın adını buraya giriniz."
             name="search"
-            
           />
           <button class="search-btn" type="submit">
             <i class="bx bx-search"></i>&nbsp;Ara
@@ -80,11 +79,17 @@
       </div>
       <div class="nav-bottom transfomY-5">
         <div class="res-bottom-btn">
-          <a id="logged-border" href="/"><i class="bx bx-user"></i>&nbsp;<%- user.user.name %> <%- user.user.surname %></a>
-          <a href="/auth/favorites"><i class="bx bx-heart"></i>&nbsp;Favoriler</a>
-          <a href="/auth/profile"><i class='bx bx-book-content'></i>&nbsp;Kullanıcı Bilgilerim</a>
-          <a href="/auth/logout"><i class='bx bx-x'></i>&nbsp;Çıkış Yap</a>
-
+          <a id="logged-border" href="/"
+            ><i class="bx bx-user"></i>&nbsp;<%- user.user.name %> <%-
+            user.user.surname %></a
+          >
+          <a href="/auth/favorites"
+            ><i class="bx bx-heart"></i>&nbsp;Favoriler</a
+          >
+          <a href="/auth/profile"
+            ><i class="bx bx-book-content"></i>&nbsp;Kullanıcı Bilgilerim</a
+          >
+          <a href="/auth/logout"><i class="bx bx-x"></i>&nbsp;Çıkış Yap</a>
         </div>
         <p></p>
         <ul class="nav-bottom-ul">
@@ -98,6 +103,27 @@
         </ul>
       </div>
     </nav>
+    <div class="popup-back" onclick="popup()"></div>
+
+    <div class="popup-card">
+      <i class="popup-x bx bx-x" onclick="popup()"></i>
+      <div class="popup-icon">
+        <i class="bx bxs-devices bx-tada"></i>
+      </div>
+      <div class="popup-text">
+        <h3>
+          Mobil uygulamamızı indirebilirsiniz.<br />(Şu anlık yalnızca
+          <b>Android</b>
+          platform desteklenmektedir)
+        </h3>
+      </div>
+      <div class="popup-link">
+        <a
+          href="https://docs.google.com/uc?export=download&id=1ZIOjp7UbZiD1V1KfT-_emANHR7iF1S-L"
+          ><i class="bx bxs-download"></i>&nbsp;Uygulamamızı İndir</a
+        >
+      </div>
+    </div>
     <%- body %>
 
     <footer>

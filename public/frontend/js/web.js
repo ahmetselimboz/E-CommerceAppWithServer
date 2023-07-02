@@ -6,11 +6,13 @@ console.log(popupShown);
 if (!popupShown) {
   console.log("Merhaba");
   document.querySelector(".popup-back").style.display = "block";
+  document.querySelector(".popup-card").style.display = "block";
   sessionStorage.setItem("popupShown", "true");
 }
 
 function popup() {
   document.querySelector(".popup-back").style.display = "none";
+  document.querySelector(".popup-card").style.display = "none";
 }
 
 ////////////////////SLİDER EFEKTİ////////////////////////
