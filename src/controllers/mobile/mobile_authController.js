@@ -485,6 +485,7 @@ const getFavorites = async (req, res, next) => {
   var list = [];
   if (req.params) {
     var dizi = [];
+
     const findFavor = await Favorite.findOne({ userId: req.params.userId });
     if (!findFavor) {
       res.send({
@@ -494,7 +495,9 @@ const getFavorites = async (req, res, next) => {
       for (let index = 0; index < findFavor.book.length; index++) {
         const book = await Book.findById(findFavor.book[index].id);
         dizi.push(book);
+        
       }
+      dizi = dizi.reverse();
 
       res.send({
         book: dizi,

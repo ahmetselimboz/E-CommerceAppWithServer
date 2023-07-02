@@ -7,7 +7,7 @@
     "test": "jest app.test.js",
     "start": "node app.js",
     "build": "npm install",
-    "serve": "nodemon app.js"
+    "calis": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
