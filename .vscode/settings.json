@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/e1af9d0d-fdc6-4e8f-8ca8-4e37ed141dfd/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/kitapdagi",
+    "appService.deploySubpath": "kitapdagi"
+}
