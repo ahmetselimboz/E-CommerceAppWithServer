@@ -6,8 +6,7 @@ const session = require("express-session");
 
 
 const options = {
-  clientID:
-    process.env.GOOGLE_CLIENT_ID,
+  clientID:process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.WEB_SITE_URL +"auth/google/callback",
   scope: ["profile","email"],
