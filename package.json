@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@bitc/cnad": "^1.1.0",
     "@superfaceai/passport-twitter-oauth2": "^1.2.3",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",

@@ -6,7 +6,9 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-
+const cnad = require("@bitc/cnad");
+cnad.config("/home/ahmetsel/nodevenv/kitapdagi.com.tr/18");
+cnad.start();
 const ejs = require("ejs");
 const expressLayouts = require("express-ejs-layouts");
 app.use(expressLayouts);
