@@ -27,6 +27,7 @@ jobs:
                 server: 95.173.180.20
                 username: ${{ secrets.FTP_USERNAME }}
                 password: ${{ secrets.FTP_PASSWORD }}
+                server-dir: kitapdagi.com.tr/
                 
   
                 exclude: |
